@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Dashboard</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <!-- Animation CSS -->
+  <link rel="stylesheet" href="assets/css/animation.css">
+  <!-- Your custom styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Dashboard -->
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="side-menu">
+        <div class="logo-head">
+          <a class="logo" href="index.html"><img src="assets/images/logo.png" alt=""></a>
+          <a class="small-logo" href="#"><img src="assets/images/logo-small.png" alt=""></a>
+          <a class="menu-arrow" href="javascript:void(0);" id="close-btn"><img class="menu-arrow-left" src="assets/images/arrow.png" alt=""><img class="menu-arrow-right" src="assets/images/arrow-right.png" alt=""></a>
+        </div>
+
+        <div class="accordion">
+          <a id="menu-bar-close" href="#"><i class="fa fa-times"></i></a>
+          <ul>
+            <li class="sidenav">
+              <a class="nav-link active" href="index.html"><img src="assets/images/dashboard.png" alt=""><span>Dashborad</span></a>
+            </li>
+            <li class="sidenav">
+              <h4><a href="#"><img src="assets/images/medkit.png" alt=""><span>Pharmacies</span></a><i class="fa fa-angle-right"></i></h4>
+              <ul style="display: none;">
+                <li class="page_item"><a class="nav-link" href="pharmacies.html">Pharmacies</a></li>
+              </ul>
+            </li>
+            <li class="sidenav">
+              <h4><a href="#"><img src="assets/images/people.png" alt=""><span>Users</span></a><i class="fa fa-angle-right"></i></h4>
+              <ul style="display: none;">
+                <li class="page_item"><a class="nav-link" href="#">Users</a></li>
+              </ul>
+            </li>
+            <li class="sidenav">
+              <h4><a href="#"><img src="assets/images/forms.png" alt=""><span>Forms</span></a><i class="fa fa-angle-right"></i></h4>
+              <ul style="display: none;">
+                <li class="page_item"><a class="nav-link" id="v-pills-forms-tab" data-toggle="pill" href="#v-pills-forms" role="tab" aria-controls="v-pills-forms" aria-selected="false">Forms</a></li>
+              </ul>
+            </li>
+            <li class="sidenav">
+              <h4><a href="#"><img src="assets/images/reports.png" alt=""><span>Reports</span></a><i class="fa fa-angle-right"></i></h4>
+              <ul style="display: none;">
+                <li class="page_item"><a class="nav-link" href="reports.html">Reports</a></li>
+                <li class="page_item"><a class="nav-link" href="registration.html">Add New Pharmacy</a></li>
+              </ul>
+            </li>
+            <li class="sidenav">
+              <h4><a href="#"><img src="assets/images/cog.png" alt=""><span>Settings</span></a><i class="fa fa-angle-right"></i></h4>
+              <ul style="display: none;">
+                <li class="page_item"><a class="nav-link" href="settings.html">Settings</a></li>
+              </ul>
+            </li>
+            <li class="sidenav"><a class="nav-link" href="#"><img src="assets/images/search.png" alt=""><span>Search</span></a></li>
+            <li class="sidenav"><a class="nav-link" href="#"><img src="assets/images/document-lock.png" alt=""><span>Logs</span></a></li>
+          </ul>
+        </div>
+        <div class="logout">
+          <a href="#" class="nav-link"><img src="assets/images/exit.png" alt=""><span>Logout</span></a>
+        </div>
+      </div>
+
+      <div class="dashboard-side">
+        <div class="dash-wrap">
+          <div class="dashborad-header">
+            <a id="menu-bar" href="#"><i class="fa fa-bars"></i></a>
+            <h2>Search Preview Results</h2>
+            <a class="small-logo-mobile" href="#"><img src="assets/images/mobile-logo.png" alt=""></a>
+            <div class="user-menu">
+              
+               <div class="profile"> 
+                  <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="assets/images/user.png" alt=""> <span>Amir Eid</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="#">My Profile</a>
+                      <a class="dropdown-item" href="#">Setting</a>
+                      <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                  </div>
+                  <p class="online"><span></span>Online</p>
+                </div>
+            </div>
+          </div>
+
+          <div class="pharma-register">
+              <h2>Search Results</h2>
+          </div>
+
+          <div class="reports-breadcrum m-0">
+
+            <nav class="dash-breadcrumb" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"><img src="assets/images/icon-home.png" alt="">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Search</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Preview Results</li>
+              </ol>
+            </nav>
+
+          </div>
+
+          <div class="report-forms">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="patient-information">
+                  <div class="patient-info-export">
+                    <h3>Patient Information</h3>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Export
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="serch-prvw-results">
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <tbody>
+                          <tr>
+                            <td>Full Name:</td>
+                            <td>John Doe</td>
+                          </tr>
+                          <tr>
+                            <td>DOB:</td>
+                            <td>23/02/1990</td>
+                          </tr>
+                          <tr>
+                            <td>Facility:</td>
+                            <td>CP</td>
+                          </tr>
+                          <tr>
+                            <td>Packs Location:</td>
+                            <td>Fridge</td>
+                          </tr>
+                          <tr>
+                            <td>Phone:</td>
+                            <td>7 7010 1111</td>
+                          </tr>
+                          <tr>
+                            <td>Carer Mobile:</td>
+                            <td>+61 7 7010 1111</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="serch-prvw-results">
+                    <h3>Picks Up</h3>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <tbody>
+                          <tr>
+                            <td>Schedule Date & Time:</td>
+                            <td>01/03/2021 at 11:30 AM</td>
+                          </tr>
+                          <tr>
+                            <td>Notes for Patient:</td>
+                            <td>Dummy text notes here from patient</td>
+                          </tr>
+                          <tr>
+                            <td>Receiver:</td>
+                            <td>Pateint</td>
+                          </tr>
+                          <tr>
+                            <td>No. of Weeks</td>
+                            <td>2</td>
+                          </tr>
+                          <tr>
+                            <td>Carer Name:</td>
+                            <td>n/a</td>
+                          </tr>
+                          <tr>
+                            <td>Notes:</td>
+                            <td>n/a</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="serch-prvw-results">
+                    <h3>Checking</h3>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <tbody>
+                          <tr>
+                            <td>Date & Time:</td>
+                            <td>01/03/2021 at 11:30 AM</td>
+                          </tr>
+                          <tr>
+                            <td>No. of Weeks</td>
+                            <td>2</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="serch-prvw-results">
+                    <h3>Returns</h3>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <tbody>
+                          <tr>
+                            <td>Schedule Date & Time:</td>
+                            <td>01/03/2021 at 11:30 AM</td>
+                          </tr>
+                          <tr>
+                            <td>Select Days or Weeks:</td>
+                            <td>Weeks</td>
+                          </tr>
+                          <tr>
+                            <td>No. of Days or Weeks Returned:</td>
+                            <td>2</td>
+                          </tr>
+                          <tr>
+                            <td>Store:</td>
+                            <td>CP</td>
+                          </tr>
+                          <tr>
+                            <td>Staff Initials:</td>
+                            <td>07KBFBJ</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="serch-prvw-results">
+                    <h3>Audits</h3>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <tbody>
+                          <tr>
+                            <td>Date & Time:</td>
+                            <td>01/03/2021 at 11:30 AM</td>
+                          </tr>
+                          <tr>
+                            <td>No. of Weeks</td>
+                            <td>2</td>
+                          </tr>
+                          <tr>
+                            <td>Store:</td>
+                            <td>Nova Pharmacy</td>
+                          </tr>
+                          <tr>
+                            <td>Staff Initials:</td>
+                            <td>07KBFBJ</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Of Dashboard -->
+
+<!-- jQuery -->
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="assets/js/popper.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<!-- Your custom scripts -->
+<script type="text/javascript" src="assets/js/custom.js"></script>
+
+</body>
+</html>

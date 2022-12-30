@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Dashboard</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <!-- Animation CSS -->
+  <link rel="stylesheet" href="assets/css/animation.css">
+  <!-- Your custom styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Dashboard -->
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="side-menu">
+        <div class="logo-head">
+          <a class="logo" href="index.html"><img src="assets/images/logo.png" alt=""></a>
+          <a class="small-logo" href="index.html"><img src="assets/images/logo-small.png" alt=""></a>
+          <a class="menu-arrow" href="javascript:void(0);" id="close-btn"><img class="menu-arrow-left" src="assets/images/arrow.png" alt=""><img class="menu-arrow-right" src="assets/images/arrow-right.png" alt=""></a>
+        </div>
+
+        <div class="accordion">
+          <a id="menu-bar-close" href="#"><i class="fa fa-times"></i></a>
+          <ul>
+            <li class="sidenav">
+              <a class="nav-link" href="index.html"><img src="assets/images/dashboard.png" alt=""><span>Dashborad</span></a>
+            </li>
+            <li class="sidenav">
+              <a class="nav-link" href="#"><img src="assets/images/people.png" alt=""><span>Users</span></a>
+            </li>
+            <li class="sidenav">
+              <a class="nav-link" href="#"><img src="assets/images/medkit.png" alt=""><span>Patient</span></a>
+            </li>
+            <li class="sidenav">
+              <a class="nav-link" href="pickup.html"><img src="assets/images/today.png" alt=""><span>Pickups</span></a>
+            </li>
+            <li class="sidenav">
+              <a class="nav-link" href="returns.html"><img src="assets/images/box.png" alt=""><span>Returns</span></a>
+            </li>
+            <li class="sidenav">
+              <a class="nav-link" href="settings.html"><img src="assets/images/reports.png" alt=""><span>Audit</span></a>
+            </li>
+            <li class="sidenav">
+              <a class="nav-link active" href="#"><img src="assets/images/cog.png" alt=""><span>Settings</span></a>
+            </li>
+          </ul>
+        </div>
+        <div class="logout">
+          <a href="#" class="nav-link"><img src="assets/images/exit.png" alt=""><span>Logout</span></a>
+        </div>
+      </div>
+
+      <div class="dashboard-side">
+        <div class="dash-wrap">
+          <div class="dashborad-header">
+            <a id="menu-bar" href="#"><i class="fa fa-bars"></i></a>
+            <div class="pharma-add">
+              <a href="#" class="active">Add Returns</a>
+            <a href="#">All Returns</a>
+            </div>
+            <a class="small-logo-mobile" href="index.html"><img src="assets/images/mobile-logo.png" alt=""></a>
+            <div class="user-menu">
+              
+               <div class="profile"> 
+                  <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="assets/images/user.png" alt=""> <span>Amir Eid</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="#">My Profile</a>
+                      <a class="dropdown-item" href="#">Setting</a>
+                      <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                  </div>
+                  <p class="online"><span></span>Online</p>
+                </div>
+            </div>
+          </div>
+
+          <div class="pharma-add pharma-add-mobile">
+            <a href="#" class="active">Add Returns</a>
+            <a href="#">All Returns</a>
+          </div>
+
+          <nav class="dash-breadcrumb" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html"><img src="assets/images/icon-home.png" alt="">Home</a></li>
+              <li class="breadcrumb-item"><a href="settings.html">Returns</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Add Returns</li>
+            </ol>
+          </nav>
+          <div class="col-md-7 m-auto">
+            <div class="row">
+              <div class="update-information">
+                <div class="notes">
+                  <h3>Add Returns</h3>
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <label>Select Days Or Weeks<span>*</span></label>
+                      <select class="form-control">
+                        <option selected="">Please Select</option>
+                        <option>Amr Eid, 01/03/1980</option>
+                        <option>Hassam Ali, 10/06/1994</option>
+                        <option>Amr Eid, 25/12/1985</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Select Patient<span>*</span></label>
+                      <select class="form-control">
+                        <option selected="">Please Select</option>
+                        <option>Amr Eid, 01/03/1980</option>
+                        <option>Hassam Ali, 10/06/1994</option>
+                        <option>Amr Eid, 25/12/1985</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>First Name</label>
+                      <input type="text" class="form-control" placeholder="John">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Last Name</label>
+                      <input type="text" class="form-control" placeholder="Doe">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Number of Days or Weeks returned<span>*</span></label>
+                      <input type="text" class="form-control" placeholder="e.g 1">
+                    </div>
+                    <div class="col-md-6">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <label>Date of Birth<span>*</span></label>
+                        </div>
+                        <div class="form-group col-4 col-md-4">
+                          <input type="text" class="form-control" placeholder="dd">
+                        </div>
+                        <div class="form-group col-4 col-md-4">
+                          <input type="text" class="form-control" placeholder="mm">
+                        </div>
+                        <div class="form-group col-4 col-md-4">
+                          <input type="text" class="form-control" placeholder="yy">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Staff Initials</label>
+                      <input type="text" class="form-control" placeholder="Initials">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Store<span>*</span></label>
+                      <select class="form-control">
+                        <option selected="">Please Select</option>
+                        <option>Amr Eid, 01/03/1980</option>
+                        <option>Hassam Ali, 10/06/1994</option>
+                        <option>Amr Eid, 25/12/1985</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <button type="submit" class="btn update-btn">Update</button>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <button type="button" class="btn reset-btn">Reset</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Of Dashboard -->
+
+<!-- jQuery -->
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="assets/js/popper.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<!-- Your custom scripts -->
+<script type="text/javascript" src="assets/js/custom.js"></script>
+
+</body>
+</html>
