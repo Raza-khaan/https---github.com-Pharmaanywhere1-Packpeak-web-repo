@@ -145,9 +145,7 @@ a.dt-button.dropdown-item.copyButton
               <li><a href="{{url('admin/pickups_reports')}}" >
               <img src="{{ URL::asset('admin/images/ambulance.png')}}" alt="">   
               Pick-Ups List</a></li>
-              <li><a href="{{url('admin/to_pack_list')}}">
-               
-              To Pack List</a></li>
+             
                 <li><a href="{{url('admin/new_patients_report')}}" >
                 <img src="{{ URL::asset('admin/images/disabled.png')}}" alt="">   
                 Patient  List</a></li>
