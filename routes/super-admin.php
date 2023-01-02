@@ -68,6 +68,7 @@ Route::prefix('/admin')->group(function() {
             Route::get('checkings','Admin\Checking@checkings'); 
             Route::get('checkings_report','Admin\Checking@checkings_report'); 
             Route::get('checking_export_excel','Admin\Checking@checking_export_excel');
+            Route::get('export_checking_pdf','Admin\Checking@export_checking_pdf');
 
             Route::get('archived_checkings_report','Admin\Checking@archived_checkings_report'); 
 
@@ -75,7 +76,10 @@ Route::prefix('/admin')->group(function() {
             // Packed
             Route::get('packed','Admin\Checking@packed'); 
             Route::post('save_packed','Admin\Checking@save_packed');
+            //add new excel route
             Route::get('export_excel_packed','Admin\Checking@export_excel_packed');
+            //add new pdf route
+            Route::get('export_pdf_packed','Admin\Checking@export_pdf_packed');
             Route::get('packed_report','Admin\Checking@packed_report'); 
             Route::get('archived_packed_report','Admin\Checking@archived_packed_report'); 
             Route::post('delete_packed','Admin\Checking@delete_packed');

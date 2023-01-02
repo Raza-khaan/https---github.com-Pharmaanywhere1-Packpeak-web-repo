@@ -125,6 +125,7 @@ Route::domain('{account}.' . env('PROJECT_HOST', 'localhost'))->group(function (
 			Route::get('sms_tracking_report', 'Notes_For_Patient@sms_tracking_report')->name('sms_tracking_report');
 
 			Route::get('checkings', 'Checking@checkings')->name('checkings');
+			
 			Route::get('checkings/edit/{id}', 'Checking@checkingsEdit')->name('checkings/edit/{id}')->where('id', '[0-9]+')->middleware('CheckPharmacyAdmin');
 			Route::post('checkings/edit/{id}', 'Checking@checkingsEdit')->name('checkings/edit/{id}')->where('id', '[0-9]+')->middleware('CheckPharmacyAdmin');
 			Route::get('checkings/delete/{id}', 'Checking@checkingsDelete')->name('checkings/delete/{id}')->where('id', '[0-9]+')->middleware('CheckPharmacyAdmin');

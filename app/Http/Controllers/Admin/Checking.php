@@ -13,6 +13,7 @@ use App\Models\Tenant\EventsLog;
 use App\Models\Tenant\PatientLocation; 
 use DB;
 use Illuminate\Http\Request;
+use PDF;
 
 class Checking extends Near_Miss
 {
@@ -258,19 +259,20 @@ class Checking extends Near_Miss
         foreach($all_pharmacy  as $row){ 
               $this->get_connection($row->website_id);
               $get_audit=Packed_Model::get_all();
+           
                 foreach($get_audit as $col) {
                     $col->pharmacy=$row->company_name;
                     $newarray[]=$col;
                 }
               DB::disconnect('tenant');
         } 
-        $data['all_packed']=$newarray;  
+        $data['all_packed']=$newarray;
       //  dd('raza');
         $proData = "";
         if (count($data) >0) {
-         $proData .= '<table border  style="height:100% width:100%">
-         <tr>
-         <th>Id</th>
+         $proData .= '<table  border height="50" width="60">
+         <tr  >
+     
          <th>Patient_id</th>
          <th>DOB</th>
          <th>Image</th>
@@ -286,8 +288,8 @@ class Checking extends Near_Miss
          foreach ($data['all_packed'] as $img)
          {      
           $proData .= '
-             <tr>
-             <td>'.$img->id.'</td>
+             <tr >
+           
              <td>'.$img->patient_id.'</td>
              <td>'.$img->no_of_weeks.'</td>
              <td>'.$img->note_from_patient.'</td>
@@ -295,7 +297,7 @@ class Checking extends Near_Miss
            
              <td>
             
-             <img src="'.$img->pharmacist_signature.'"  height="20" width="20">
+             <img src="'.$img->pharmacist_signature.'"  height="30" width="20" >
             
              </td> 
              <td> 
@@ -315,6 +317,27 @@ class Checking extends Near_Miss
         echo $proData;
      
     }
+    
+ public function export_pdf_packed()
+ {
+    $all_pharmacy=User::all();
+        $newarray=array();
+        foreach($all_pharmacy  as $row){ 
+              $this->get_connection($row->website_id);
+              $get_audit=Packed_Model::get_all();
+           
+                foreach($get_audit as $col) {
+                    $col->pharmacy=$row->company_name;
+                    $newarray[]=$col;
+                }
+              DB::disconnect('tenant');
+        } 
+        $data['newarray']=$newarray;
+        $pdf = PDF::loadView('checkingpdf', $data);
+        return  $pdf->download(time().'.pdf');
+ }
+ 
+   
     public function email_checking_report(Request $request)
     {
         $email = $request->email;
@@ -409,6 +432,24 @@ class Checking extends Near_Miss
     header('Content-Disposition: attachment; filename='.time().'.xls');
     echo $proData;
  
+ }
+ public function export_checking_pdf()
+ {
+     $all_pharmacy=User::all();
+     $newarray=array();
+     foreach($all_pharmacy  as $row){ 
+           $this->get_connection($row->website_id);
+           $get_audit=Checking_Model::get_all();
+             foreach($get_audit as $col) {
+                 $col->pharmacy=$row->company_name;
+                 $newarray[]=$col;
+             }
+           DB::disconnect('tenant');
+     } 
+   //  $data['all_checkings']=$newarray;  
+     $data['newarray']=$newarray;
+     $pdf = PDF::loadView('checkingpdf', $data);
+     return  $pdf->download(time().'.pdf');
  }
     public function packed_report()
     {

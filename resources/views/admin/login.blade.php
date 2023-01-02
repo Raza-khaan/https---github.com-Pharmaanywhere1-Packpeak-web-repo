@@ -71,7 +71,8 @@
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           
-            <div class="col-xs-8">    
+            <div class="col-xs-8"> 
+            <a  href="{{url('/admin/passwords/reset')}}" style="margin-left: 51%;">I forgot my password</a>     
               <!-- <div class="checkbox icheck">
                 <label>
                   <input type="checkbox"> Remember Me
@@ -79,20 +80,18 @@
               </div>-->
             </div><!-- /.col -->
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat"  style="margin-top: 1%; margin-bottom: 1%;">Sign In</button>
             </div><!-- /.col -->
             <div class="row">
-            <div class="col-md-4 text-right">
-              <a  href="{{url('term_condition')}}" target="blank">Terms&Condition</a>  
+            <div class="col-md-6 ">
+              <a  href="{{url('term_condition')}}" target="blank">Terms & Condition</a>  
               </div>
-              <div class="col-md-8 text-right">
-              <a  href="{{url('/admin/passwords/reset')}}">I forgot my password</a>  
+              <div class="col-md-6 text-right">
+              <a  href="{{url('privacy_policy')}}" target="blank">Privacy Policy</a>  
               </div>
              
             </div>
-            <div>
-            <a  href="{{url('privacy_policy')}}" target="blank">Privacy Policy</a>  
-            </div>
+            
             
         </form>
 

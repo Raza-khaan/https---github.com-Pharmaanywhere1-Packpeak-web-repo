@@ -599,16 +599,16 @@
   'mail' => 
   array (
     'driver' => 'smtp',
-    'host' => 'yehtohoga.com',
-    'port' => '25',
+    'host' => 'technosolx.com',
+    'port' => '587',
     'from' => 
     array (
-      'address' => 'orhansystem@yehtohoga.com',
+      'address' => 'demo@technosolx.com',
       'name' => 'Pack Peak',
     ),
     'encryption' => 'tls',
-    'username' => 'orhansystem@yehtohoga.com',
-    'password' => 'Developer@@@321',
+    'username' => 'demo@technosolx.com',
+    'password' => '=^T1-KFmLA4v',
     'sendmail' => '/usr/sbin/sendmail -bs',
     'pretend' => false,
     'markdown' => 

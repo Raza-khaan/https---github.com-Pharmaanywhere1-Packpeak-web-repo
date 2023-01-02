@@ -393,7 +393,7 @@ class Home extends Controller {
 
 		$dateS = new Carbon($request->start_date);
 		$dateE = new Carbon($request->end_date);
-		$all_pharmacy = User::all();
+		$all_pharmacy = User::all();	
 
 
 

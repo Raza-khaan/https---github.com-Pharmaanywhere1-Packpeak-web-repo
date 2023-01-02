@@ -188,7 +188,7 @@
                         </div>
                         <div class="col-md-2"  style="height: 60px !important; ">
                         
-                        <input type="submit" name=""  class="btn btn-success" value="Apply Filter" id="" style="">
+                        <input type="submit" name=""  class="btn btn-success" value="Apply Filter" id="" style=" padding: 7px; !important">
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
@@ -240,6 +240,7 @@
                                 <div class="box-body" id="sortable">
                                      <div class="pack-card brd-color1" id="1">
                                         <div class="card-info" >
+                                            
                                             <h3>{{$patientpickup->patients->first_name.' '.$patientpickup->patients->last_name}}</h3>
                                             <ul>
                                                 <li><span>Patient</span></li>
@@ -299,7 +300,7 @@
                             <div class="box-body" id="sortable-2">
                                     
                                    @foreach ($packed as $patientdata )
-                                  
+                                   
                                    
                                    @if(isset($patientdata->patients->first_name) && $patientdata->patients->first_name!="")
                                  

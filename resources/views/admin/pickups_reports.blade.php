@@ -116,9 +116,9 @@
 
                <div class="row">
                <div class="col-md-3 ">
-            <a href="{{ url('admin/pickups_reports_excel')}}"  style="padding: 6px !important;" class="btn btn-success"> Export Excel</a>
+            <a href="{{ url('admin/pickups_reports_excel')}}"  style="padding: 7px !important;" class="btn btn-success"> Export Excel</a>
                   <!-- <a href="#"  class="btn btn-success"  onclick="export_pdf()"> Export PDF</a>  -->
-                   <a href="{{ url('admin/pickups_reports_pdf')}}"  style="padding: 6px !important;"  class="btn btn-success"> Export PDF</a> 
+                   <a href="{{ url('admin/pickups_reports_pdf')}}"  style="padding: 7px !important;"  class="btn btn-success"> Export PDF</a> 
             
             </div>
             <div class="col-md-9 text-right" >

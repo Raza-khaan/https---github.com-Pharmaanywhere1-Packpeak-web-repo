@@ -243,7 +243,7 @@
                                 <label class="form-check-label"><input style="opacity:1 !important;" type="checkbox"
                                         class="form-check-input" name="term" required="required" @if(old('term')=='on' )
                                         {{'checked'}} @endif>
-                                    I agreed to the Packpeaks <a href="">Terms, Conditions</a> and <a href="#">Privacy
+                                    I agreed to the Packpeaks <a href="{{url('term_condition')}}" target="blank">Terms, Conditions</a> and <a href="{{url('privacy_policy')}}" target="blank">Privacy
                                         Policy</a></label>
                             </div>
                                 

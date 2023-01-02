@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="icon" href="http://127.0.0.1:8000/media/logos/favicon.ico" type="image/x-icon"/>
+  <link rel="icon" href="http://127.0.0.1:8000/media/logos/favicon.ico" type="image/x-icon"/>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,29 +48,27 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top" data-scrollto-offset="0">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
+  <header id="footer" style="background-color: black;" class="header fixed-top" data-scrollto-offset="0">
+    <div class="container-fluid d-flex align-items-center justify-content-between"  style="background-color: black;">
 
-      <a href="index.html" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+      <a href="#" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Packpeak<span>.</span></h1>
+        <!-- <h1   style="  color: white;">Packpeak<span>.</span></h1> -->
+        <img width="150px" class="logo" src="{{ URL::asset('admin/images/logo.png')}}" alt="">
       </a>
 
       <nav id="navbar" class="navbar">
-        <ul>
-
-          <li class="nav-link scrollto"><a href="#"><span>Home</span> </a>
-            
-          </li>
-
-          <li><a class="nav-link scrollto" href="index.html#about">About us</a></li>
-          
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle d-none"></i>
+      <ul>
+        <li class="nav-link scrollto" ><a href="#"><span  style="  color: white; !important">Home</span> </a>
+        </li>
+        <li><a class="nav-link scrollto" href="index.html#about"  style="  color: white; !important">About us</a></li>
+        
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle d-none"></i>
       </nav><!-- .navbar -->
 
-   
+
 
     </div>
   </header><!-- End Header -->
@@ -78,27 +76,45 @@
   
 
   <main id="main">
+  <section id="about" class="about">
+      <div class="container" >
 
-    <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
-      <div class="container">
-
-        <div class="row">
-
+        <div class="section-header" >
+          <br>
+          <h2 style="margin-top: 49px; margin-bottom: -8px;">Terms and Condition</h2>
         
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum assumenda magnam excepturi fugiat adipisci nam saepe impedit nobis, molestias omnis repudiandae neque ratione et illum. Aliquid fugit tempore quo impedit reprehenderit omnis, eaque quia in! Reiciendis ab, nobis dolorum, eaque laboriosam delectus fugit, reprehenderit quas eveniet officiis quisquam! Quisquam quaerat dolorem nostrum, enim nobis quae minima. Ab voluptates at nostrum ad tempora quae veniam odit nobis magnam non placeat, ullam, nihil vitae animi facere, quaerat incidunt tempore magni temporibus perspiciatis voluptas aut delectus eligendi expedita. Quibusdam tempore, dolor aliquam nulla natus nihil consectetur repellendus culpa aliquid dignissimos a alias deserunt, voluptas quod harum recusandae! Fugit cupiditate error accusamus laudantium deleniti quo voluptas, neque autem nulla ea similique corporis, quaerat pariatur aliquid natus expedita odit exercitationem quod id. Est labore repellat eum? Velit beatae officiis nesciunt ipsa quisquam officia sed, laborum, expedita vitae iure quis in labore earum, at aliquam! Exercitationem accusamus ipsa sapiente ut mollitia rem minima labore sed laboriosam iste, dolorem necessitatibus minus delectus cumque illum! Ullam omnis corporis eligendi saepe nemo voluptate, provident, aliquid doloribus aperiam nam modi. Est dolorum perferendis ipsam ab delectus accusamus corrupti vel quisquam, culpa illum suscipit accusantium dolores, aspernatur soluta fuga sint magni.
-        </p>
+        </div>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos modi inventore dignissimos in laboriosam vero odit illo cupiditate doloribus eligendi quidem explicabo deleniti nam assumenda, rem repellendus consequuntur ab tempora?</p>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui ipsa corrupti nostrum, enim architecto ad maxime nesciunt debitis reiciendis ut excepturi nihil minus autem eos quod repudiandae cum! Dolorem, eveniet.</p>
+
        
+          <!-- <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p> -->
+       
+         </div>
+
         </div>
 
       </div>
-    </section><!-- End Featured Services Section -->
+    </section>
+    <!-- ======= Featured Services Section ======= -->
+    <!-- <section id="featured-services" class="featured-services">
+      <div class="container">
+
+      <div class="section-header">
+
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere ab, consequuntur, sint neque iusto excepturi natus, eum magni expedita harum voluptatem debitis? Rerum ipsum repudiandae quisquam saepe eius excepturi expedita?</p>
+        
+        </div>
+
+      </div>
+    </section>End Featured Services Section -->
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
+          <br>
           <h2>About Us</h2>
           <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
         </div>

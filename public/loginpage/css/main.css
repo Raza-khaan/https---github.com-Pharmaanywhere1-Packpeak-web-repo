@@ -261,8 +261,8 @@ section {
 .header .btn-getstarted,
 .header .btn-getstarted:focus {
   font-size: 16px;
-  color: var(--color-white);
-  background: var(--color-primary);
+  color: var(--color-black);
+  background: var(--color-black);
   padding: 8px 23px;
   border-radius: 4px;
   transition: 0.3s;
@@ -271,8 +271,8 @@ section {
 
 .header .btn-getstarted:hover,
 .header .btn-getstarted:focus:hover {
-  color: var(--color-white);
-  background: rgba(var(--color-primary-rgb), 0.85);
+  color: var(--color-black);
+  background: rgba(var(--color-black), 0.85);
 }
 
 @media (max-width: 1279px) {
@@ -535,7 +535,7 @@ section {
 
   .mobile-nav-toggle {
     display: block !important;
-    color: var(--color-secondary);
+    color: var(--color-black);
     font-size: 28px;
     cursor: pointer;
     line-height: 0;

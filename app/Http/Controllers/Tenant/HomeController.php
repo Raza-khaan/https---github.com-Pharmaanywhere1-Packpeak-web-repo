@@ -237,7 +237,7 @@ class HomeController extends Controller {
 					$patientname = $patientlist->first_name . ' '.   $patientlist->last_name;
 					$patientdob = $patientlist->dob;
 	
-					$getpatientlastpickup = PickUp::whereBetween('created_at',[$final,$currentdate])
+					$getpatientlastpickup = Pickups::whereBetween('created_at',[$final,$currentdate])
 					->orderbydesc('id')->take(1)->get();
 					//dd($getpatientlastpickup);
 					//

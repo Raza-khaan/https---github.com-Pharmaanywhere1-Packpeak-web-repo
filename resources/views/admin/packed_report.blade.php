@@ -103,8 +103,8 @@
               <div class="pull-right alertmessage"></div>
 <div class="row">
 <div class="col-md-3 ">
-  <a href="{{url('admin/export_excel_packed')}}" style="padding: 6px !important;" class="btn btn-success"> Export Excel</a>
-  <a href="#"  style="padding: 6px !important;" class="btn btn-success"> Export PDF</a>
+  <a href="{{url('admin/export_excel_packed')}}" style="padding: 7px !important;" class="btn btn-success"> Export Excel</a>
+  <a href="{{url('admin/export_pdf_packed')}}"  style="padding: 7px !important;" class="btn btn-success"> Export PDF</a>
   </div>
   <div class="col-md-9 text-right">
   <a href="{{url('admin/packed')}}" class="btn btn-primary"> Add Packed</a>
@@ -114,7 +114,7 @@
   </div>
 
 </div>
-                 <div class="search-logs" >
+                 <div class="search-logs" style="margin-top: 3%;">
                 <div class="table-responsive">
                   <div class="col-md-12">
                 @if(isset($all_packed))

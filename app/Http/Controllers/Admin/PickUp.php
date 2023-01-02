@@ -83,12 +83,12 @@ class PickUp extends Near_Miss
              
                <td>
               
-               <img src="'.$img->pharmacy_image.'"  height="20" width="20">
+               <img src="'.$img->pharmacy_image.'"  height="20" width="50">
               
                </td>
                <td>
               
-               <img src="'.$img->patient_image.'"  height="20" width="20">
+               <img src="'.$img->patient_image.'"  height="20" width="50">
               
                </td>
                
@@ -110,84 +110,21 @@ class PickUp extends Near_Miss
         
     }
    public function pickups_reports_pdf(Request $request)
-   {
-
-    $all_pharmacy=User::all();
-           $newarray=array();
-           foreach($all_pharmacy  as $row){
-                 $this->get_connection($row->website_id);
-                 $get_audit=PickUp_Model::get_all();
-                   foreach($get_audit as $col) {
-                       $col->pharmacy=$row->company_name;
-                       $newarray[]=$col;   
-                   }
-                 DB::disconnect('tenant');
-           } 
-             $data['all_pickups']=$newarray;  
-             $proData = "";
-             if (count($data) >0) {
-              $proData .= '<table border  style="height:100% width:100%">
-              <tr>
-              <th>Id</th>
-              <th>Patient_id</th>
-              <th>DOB</th>
-              <th>Image</th>
-              <th>weeks_last_picked_up</th>
-              
-              
-              <th>pharmacist_sign</th>
-              <th>patient_sign</th>
-             
-      
-              </tr>';
-          
-              foreach ($data['all_pickups'] as $img)
-              {      
-               $proData .= '
-                  <tr>
-                  <td>'.$img->id.'</td>
-                  <td>'.$img->patient_id.'</td>
-                  <td>'.$img->dob.'</td>
-                  <td>'.$img->last_pick_up_date.'</td>
-                  <td>'.$img->weeks_last_picked_up.'</td>
-                
-                  <td>
-                 
-                  <img src="'.$img->image.'"  height="20" width="20">
-                 
-                  </td>
-                  <td> 
-                 
-                     
-                 
-                 
-                  </tr>';
-                
-                  
-          
-              }
-              $proData .= '</table>';
-             }
-             header("Content-Type: application/octet-stream");
-
-             // It will be called downloaded.pdf
-           //  header("Content-Disposition:attachment;filename='downloaded.pdf'");
-             
-             // The PDF source is in original.pdf
-          
-          
- header("Content-Disposition: attachment; filename=download.pdf");   
- header("Content-Type: application/download");
-// header("Content-Description: File Transfer");            
-//header("Content-Length: 100" );
-//return $proData;
-             echo $proData;            
-            //  view()->share('all_pickups',$data);
-            //  $user = PDF::loadView('admin.pickups_reports');
-            //  return  $user->download(time().'.pdf');
-         // return  view('admin.pickups_reports')->with($data);
-       
-
+   {       
+         $all_pharmacy=User::all();
+                    $newarray=array();
+                    foreach($all_pharmacy  as $row){
+                          $this->get_connection($row->website_id);
+                          $get_audit=PickUp_Model::get_all();
+                            foreach($get_audit as $col) {
+                                $col->pharmacy=$row->company_name;
+                                $newarray[]=$col;   
+                            }
+                          DB::disconnect('tenant');
+                    } 
+                      $data['newarray']=$newarray;
+                      $pdf = PDF::loadView('pdf', $data);
+                      return  $pdf->download(time().'.pdf');
   
        
 

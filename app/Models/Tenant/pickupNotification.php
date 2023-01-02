@@ -5,7 +5,7 @@ namespace App\Models\Tenant;
 use Illuminate\Database\Eloquent\Model;
 use Hyn\Tenancy\Traits\UsesTenantConnection; 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use  DB; 
+use DB; 
 
 class pickupNotification extends Model
 {
