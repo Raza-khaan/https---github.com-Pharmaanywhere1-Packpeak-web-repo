@@ -33,6 +33,9 @@
                          <tr> 
                           <td>{{ucfirst($value->first_name).' '.ucfirst($value->last_name)}}</td>
 
+                          
+                          <!-- <td>{{$value->patient_id }}</td> -->
+
                           <td>{{$value->no_of_weeks}}</td>
                           <td><img src="{{$value->pharmacist_signature}}" style="height:45px;  width:100px; "/></td>
                        

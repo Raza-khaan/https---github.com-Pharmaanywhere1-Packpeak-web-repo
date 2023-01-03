@@ -25,6 +25,7 @@ use DB;
 use Mail;
 use Illuminate\Http\Request;
 use Session;
+use PDF;
 
 class PickUp extends Controller {
 	protected $views = '';
@@ -46,7 +47,7 @@ class PickUp extends Controller {
 		if ($request->form1 == '1') {
 			$data = array();
 			$data['created_at'] = $request->day ? $request->day : "";
-			$data['patients'] = Patient::get();
+			$data['patients'] = Patient::where('is_archive','=',0)->get();
 			$data['default_cycle'] = AccessLevel::get('default_cycle');
 			//return $data['patients'][0]->latestPickups;
 			$data['locations'] = Location::get();
@@ -641,6 +642,72 @@ public function  softunarchive(Request $request)
 	}
 	/* all_compliance */
 
+	public function export_excel_pickup_phar()
+	{
+		$newarray = Pickups::get();
+		$proData = "";
+		if (count($newarray) >0) {
+		 $proData .= '<table border  style="height:100% width:100%">
+		 <tr>
+		 <th>Id</th>
+		 <th>Patient_id</th>
+		 <th>DOB</th>
+		 <th>Image</th>
+		 <th>weeks_last_picked_up</th>
+		 <th>pharmacist_sign</th>
+		 <th>patient_sign</th>
+		
+ 
+		 </tr>';
+	 
+		 foreach ($newarray as $img)
+		 {      
+		  $proData .= '
+			 <tr>
+			 <td>'.$img->id.'</td>
+			 <td>'.$img->patient_id.'</td>
+			 <td>'.$img->dob.'</td>
+			 <td>'.$img->last_pick_up_date.'</td>
+			 <td>'.$img->weeks_last_picked_up.'</td>
+		   
+			 <td>
+			
+			 <img src="'.$img->pharmacy_image.'"  height="20" width="50">
+			
+			 </td>
+			 <td>
+			
+			 <img src="'.$img->patient_image.'"  height="20" width="50">
+			
+			 </td>
+			 
+			 <td> 
+			
+				
+			
+			
+			 </tr>';
+		   
+			 
+	 
+		 }
+		 $proData .= '</table>';
+		}
+		header('Content-Type: application/xls');
+		header('Content-Disposition: attachment; filename='.time().'.xls');
+		echo $proData;
+	 
+	}
+	public function export_pdf_pickup_phar()
+	{
 	
+        $data = Patient::get();
+		$newarray = Pickups::get();
+	//	dd($newarray);
+    $pdf =  PDF::loadView('pdf', compact('newarray'));
+//	return view('checkingpdf',compact('newarray'));
+        return  $pdf->download(time().'.pdf');
+
+	}
 
 }

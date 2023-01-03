@@ -13,6 +13,7 @@ use App\Models\Tenant\Patient;
 use App\Models\Tenant\PatientLocation;
 use DB;
 use Illuminate\Http\Request;
+use PDF;
 
 class Checking extends Controller {
 	protected $views = '';
@@ -31,7 +32,7 @@ class Checking extends Controller {
 			$data = array();
 			$data['locations'] = Location::get();
 
-			$data['patients'] = Patient::get();
+			$data['patients'] = Patient::where('is_archive','=',0)->get();
 			//return $data['patients'][0]->latestPickups;
 			return view($this->views . '.checkings')->with($data);
 		} else {
@@ -44,7 +45,7 @@ class Checking extends Controller {
 			$data = array();
 			$data['locations'] = Location::get();
 
-			$data['patients'] = Patient::get();
+			$data['patients'] = Patient::where('is_archive','=',0)->get();
 			//return $data['patients'][0]->latestPickups;
 			return view($this->views . '.packed')->with($data);
 		} else {
@@ -60,6 +61,7 @@ class Checking extends Controller {
 			'pharmacist_signature' => 'required|string|max:99000',
 		);
 		//print_r($request->location); die;
+		
 		$insert_data = array(
 			'patient_id' => $request->patient_id,
 			'no_of_weeks' => $request->no_of_weeks,
@@ -926,6 +928,131 @@ dd('raza');
 	// 	return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong> Patient Checking </strong> Added Successfully.</div>']);
 	
 	}
+	public function export_excel_phar()
+	{
+		$newarray = Packed::get();
+		$proData = "";
+        if (count($newarray) >0) {
+         $proData .= '<table  border height="50" width="60">
+         <tr  >
+     
+         <th>Patient_id</th>
+         <th>No of weeks</th>
+		 <th>Notes from patient</th>
+         <th>pharmacist signature</th>
+        
+         
+         
+         
+        
+    
+         </tr>';
+     
+         foreach ($newarray as $img)
+         {      
+          $proData .= '
+             <tr >
+           
+             <td>'.$img->patient_id.'</td>
+             <td>'.$img->no_of_weeks.'</td>
+             <td>'.$img->note_from_patient.'</td>
+           
+           
+             <td>
+            
+             <img src="'.$img->pharmacist_signature.'"  height="30" width="20" >
+            
+             </td> 
+             <td> 
+            
+                
+            
+            
+             </tr>';
+           
+             
+     
+         }
+         $proData .= '</table>';
+        }
+        header('Content-Type: application/xls');
+        header('Content-Disposition: attachment; filename='.time().'.xls');
+        echo $proData;
+     
+	}
+	public function export_pdf_phar()
+	{
 	
-	
+        $data = Patient::get();
+		$newarray = Packed::get();
+	//	dd($newarray);
+    $pdf =  PDF::loadView('checkingpdf', compact('newarray'));
+//	return view('checkingpdf',compact('newarray'));
+        return  $pdf->download(time().'.pdf');
+
+	}
+	public function export_excel_checking_phar()
+	{
+		$newarray = checkings::get();
+		$proData = "";
+        if (count($newarray) >0) {
+         $proData .= '<table  border height="50" width="60">
+         <tr  >
+     
+         <th>Patient_id</th>
+         <th>No of weeks</th>
+		 <th>Notes from patient</th>
+         <th>pharmacist signature</th>
+        
+         
+         
+         
+        
+    
+         </tr>';
+     
+         foreach ($newarray as $img)
+         {      
+          $proData .= '
+             <tr >
+           
+             <td>'.$img->patient_id.'</td>
+             <td>'.$img->no_of_weeks.'</td>
+             <td>'.$img->note_from_patient.'</td>
+           
+           
+             <td>
+            
+             <img src="'.$img->pharmacist_signature.'"  height="30" width="20" >
+            
+             </td> 
+             <td> 
+            
+                
+            
+            
+             </tr>';
+           
+             
+     
+         }
+         $proData .= '</table>';
+        }
+        header('Content-Type: application/xls');
+        header('Content-Disposition: attachment; filename='.time().'.xls');
+        echo $proData;
+     
+	}
+	public function export_pdf_checking_phar()
+	{
+//	dd('rsza');
+        $data = Patient::get();
+		$newarray = checkings::get();
+	//	dd($newarray);
+    $pdf =  PDF::loadView('checkingpdf', compact('newarray'));
+	//return view('checkingpdf',compact('newarray'));
+        return  $pdf->download(time().'.pdf');
+
+	}
+
 }

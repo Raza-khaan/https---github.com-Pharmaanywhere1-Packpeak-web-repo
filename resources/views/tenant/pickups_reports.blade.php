@@ -35,11 +35,7 @@
                 <li class="breadcrumb-item active" aria-current="page">General Forms</li>
               </ol>
             </div>
-            <div class="col-md-5 text-right">
-              <a href="{{url('/pickups')}}" class="btn btn-primary"> Add Pickups</a>
-              <a href="{{url('/patients_picked_up_last_month')}}" class="btn btn-primary"> Pickups Last Month</a>
-              <a href="{{url('/pickups_archived_reports')}}" class="btn btn-primary"> Archived Records</a>              
-            </div>
+           
           </div>    
          
 
@@ -73,7 +69,18 @@
 
 
               <div class="box">
-                
+                <div class="row"  style="margin-bottom: 1%;">
+                <div class="col-md-4">
+                <a href="{{url('/export_excel_pickup_phar')}}" class="btn btn-success" style="padding: 2%;">Export Excel</a>
+              <a href="{{url('/export_pdf_pickup_phar')}}" class="btn btn-success" style="padding: 2%;">Export Pdf</a>                
+                  
+            </div>
+                <div class="col-md-8 text-right">
+              <a href="{{url('/pickups')}}" class="btn btn-primary"> Add Pickups</a>
+              <a href="{{url('/patients_picked_up_last_month')}}" class="btn btn-primary"> Pickups Last Month</a>
+              <a href="{{url('/pickups_archived_reports')}}" class="btn btn-primary"> Archived Records</a>              
+            </div>
+                </div>
                 <div class="box-body pre-wrp-in table-responsive">
 
                 <table id="example1"    class="table">

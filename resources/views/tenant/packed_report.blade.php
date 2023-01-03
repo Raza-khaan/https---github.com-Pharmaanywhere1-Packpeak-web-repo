@@ -65,17 +65,14 @@
     <div class="reports-breadcrum m-0">
           <nav class="dash-breadcrumb" aria-label="breadcrumb" style="width:100%">
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}"><img src="assets/images/icon-home.png" alt="">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Forms</li>
                 <li class="breadcrumb-item active" aria-current="page">General Forms</li>
               </ol>
             </div>
-            <div class="col-md-5 text-right">
-              <a href="{{url('/packed')}}" class="btn btn-primary"> Add Packed</a>
-              <a href="{{url('/archive_packed_report')}}" class="btn btn-primary"> Archived Records</a>              
-            </div>
+           
           </div>    
          
 
@@ -114,7 +111,16 @@
               <div class="box">
               
                 <div class="box-body pre-wrp-in table-responsive">
-
+                  <div class="row" style="margin-bottom: 1%;">
+                <div class="col-md-4">
+              <a href="{{url('/export_excel_phar')}}" class="btn btn-success" style="padding: 2%;">Export Excel</a>
+              <a href="{{url('/export_pdf_phar')}}" class="btn btn-success" style="padding: 2%;">Export Pdf</a>              
+              </div>
+                <div class="col-md-8 text-right" >
+              <a href="{{url('/packed')}}" class="btn btn-primary"> Add Packed</a>
+              <a href="{{url('/archive_packed_report')}}" class="btn btn-primary"> Archived Records</a>              
+            </div>
+        </div>
                   <table id="example1"  data-model='Checkings'   class="table">
                     <thead>
                       <tr>

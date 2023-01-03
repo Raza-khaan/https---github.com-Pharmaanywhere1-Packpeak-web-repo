@@ -132,6 +132,14 @@ Route::domain('{account}.' . env('PROJECT_HOST', 'localhost'))->group(function (
 			Route::post('save_checking', 'Checking@save_checking')->name('save_checking');
             Route::post('save_packed_fields', 'checking@save_packed_fields')->name('save_packed_fields');
             Route::get('packed_Delete/{id}', 'Checking@packed_Delete')->name('packed_Delete/{id}');
+			// export pdf and excel new routes for pharmacy admin
+			Route::get('export_excel_phar', 'Checking@export_excel_phar')->name('export_excel_phar');
+			Route::get('export_pdf_phar', 'Checking@export_pdf_phar')->name('export_pdf_phar');
+			Route::get('export_excel_checking_phar', 'Checking@export_excel_checking_phar')->name('export_excel_checking_phar');
+			Route::get('export_pdf_checking_phar', 'Checking@export_pdf_checking_phar')->name('export_pdf_checking_phar');
+			Route::get('export_excel_pickup_phar', 'PickUp@export_excel_pickup_phar')->name('export_excel_pickup_phar');
+			Route::get('export_pdf_pickup_phar', 'PickUp@export_pdf_pickup_phar')->name('export_pdf_pickup_phar');
+
 
 			Route::get('packed', 'Checking@packed')->name('packed');
 			Route::post('save_packed', 'Checking@save_packed')->name('save_packed');
