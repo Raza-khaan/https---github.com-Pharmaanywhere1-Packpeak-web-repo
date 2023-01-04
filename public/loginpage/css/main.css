@@ -103,8 +103,8 @@ h6 {
 # Sections & Section Header
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
-  overflow: hidden;
+  padding: 52px 0;
+  /* overflow: hidden; */
 }
 
 .section-header {
@@ -242,7 +242,7 @@ section {
 }
 
 .header .logo img {
-  max-height: 40px;
+  /* max-height: 40px; */
   margin-right: 6px;
 }
 
