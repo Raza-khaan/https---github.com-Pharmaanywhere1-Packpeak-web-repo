@@ -184,7 +184,7 @@
                         <th>Facility</th>
                         <th>Store</th>
                         <th>Last pick-up date/Number of weeks last picked up</th>
-                        <th>Next due pick up date</th>
+                        <th>Next due pick up date!</th>
                        
                         <th >medication enough until</th>
                         <th>How many weeks are needed?</th>
