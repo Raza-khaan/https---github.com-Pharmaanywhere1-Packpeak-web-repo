@@ -570,7 +570,7 @@
                         <form action="{{ url('save_packed_fields') }}" method="post">  
   {{ csrf_field() }}
                               <label class="family" for="name">{{__('Patient Name')}}<span style="color:red">*</span></label>
-                              <select onchange="getchagecount()" placeholder="Select  Patient" id="first_name" name="patient_id[]"   class="form-control js-example-basic-multiple"   multiple >
+                              <select onchange="getchagecount()" placeholder="Select  Patient" id="first_name" name="patient_id[]"   class="form-control js-example-basic-multiple"   multiple="multiple">
                               <!-- <select onchange="getchagecount()" required style="height:30px" name="patient_name[]" id="patient_name" class="form-control js-example-basic-multiple"  multiple="multiple">     -->
                               <option value="selected" >{{__('Select Patient')}}</option>
 
