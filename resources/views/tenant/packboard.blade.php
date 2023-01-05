@@ -48,7 +48,9 @@
 {
   ba
 }
-
+#sortable1
+{
+}
   .family
     {
       font-family:inherit !Important;
@@ -116,7 +118,7 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label>
-                                    Select start Date: <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#alert-modal"><i class="far fa-times"></i> Clear All</a>
+                                     Start Date: <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#alert-modal"><i class="far fa-times"></i> Clear All</a>
                                 </label>
                                 <input type="date" class="form-control"  name="startdate"  value="{{ $final }}"/>
                                 <!-- <input type="date" class="form-control" name="enddate"  value="{{ date(' Y-m-d') }}"/> -->
@@ -126,7 +128,7 @@
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label>
-                                    Select End Date: <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#alert-modal"></a>
+                                     End Date: <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#alert-modal"></a>
                                 </label>
                                 <!-- <input type="date" class="form-control" name="startdate"  value="{{ date(' Y-m-d') }}"/> -->
                                 <input type="date" class="form-control" name="enddate"  value="{{ $currentdate}}"/>
@@ -216,7 +218,7 @@
                             <div class="pack-box" >
                                 <ul>
                                     <li>
-@foreach ($getpatientlastpickup as $patientpickup )
+@foreach ($getpatientlastpickup as $patientpickup)
     
 
                                         <div class="box-header" >
@@ -237,7 +239,7 @@
                                 </ul>
                                 
 
-                                <div class="box-body" id="sortable">
+                                <div class="box-body droptrue" id="sortable1">
                                      <div class="pack-card brd-color1" id="1">
                                         <div class="card-info" >
                                             
@@ -297,7 +299,7 @@
                                     
                                 </div>
                                 <div id="div">
-                            <div class="box-body" id="sortable-2">
+                            <div class="box-body droptrue" id="sortable2">
                                     
                                    @foreach ($packed as $patientdata )
                                    
@@ -386,7 +388,7 @@
                                     </div>
                                     </div>
                                 </div>
-                                <div class="box-body" id="sortable-3">
+                                <div class="box-body droptrue" id="sortable3">
                                 @foreach ($checkings     as $Checking )
                                 @if(isset($Checking->patients->first_name) && $Checking->patients->first_name!="")
                                     <div class="pack-card brd-color1"  id="3">
@@ -460,7 +462,7 @@
                                     </div>
                                     </div>
                                 </div>
-                                <div class="box-body" id="sortable-4">
+                                <div class="box-body droptrue" id="sortable4">
                                 @foreach ($Pickups     as $pickup )
                                 @if(isset($pickup->patients->first_name) && $pickup->patients->first_name!="")
                                     <div class="pack-card brd-color1"  id="4">
@@ -559,16 +561,17 @@
                         <h5 class="modal-title" ><img src="images/browsers-outline.svg" alt="" /><span  id="typess"></span> </h5>
                         <a href="javascript:void(0);" data-bs-dismiss="modal" class="close-btn"   ><img src="images/close-circle.svg" alt="" /></a>
                     </div>
-                    <form action="{{ url('save_packed_fields') }}" method="post">  
-  {{ csrf_field() }}
+                    
                        <input type="text" name="type" id="type" value="" style="display:none"/>
                        <input type="text" name="id" id="first" style="display:none"/>
         <!-- Modal -->
                     <div class="modal-body loadMore">
                         <div class="form-group">
+                        <form action="{{ url('save_packed_fields') }}" method="post">  
+  {{ csrf_field() }}
                               <label class="family" for="name">{{__('Patient Name')}}<span style="color:red">*</span></label>
-                              <select  placeholder="Select  Patient" id="first_name" name="patient_id"   class="form-control"  >
-                                
+                              <select onchange="getchagecount()" placeholder="Select  Patient" id="first_name" name="patient_id[]"   class="form-control js-example-basic-multiple"   multiple >
+                              <!-- <select onchange="getchagecount()" required style="height:30px" name="patient_name[]" id="patient_name" class="form-control js-example-basic-multiple"  multiple="multiple">     -->
                               <option value="selected" >{{__('Select Patient')}}</option>
 
 @foreach($patients as $patient)  
@@ -667,7 +670,13 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
                                 </span>
                               @enderror
                             </div>
-                              
+                            <div class="form-group" id="notesdiv">
+                            
+                                <label for="note">Note For Patient</label>
+                                <textarea class="form-control" style="resize: none;" rows="6" name="note" id="note"
+                                    placeholder="Note for Patient ...">{{old('note')}}</textarea>
+                            </div>
+                      
                             <div class="form-group">
                                 <label>Address:</label>
                                 <textarea class="form-control" name="address" id="address" placeholder="107 Friar John Way, SECRET HARBOUR, Western Australia (WA), 6173" rows="4"></textarea>
@@ -750,57 +759,155 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
          <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
          
      <script>
-        $(function() {
-        $( "#sortable" ).sortable(
-        {
-        update: function( event, ui ) {
-            $('#card-modal').modal('show');
-            console.log(ui.item.parent().attr('id'));
-        }
-        }, 
-        {connectWith:"#sortable-2,#sortable-3,#sortable-4"});
+//         $(function() {
+//         $( "#sortable" ).sortable(
+//         {
+//         update: function( event, ui ) {
+//             $('#card-modal').modal('show');
+//             console.log(ui.item.parent().attr('id'));
+//         }
+//         }, 
+//         {connectWith:"#sortable-2,#sortable-3,#sortable-4"});
 
-        $( "#sortable-2" ).sortable({
-        update: function( event, ui) 
-        {
-  $('#card-modal').modal('show');
-  console.log(ui.item.parent().attr('id'));
-      //  document.getElementById("type").value = ui.item.parent().attr('id'); 
-      document.getElementById("typess").innerHTML="Packed";
-        document.getElementById("type").value ='1';
-//$('#selects').val('id')
-//        console.log('#selects').val('id');   
-  }
-},{connectWith:"#sortable,#sortable-3,#sortable-4"});
+//         $( "#sortable-2" ).sortable({
+//         update: function( event, ui) 
+//         {
+//   $('#card-modal').modal('show');
+//   console.log(ui.item.parent().attr('id'));
+//       //  document.getElementById("type").value = ui.item.parent().attr('id'); 
+//       document.getElementById("typess").innerHTML="Packed";
+//         document.getElementById("type").value ='1';
+// //$('#selects').val('id')
+// //        console.log('#selects').val('id');   
+//   }
+// },{connectWith:"#sortable,#sortable-3,#sortable-4"});
 
-    $( "#sortable-3" ).sortable(
-    {
-    update: function( event, ui )
-    {
-        $('#card-modal').modal('show');
-        console.log(ui.item.parent().attr('id'));
-        document.getElementById("typess").innerHTML="Checked";
-        document.getElementById("type").value = '2';
-    }
-    },{
-    connectWith:"#sortable,#sortable-2,#sortable-4"
+//     $( "#sortable-3" ).sortable(
+//     {
+//     update: function( event, ui )
+//     {
+        // $('#card-modal').modal('show');
+        // console.log(ui.item.parent().attr('id'));
+        // document.getElementById("typess").innerHTML="Checked";
+        // document.getElementById("type").value = '2';
+//     }
+//     },{
+//     connectWith:"#sortable,#sortable-2,#sortable-4"
+//     });
+
+//         $( "#sortable-4" ).sortable(
+//         {
+//         update: function( event, ui ) {
+//             $('#card-modal').modal('show');
+//             console.log(ui.item.parent().attr('id'));
+//             document.getElementById("typess").innerHTML="Pickups";
+//         document.getElementById("type").value = '3';
+//         }
+
+
+//         },{connectWith:"#sortable,#sortable-2,#sortable-3"});
+//         });
+$(function () {
+    $('.droptrue').on('click', 'div', function () {
+        $(this).toggleClass('selected');
     });
 
-        $( "#sortable-4" ).sortable(
-        {
-        update: function( event, ui ) {
+    $("div.droptrue").sortable({
+        connectWith: 'div.droptrue',
+        opacity: 0.6,
+        revert: true,
+        helper: function (e, item) {
+            console.log('parent-helper');
+            console.log(item);
+            if(!item.hasClass('selected'))
+               item.addClass('selected');
+            var elements = $('.selected').not('.ui-sortable-placeholder').clone();
+            var helper = $('<div/>');
+            item.siblings('.selected').addClass('hidden');
+            return helper.append(elements);
+        },
+        start: function (e, ui) {
+            var elements = ui.item.siblings('.selected.hidden').not('.ui-sortable-placeholder');
+            ui.item.data('items', elements);
+        },
+        receive: function (e, ui) {
+            ui.item.before(ui.item.data('items'));
+        },
+        stop: function (e, ui) {
+            ui.item.siblings('.selected').removeClass('hidden');
+            $('.selected').removeClass('selected');
+        },
+        update: function(e){
+            updatePostOrder();
+            updateAdd();
+           
+            
+       //   console.log(e.target.id)
+          if(e.target.id == 'sortable2')
+          {
             $('#card-modal').modal('show');
-            console.log(ui.item.parent().attr('id'));
-            document.getElementById("typess").innerHTML="Pickups";
-        document.getElementById("type").value = '3';
-        }
-
-
-        },{connectWith:"#sortable,#sortable-2,#sortable-3"});
-        });
-
+            set_value(1);
+           
+          }
+          else if(e.target.id == 'sortable3')
+          {
+            $('#card-modal').modal('show');
+            set_value(2);
+           
+          }
+          else if(e.target.id == 'sortable4')
+          {
+            $('#card-modal').modal('show');
+            set_value(3);
+           
+          }
+          else
+          {
+            document.getElementById("typess").innerHTML="To Pack";
+          }
+            
+        },
+       
+    });
    
 
+    $("#sortable1, #sortable2, #sortable3, #sortable4").disableSelection();
+    $("#sortable1, #sortable2, #sortable3, #sortable4").css('minHeight', $("#sortable1, #sortable2").height() + "px");
+});
+
+$('[data-search]').on('keyup', function() {
+	var searchVal = $(this).val();
+	var filterItems = $('[data-filter-item]');
+
+	if ( searchVal != '' ) {
+		filterItems.addClass('hidden');
+		$('[data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass('hidden');
+	} else {
+		filterItems.removeClass('hidden');
+	}
+});
+
+
+function updatePostOrder() {
+    var arr = [];
+    $("#sortable2 div").each(function () {
+        arr.push($(this).attr('id'));
+    });
+    $('#postOrder').val(arr.join(','));
+}
+
+
+function updateAdd() {
+    
+}
+
+   
+$('select[multiple]').multiselect();
+$('#first_name').multiselect({
+    columns: 1,
+    placeholder: 'select patient',
+    search: true
+});
 
 function reset()
 {
@@ -826,9 +933,7 @@ $("#note").val("");
   
 }
 
-$(document).ready(function(){
-$("#select").select2();
-});
+
 $(document).ready(function(e) {
         var limit = 5;
             $(".loadMore li").slice(0, limit).show();
@@ -874,7 +979,7 @@ function restrictAlphabets(e){
  
  
 // }
-function set_value(a,b,c)
+function set_value(a)
 {
    // alert(a);
     if(a==1)
@@ -949,6 +1054,20 @@ $(document).ready(function(){
 });
        
  
+function getchagecount()
+{
+    var ddvalue = $("#first_name").val();
+
+    if(ddvalue.length>0)
+    {
+    $("#notesdiv").hide();
+    $("#notesdiv").val("");
+    }
+    else
+    {
+        $("#notesdiv").fadeIn();
+    }
+}
      </script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 

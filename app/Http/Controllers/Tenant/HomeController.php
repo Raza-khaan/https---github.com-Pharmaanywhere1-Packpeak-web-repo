@@ -114,10 +114,13 @@ class HomeController extends Controller {
 	{
 		$tasks = packed::all();
 		$completed = $tasks->where('id');
-		$mytime = Carbon::now();
-        $currentdate = $mytime->toDateString();
-		$weekdate =$mytime->subDays(7);
-        $final = $weekdate->format('Y-m-d');
+		$final = Carbon::now()->startOfMonth()->format('Y-m-d');
+$currentdate = Carbon::now()->endOfMonth()->format('Y-m-d');
+		// $mytime = Carbon::now();
+        // $currentdate = $mytime->toDateString();
+		// $final = $mytime->firstOfMonth(); 
+		//$weekdate =$mytime->subDays(30);
+        //$final = $weekdate->format('Y-m-d');
 	//dd($final,$currentdate);
 		$hold = $request->hold;
 		
