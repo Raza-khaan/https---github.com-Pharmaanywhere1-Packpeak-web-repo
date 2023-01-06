@@ -860,7 +860,7 @@ $(function () {
             updateAdd();
             //console.log(attr("id"));
           //  console.log(e);
-           console.log($('addid').siblings('.selected'));
+           console.log();
        // console.log(e.target.id)
           if(e.target.id == 'sortable2')
           {
@@ -913,6 +913,7 @@ function updatePostOrder() {
         arr.push($(this).attr('id'));
     });
     $('#postOrder').val(arr.join(','));
+   
 }
 
 
