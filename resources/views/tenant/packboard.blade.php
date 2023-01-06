@@ -10,12 +10,11 @@
         
         <link rel="stylesheet" type="text/css"  href="{{ URL::asset('packboardassets/css/responsive.css') }}"  />
          <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+       
 
-         <!-- <link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/embed/embed-e30d69073af1bf5b38634d470a9e29eab2f18c3c8c92af6836b156f095d1518f.css" />
-         <link rel="stylesheet" media="all" href="https://cpwebassets.codepen.io/assets/editor/themes/highcontrast-dark-2ba496a5b059127a304ebbdd9576efcd8a816e71bf9c5b2b0d080d93ecce5512.css" />
-         -->
         
-        <style>
+        
+               <style>
 
 
 .box-header .form-group {
@@ -55,7 +54,9 @@
     {
       font-family:inherit !Important;
     }
-
+.selected {
+    background:LightGray !important;
+}
 
           </style>
           
@@ -545,7 +546,7 @@
                     <div class="modal-body">
                         <h2>Would you like to change date?</h2>
                         <ul>
-                            <li><a href="javascript:void(0);" data-bs-dismiss="modal">Yes</a></li>
+                            <li><a href="{{url('/packboard')}}">Yes</a></li>
                             <li><a href="javascript:void(0);" data-bs-dismiss="modal">No</a></li>
                         </ul>
                     </div>
@@ -561,16 +562,17 @@
                         <h5 class="modal-title" ><img src="images/browsers-outline.svg" alt="" /><span  id="typess"></span> </h5>
                         <a href="javascript:void(0);" data-bs-dismiss="modal" class="close-btn"   ><img src="images/close-circle.svg" alt="" /></a>
                     </div>
-                    
+                    <form action="{{ url('save_packed_fields') }}" method="post">  
+  {{ csrf_field() }}   
+                       <input type="text" name="text" id="addid" value="" style="display:none"/>
                        <input type="text" name="type" id="type" value="" style="display:none"/>
                        <input type="text" name="id" id="first" style="display:none"/>
         <!-- Modal -->
                     <div class="modal-body loadMore">
                         <div class="form-group">
-                        <form action="{{ url('save_packed_fields') }}" method="post">  
-  {{ csrf_field() }}
-                              <label class="family" for="name">{{__('Patient Name')}}<span style="color:red">*</span></label>
-                              <select onchange="getchagecount()" placeholder="Select  Patient" id="first_name" name="patient_id[]"   class="form-control js-example-basic-multiple"   multiple="multiple">
+                       
+                              <label class="family" for="name">{{__('Patient Name')}} <span style="color:red">*</span></label>
+                              <select onchange="getchagecount()" placeholder="Select  Patient" id="first_name" name="patient_id[]"   class="form-control" multiple>
                               <!-- <select onchange="getchagecount()" required style="height:30px" name="patient_name[]" id="patient_name" class="form-control js-example-basic-multiple"  multiple="multiple">     -->
                               <option value="selected" >{{__('Select Patient')}}</option>
 
@@ -646,7 +648,7 @@ data-last_pick_up_by="{{isset($patient->latestPickups->pick_up_by)?$patient->lat
 data-last_carer_name="{{isset($patient->latestPickups->carer_name)?$patient->latestPickups->carer_name:''}}"
 data-last_noteForPatient="{{isset($last_noteForPatient)?$last_noteForPatient:''}}"
 data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatientDate:''}}"
-    value="{{$patient->id}}">{{$patient->first_name.' '.$patient->last_name}} ( {{$patient->dob?date("j/n",strtotime($patient->dob)):""}} ) </option>
+    value="{{$patient->id}}">{{$patient->first_name.' '.$patient->last_name}} ( {{$patient->dob?date("Y-m-d",strtotime($patient->dob)):""}} ) </option>
 @endforeach
 </select>
 @error('patient_id')
@@ -662,19 +664,22 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
 
                            <div class="form-group" style="background-color : lightblue">
                               <label class="family" for="no_of_weeks" style="margin-left: 10px;  margin-top: 2px;  !important  ">{{__('Number of Weeks ')}}</label>
-                              <input class="family text-center form-input" readonly id="check1" name="option1" value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}" style="float: right;margin: 1%;width: 8%;margin-bottom: .5rem;" >
-                              <input type="text" readonly   value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}"  class="form-control @error('no_of_weeks') is-invalid @enderror" maxlength="3" onkeypress="return restrictAlphabets(event);" id="no_of_weeks"   name="no_of_weeks" placeholder="No Of Weeks" style="display:none">
+                              <input class="family text-center form-input" readonly  value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}" style="float: right;margin: 1%;width: 8%;margin-bottom: .5rem;"  onkeypress="return restrictAlphabets(event);" >
+                              <input type="text" readonly   value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}"  class="form-control @error('no_of_weeks') is-invalid @enderror" maxlength="3" onkeypress="return restrictAlphabets(event);" id="no_of_weeks"   name="no_of_weeks" placeholder="No Of Weeks" style="display:none;" >
                               @error('no_of_weeks')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                               @enderror
                             </div>
-                            <div class="form-group" id="notesdiv">
-                            
-                                <label for="note">Note For Patient</label>
-                                <textarea class="form-control" style="resize: none;" rows="6" name="note" id="note"
-                                    placeholder="Note for Patient ...">{{old('note')}}</textarea>
+                            <div class="form-group col-md-12"  id="notesdiv">
+                                <label for="dob" class="family">{{__('Date Of Birth')}}</label>
+                                <input type="text" readonly value="{{old('dob')}}" class="form-control @error('dob') is-invalid @enderror"  max="{{Carbon\Carbon::now()->format('d/m/Y')}}"   id="dob" placeholder="Date Of Birth" >
+                                @error('dob')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                       
                             <div class="form-group">
@@ -807,6 +812,19 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
 
 //         },{connectWith:"#sortable,#sortable-2,#sortable-3"});
 //         });
+
+
+
+
+
+
+
+
+
+
+
+
+
 $(function () {
     $('.droptrue').on('click', 'div', function () {
         $(this).toggleClass('selected');
@@ -837,12 +855,13 @@ $(function () {
             ui.item.siblings('.selected').removeClass('hidden');
             $('.selected').removeClass('selected');
         },
-        update: function(e){
+        update: function(e,ui){
             updatePostOrder();
             updateAdd();
-           
-            
-       //   console.log(e.target.id)
+            //console.log(attr("id"));
+          //  console.log(e);
+           console.log($('addid').siblings('.selected'));
+       // console.log(e.target.id)
           if(e.target.id == 'sortable2')
           {
             $('#card-modal').modal('show');
@@ -865,7 +884,7 @@ $(function () {
           {
             document.getElementById("typess").innerHTML="To Pack";
           }
-            
+          
         },
        
     });
@@ -901,13 +920,8 @@ function updateAdd() {
     
 }
 
-   
-$('select[multiple]').multiselect();
-$('#first_name').multiselect({
-    columns: 1,
-    placeholder: 'select patient',
-    search: true
-});
+  
+
 
 function reset()
 {
@@ -1017,12 +1031,98 @@ function set_value(a)
  
  }
 
+ function reset()
+{
 
+  
+  $("#patient").val("");
+  $("#patient").trigger('change');
+  $("#dob").val("");
+  $("#last_pick_up_day").val("");
+  $("#last_pick_up_month").val("");
+  $("#last_pick_up_year").val("");
+
+  
+
+  
+// var saveButton = document.getElementById('signature-pad-save'),
+var clearButton = document.getElementById('signature-pad-clear');
+
+clearButton.addEventListener('click', function (event) {
+  signaturePad.clear();
+});
+var  clearButton2 = document.getElementById('signature-pad2-clear');
+
+clearButton2.addEventListener('click', function(event) {
+    signaturePad2.clear();
+    //document.getElementById('patient_sign').value = "";
+});
+
+
+$("#note").val("");
+  
+}
+
+$('#first_name').change(function(){
+        var ob=$(this).children('option:selected');
+        var dob=ob.attr('data-dob');
+        var no_of_weeks=ob.attr('data-no_of_weeks');
+       // alert(dob);
+        var lastPickupDate=ob.attr('data-lastPickupDate');
+        var lastPickupWeek=ob.attr('data-lastPickupWeek');
+        var lastNoteForPatient=ob.attr('data-lastNoteForPatient');
+        $('#dob').val(dob);
+        $('#no_of_weeks').val(no_of_weeks);
+        $('#last_pickup_date').text(lastPickupDate);
+        $('#last_pickup_week').text(lastPickupWeek);
+
+        $('#weeks_last_picked_up').val(lastPickupWeek);
+        $('#last_pick_up_date').val(lastPickupDate);
+        $('#note').html(lastNoteForPatient);
+      });
+
+      function getWeeksDiff(startDate, endDate) {
+  const msInWeek = 1000 * 60 * 60 * 24 * 7;
+
+  return Math.round(Math.abs(endDate - startDate) / msInWeek);
+}
+ function getSlots()
+{
+   var date = document.getElementById("dateOfPickup").value;
+   var company_name = document.getElementById("company_name").value;    
+
+   if(company_name =="")
+   {
+        $("#lblcompanyerror").fadeIn();
+        $("#company_name").focus();
+        return;
+   }
+   else
+   {
+    $("#lblcompanyerror").fadeOut();
+   }
+                if(date) {                
+                  $.ajax({
+                    type: "get",
+                data:{"date":date,"company_name":company_name},
+                    dataType: "html",
+                    url: "/admin/getPickupSlots",
+                    cache: false,
+                    beforeSend: function() {
+                      $('#slots').html('loading please wait...');
+                   },
+                    success: function(htmldata) {
+                     
+                       $('#slots').html(htmldata);
+                    }
+                  });
+                }
+}
 
  $(document).ready(function(){
   $("#search").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#sortable-2 div").filter(function() {
+    $("#sortable2 div").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
@@ -1031,7 +1131,7 @@ function set_value(a)
 $(document).ready(function(){
   $("#searchthree").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#sortable-3 div").filter(function() {
+    $("#sortable3 div").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
@@ -1039,7 +1139,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $("#searchfour").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#sortable-4 div").filter(function() {
+    $("#sortable4 div").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
@@ -1047,18 +1147,18 @@ $(document).ready(function(){
 $(document).ready(function(){
   $("#searchone").on("keyup", function() {
     var value = $(this).val().toLowerCase();
-    $("#sortable div").filter(function() {
+    $("#sortable1 div").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
   });
 });
-       
+
  
 function getchagecount()
 {
     var ddvalue = $("#first_name").val();
 
-    if(ddvalue.length>0)
+    if(ddvalue.length>1)
     {
     $("#notesdiv").hide();
     $("#notesdiv").val("");
@@ -1068,12 +1168,15 @@ function getchagecount()
         $("#notesdiv").fadeIn();
     }
 }
-     </script>
+
+
+   </script>
+   
      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
+<script src="multiselect/jquery.multiselect.js"></script>
 <script src="./packboardassets/js/bootstrap.bundle.min.js"></script>
 <script src="./packboardassets/js/custom.js"></script>
 

@@ -115,7 +115,7 @@ class HomeController extends Controller {
 		$tasks = packed::all();
 		$completed = $tasks->where('id');
 		$final = Carbon::now()->startOfMonth()->format('Y-m-d');
-$currentdate = Carbon::now()->endOfMonth()->format('Y-m-d');
+        $currentdate = Carbon::now()->endOfMonth()->format('Y-m-d');
 		// $mytime = Carbon::now();
         // $currentdate = $mytime->toDateString();
 		// $final = $mytime->firstOfMonth(); 
@@ -140,7 +140,7 @@ $currentdate = Carbon::now()->endOfMonth()->format('Y-m-d');
 			$data['locations'] = Location::get();
 			$data['created_at'] = $request->day ? $request->day : "";
 			$data['default_cycle'] = AccessLevel::get('default_cycle');
-			$data['patients'] = Patient::get();
+			$data['patients'] = Patient::where('is_archive','=',0)->get();
 			//dd($data['patients']);
 				if($hold == '1' )
 				{
@@ -150,7 +150,7 @@ $currentdate = Carbon::now()->endOfMonth()->format('Y-m-d');
 										->orderbydesc('id')
 										->get();
 				}
-				elseif($hold == NULL )
+				elseif($hold == NULL)
 				{
 
 				$data['packed'] = Packed::select()->where('created_at' , '>=' ,$startdate)

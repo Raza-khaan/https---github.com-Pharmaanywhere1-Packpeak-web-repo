@@ -131,8 +131,10 @@ class Checking extends Controller {
 	}
 	public function save_packed_fields(Request $request)
 	{
+		//dd('a');
        if($request->type == 1)
 	   {
+	//	dd('b');
 		$validate_array = array(
 		
 			'no_of_weeks' => 'required|numeric|min:1',
@@ -143,6 +145,9 @@ class Checking extends Controller {
 		if ($request->id == Null)
 		{
 			//dd('add');
+			$patientIDS = ($request->patient_id);
+			foreach ($patientIDS as $ipatient_name ) {
+			$request->patient_id = $ipatient_name;
 			$insert_data = array(
 				'patient_id' => $request->patient_id,
 				'no_of_weeks' => $request->no_of_weeks,
@@ -166,9 +171,13 @@ class Checking extends Controller {
 			return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong> Packed </strong> Added Successfully.</div>']);
 		
 		}
+	}
 		else
 		{
 			$ob = Packed::find($request->id);
+			$patientIDS = ($request->patient_id);
+			foreach ($patientIDS as $ipatient_name ) {
+			$request->patient_id = $ipatient_name;
 			$update_data = array(
 				'patient_id' => $request->patient_id,
 				'no_of_weeks' => $request->no_of_weeks,
@@ -187,7 +196,7 @@ class Checking extends Controller {
 			return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong> Packed </strong> Updated Successfully.</div>']);
 		
 		}
-	}
+	}}
 	elseif($request->type == 2)
 	{
 		$validate_array = array(
@@ -197,7 +206,9 @@ class Checking extends Controller {
 		);
 		if ($request->id == Null)
 		{
-		
+			$patientIDS = ($request->patient_id);
+			foreach ($patientIDS as $ipatient_name ) {
+			$request->patient_id = $ipatient_name;
 		$insert_data = array(
 			'patient_id' =>  $request->patient_id,
 			'no_of_weeks' => $request->no_of_weeks,
@@ -215,10 +226,13 @@ class Checking extends Controller {
 	Checkings::create($insert_data);
 		
 		return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong>  Checking </strong> Added Successfully.</div>']);
-	}
+	}}
 	else
 	{
 		$ob = Checkings::find($request->id);
+		$patientIDS = ($request->patient_id);
+			foreach ($patientIDS as $ipatient_name ) {
+			$request->patient_id = $ipatient_name;
 		$update_data = array(
 			'patient_id' => $request->patient_id,
 			'no_of_weeks' => $request->no_of_weeks,
@@ -237,7 +251,7 @@ class Checking extends Controller {
 		return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong>  Checking </strong> Updated Successfully.</div>']);
 	
 	}
-}
+}}
 elseif($request->type == 3)
 {
 	$validate_array = array(
@@ -248,6 +262,9 @@ elseif($request->type == 3)
 	if ($request->id == Null)
 		{
 			//dd('add');
+			$patientIDS = ($request->patient_id);
+			foreach ($patientIDS as $ipatient_name ) {
+			$request->patient_id = $ipatient_name;
 			$insert_data = array(
 				'patient_id' => $request->patient_id,
 				'no_of_weeks' => $request->no_of_weeks,
@@ -265,10 +282,13 @@ elseif($request->type == 3)
 		Pickups::create($insert_data);
 			
 			return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong> Pickups </strong> Added Successfully.</div>']);
-		}
+		}}
 		else
 		{
             $ob = Pickups::find($request->id);
+			$patientIDS = ($request->patient_id);
+			foreach ($patientIDS as $ipatient_name ) {
+			$request->patient_id = $ipatient_name;
 		$insert_data = array(
 			'patient_id' => $request->patient_id,
 			'no_of_weeks' => $request->no_of_weeks,
@@ -288,7 +308,7 @@ elseif($request->type == 3)
 	
 		}
 
-}
+}}
 	
 	else{
 		echo "error";
@@ -983,11 +1003,11 @@ dd('raza');
 	public function export_pdf_phar()
 	{
 	
-        $data = Patient::get();
+		$data['patients'] = Patient::get();
 		$newarray = Packed::get();
 	//	dd($newarray);
-    $pdf =  PDF::loadView('checkingpdf', compact('newarray'));
-//	return view('checkingpdf',compact('newarray'));
+    $pdf =  PDF::loadView('checkingpdf',compact('newarray','data'));
+	//return view('checkingpdf',compact('newarray'));
         return  $pdf->download(time().'.pdf');
 
 	}
@@ -1046,10 +1066,10 @@ dd('raza');
 	public function export_pdf_checking_phar()
 	{
 //	dd('rsza');
-        $data = Patient::get();
+        $data['patients'] = Patient::get();
 		$newarray = checkings::get();
 	//	dd($newarray);
-    $pdf =  PDF::loadView('checkingpdf', compact('newarray'));
+    $pdf =  PDF::loadView('checkingpdf',compact('newarray','data'));
 	//return view('checkingpdf',compact('newarray'));
         return  $pdf->download(time().'.pdf');
 

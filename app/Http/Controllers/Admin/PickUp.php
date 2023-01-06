@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Storage;
 class PickUp extends Near_Miss
 {
     /* Start  of  Pickups */
-    public  function  pickups(Request  $request)
+    public  function  pickups(Request $request)
     {
         
         $data['all_pharmacies']=User::all();

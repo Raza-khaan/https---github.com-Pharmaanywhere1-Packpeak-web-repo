@@ -118,7 +118,7 @@ input.select2-search__field
                             </nav>
                             
                         </div>
-                       <div class="col-md-4" >
+                       <div class="col-md-4">
                         <div class="reset-patien">
                         <a type="reset" onclick="reset()" class="btn reset-btn">Reset</a>
                             <a target="_blank" class="btn btn-md btn-primary" style="font-size:17px;color:white;padding:
@@ -178,7 +178,7 @@ input.select2-search__field
                                 <!--<select name="patient_name[]" id="patient_name" class="form-control">
                                 </select>-->
                                 <select onchange="getchagecount()" required style="height:30px" name="patient_name[]" id="patient_name" class="form-control js-example-basic-multiple"  multiple="multiple">
-
+                                
                                 <!-- <select name="patient_name[]" id="patient_name" class="form-control js-example-basic-multiple"  multiple="multiple"> -->
                                      
                                     @if(!empty(old('patient_name')) && !empty(old('patient_name')))

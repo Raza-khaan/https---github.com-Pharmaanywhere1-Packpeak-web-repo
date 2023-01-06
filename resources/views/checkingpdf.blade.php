@@ -31,7 +31,7 @@
                         
                          @foreach($newarray as $value)
                          <tr> 
-                          <td>{{ucfirst($value->first_name).' '.ucfirst($value->last_name)}}</td>
+                          <td>{{$value->patients->first_name.' '.$value->patients->last_name}}</td>
 
                           
                           <!-- <td>{{$value->patient_id }}</td> -->
