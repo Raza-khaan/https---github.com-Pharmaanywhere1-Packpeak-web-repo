@@ -131,22 +131,26 @@ class Checking extends Controller {
 	}
 	public function save_packed_fields(Request $request)
 	{
-		//dd('a');
+		
        if($request->type == 1)
 	   {
-	//	dd('b');
 		$validate_array = array(
 		
 			'no_of_weeks' => 'required|numeric|min:1',
 			
 		);
-		
-		//print_r($request->location); die;
 		if ($request->id == Null)
 		{
-			//dd('add');
-			$patientIDS = ($request->patient_id);
-			foreach ($patientIDS as $ipatient_name ) {
+			$multi_id = $request->text;		
+			$multi_id = rtrim($multi_id, ",");
+			$str =explode("," , $multi_id);
+			//dd($str);
+			
+			//dd($split_str);
+			//$str = ($request->patient_id);
+			
+			 foreach ($str as $ipatient_name ) {
+				//dd($ipatient_name);
 			$request->patient_id = $ipatient_name;
 			$insert_data = array(
 				'patient_id' => $request->patient_id,
@@ -168,10 +172,12 @@ class Checking extends Controller {
       //  $end = Carbon::parse($request->daterange);
 			Packed::create($insert_data);
 			
-			return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong> Packed </strong> Added Successfully.</div>']);
+			
 		
-		}
+		
 	}
+	return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong> Packed </strong> Added Successfully.</div>']);
+}
 		else
 		{
 			$ob = Packed::find($request->id);
@@ -206,10 +212,17 @@ class Checking extends Controller {
 		);
 		if ($request->id == Null)
 		{
-			$patientIDS = ($request->patient_id);
-			foreach ($patientIDS as $ipatient_name ) {
+			$multi_id = $request->text;
+			$multi_id = rtrim($multi_id, ",");
+			// dump($multi_id);
+			// return;		
+			$str =explode("," , $multi_id);
+			//dd($str);	
+			 foreach ($str as $ipatient_name ) {
+			//	dd($ipatient_name);
 			$request->patient_id = $ipatient_name;
-		$insert_data = array(
+			dump($request->patient_id);
+		   $insert_data = array(
 			'patient_id' =>  $request->patient_id,
 			'no_of_weeks' => $request->no_of_weeks,
 			'location' => " ",
@@ -221,12 +234,13 @@ class Checking extends Controller {
 			$insert_data['website_id'] = $request->session()->get('phrmacy')->website_id;
 			$insert_data['created_by'] = '-' . $request->session()->get('phrmacy')->id;
 		}
-		
-	//	dd($insert_data);
 	Checkings::create($insert_data);
 		
-		return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong>  Checking </strong> Added Successfully.</div>']);
-	}}
+}
+return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong>  Checking </strong> Added Successfully.</div>']);
+			 
+			}
+
 	else
 	{
 		$ob = Checkings::find($request->id);
@@ -251,7 +265,8 @@ class Checking extends Controller {
 		return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong>  Checking </strong> Updated Successfully.</div>']);
 	
 	}
-}}
+	}
+}
 elseif($request->type == 3)
 {
 	$validate_array = array(
@@ -262,8 +277,12 @@ elseif($request->type == 3)
 	if ($request->id == Null)
 		{
 			//dd('add');
-			$patientIDS = ($request->patient_id);
-			foreach ($patientIDS as $ipatient_name ) {
+			$multi_id = $request->text;
+			$multi_id = rtrim($multi_id, ",");
+			// dump($multi_id);
+			// return;		
+			$str =explode("," , $multi_id);
+			foreach ($str as $ipatient_name ) {
 			$request->patient_id = $ipatient_name;
 			$insert_data = array(
 				'patient_id' => $request->patient_id,
@@ -281,8 +300,9 @@ elseif($request->type == 3)
 		//	dd($insert_data);
 		Pickups::create($insert_data);
 			
-			return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong> Pickups </strong> Added Successfully.</div>']);
-		}}
+	}
+	return redirect()->back()->with(["msg" => '<div class="alert alert-success"> <strong> Pickups </strong> Added Successfully.</div>']);
+	}
 		else
 		{
             $ob = Pickups::find($request->id);

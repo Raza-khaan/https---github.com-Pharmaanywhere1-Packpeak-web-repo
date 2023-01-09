@@ -1,8 +1,8 @@
-$(document).ready(function () {
-    $(".select2").select2({
-        placeholder: "e.g. Last Week/ Last month",
-        allowClear: true,
-    });
+ $(document).ready(function () {
+//     $(".select2").select2({
+//         placeholder: "e.g. Last Week/ Last month",
+//         allowClear: true,
+//     });
 
     $(function () {
         $('input[name="daterange"]').daterangepicker(

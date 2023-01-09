@@ -2,14 +2,14 @@
     @section('title') <title>Packboard </title> 
 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
-        <link rel="stylesheet" type="text/css" href="{{ URL::asset('packboardassets/css/bootstrap.min.css') }}"  />
+        <!-- <link rel="stylesheet" type="text/css" href="{{ URL::asset('packboardassets/css/bootstrap.min.css') }}"  /> -->
        
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
          
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('packboardassets/css/style.css') }}" /> 
         
         <link rel="stylesheet" type="text/css"  href="{{ URL::asset('packboardassets/css/responsive.css') }}"  />
-         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+         <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />  -->
        
 
         
@@ -307,9 +307,10 @@
                                    
                                    @if(isset($patientdata->patients->first_name) && $patientdata->patients->first_name!="")
                                  
-                                    <div class="pack-card brd-color2"  id="">
+                                    <div class="pack-card brd-color2" id="{{$patientdata->patients->id}}" >
+                                        
                                   
-                                        <div class="card-info">
+                                        <div class="card-info"  id="packed_{{$patientdata->id}}">
                                       
                                             <h3>{{$patientdata->patients->first_name.' '.$patientdata->patients->last_name}}</h3>
                                             <ul>
@@ -392,7 +393,7 @@
                                 <div class="box-body droptrue" id="sortable3">
                                 @foreach ($checkings     as $Checking )
                                 @if(isset($Checking->patients->first_name) && $Checking->patients->first_name!="")
-                                    <div class="pack-card brd-color1"  id="3">
+                                    <div class="pack-card brd-color1" id="{{$Checking->patients->id}}">
                                         <div class="card-info">
                                             <h3>{{$Checking->patients->first_name.' '.$Checking->patients->last_name}}</h3>
                                             <ul>
@@ -466,7 +467,7 @@
                                 <div class="box-body droptrue" id="sortable4">
                                 @foreach ($Pickups     as $pickup )
                                 @if(isset($pickup->patients->first_name) && $pickup->patients->first_name!="")
-                                    <div class="pack-card brd-color1"  id="4">
+                                    <div class="pack-card brd-color1" id="{{$pickup->patients->id}}">
                                         <div class="card-info">
                                             <h3>{{$pickup->patients->first_name.' '.$pickup->patients->last_name}}</h3>
                                             <ul>
@@ -564,7 +565,7 @@
                     </div>
                     <form action="{{ url('save_packed_fields') }}" method="post">  
   {{ csrf_field() }}   
-                       <input type="text" name="text" id="addid" value="" style="display:none"/>
+                       <input type="text" name="text" id="txtselectedlist" value="" style="display:none"/>
                        <input type="text" name="type" id="type" value="" style="display:none"/>
                        <input type="text" name="id" id="first" style="display:none"/>
         <!-- Modal -->
@@ -572,9 +573,10 @@
                         <div class="form-group">
                        
                               <label class="family" for="name">{{__('Patient Name')}} <span style="color:red">*</span></label>
-                              <select onchange="getchagecount()" placeholder="Select  Patient" id="first_name" name="patient_id[]"   class="form-control" multiple>
+                              
+                               <select onchange="getchagecount()" placeholder="Select Patient" id="first_name" name="patient_id[]"   class="form-control js-example-basic-multiple" multiple="mutliple"> 
                               <!-- <select onchange="getchagecount()" required style="height:30px" name="patient_name[]" id="patient_name" class="form-control js-example-basic-multiple"  multiple="multiple">     -->
-                              <option value="selected" >{{__('Select Patient')}}</option>
+                               <option value="selected" >{{__('Select Patient')}}</option>
 
 @foreach($patients as $patient)  
 @php
@@ -650,7 +652,35 @@ data-last_noteForPatient="{{isset($last_noteForPatient)?$last_noteForPatient:''}
 data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatientDate:''}}"
     value="{{$patient->id}}">{{$patient->first_name.' '.$patient->last_name}} ( {{$patient->dob?date("Y-m-d",strtotime($patient->dob)):""}} ) </option>
 @endforeach
-</select>
+</select> 
+
+<!-- 
+@if(count($patients) && isset($patients))
+<select onchange="getchagecount()" placeholder="Select  Patient" id="first_name" name="patient_id[]"   class="form-control js-example-basic-multiple" multiple="mutliple">
+                         <option value="">-- Select  Patient --</option>
+                                @foreach($patients as $patient)
+
+                                 @php
+                                        $checkinglocations=App\Models\Tenant\Checking::where('patient_id',$patient->id)->orderBy('created_at','desc')->first();
+                                        $Patientlocations=App\Models\Tenant\Patient::where('id',$patient->id)->orderBy('created_at','desc')->first();
+                                        $PLocations=App\Models\Tenant\PatientLocation::where('patient_id',$patient->id)->orderBy('created_at','desc')->first();
+                                        if(!empty($checkinglocations) && $checkinglocations->location!=""){
+                                            $location=$checkinglocations->location;
+                                        }
+                                        elseif(!empty($Patientlocations) && $Patientlocations->location!=NULL){
+                                            $location=$Patientlocations->location;
+                                        }
+
+                                 @endphp
+                                  <option {{old('patient_id')==$patient->id?'selected':''}}
+                                  data-dob="{{$patient->dob}}" data-lastPickupDate="{{$patient->latestPickups?$patient->latestPickups->created_at:''}}"
+                                  data-lastPickupWeek="{{$patient->latestPickups?$patient->latestPickups->no_of_weeks:''}}"
+                                  data-last_CheckingLocation="{{isset($PLocations->locations)?$PLocations->locations:''}}"
+                                   data-last_CheckingDD="{{isset($patient->latestChecking->dd)?$patient->latestChecking->dd:''}}"
+                                   value="{{$patient->id}}">{{$patient->first_name.' '.$patient->last_name}} ( {{$patient->dob?date("j/n",strtotime($patient->dob)):""}} ) </option>
+                                @endforeach
+                              </select>
+                                @endif -->
 @error('patient_id')
   <span class="invalid-feedback" role="alert">
       <strong>{{ $message }}</strong>
@@ -712,7 +742,7 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
 
 <script type="text/javascript">
   var geocoder;
@@ -725,7 +755,7 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
     
     $("#main-wrap").css("display", "none");
 
-    $("#company_id").select2();
+     $("#company_id").select2();
       });
 
       $('li').bind('dragstart', function(event) {
@@ -814,9 +844,9 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
 //         });
 
 
-
-
-
+ var a_href = [];
+ var value_assign = "";
+ 
 
 
 
@@ -828,6 +858,21 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
 $(function () {
     $('.droptrue').on('click', 'div', function () {
         $(this).toggleClass('selected');
+       //  console.log($(this).attr('id'));
+   // a_href = $(this).attr('id');
+   //text.val( a_href.push(i).attr('id') );  
+    a_href.push($(this).attr('id'));
+     //  console.log(a_href);
+        // var Div=$(this).closest("p:eq(0)").html();
+        
+        // console.log($(this).closest("p:eq(0)").html());
+      if($(this).hasClass('selected'))
+      {
+        console.log('true');
+      }
+      else{
+        console.log('false');
+      }
     });
 
     $("div.droptrue").sortable({
@@ -835,8 +880,9 @@ $(function () {
         opacity: 0.6,
         revert: true,
         helper: function (e, item) {
-            console.log('parent-helper');
-            console.log(item);
+            //console.log('parent-helper');
+            // console.log(item.attr('id'));
+           // console.log(e);
             if(!item.hasClass('selected'))
                item.addClass('selected');
             var elements = $('.selected').not('.ui-sortable-placeholder').clone();
@@ -851,22 +897,39 @@ $(function () {
         receive: function (e, ui) {
             ui.item.before(ui.item.data('items'));
         },
-        stop: function (e, ui) {
+        stop: function (e, ui)
+         {
             ui.item.siblings('.selected').removeClass('hidden');
             $('.selected').removeClass('selected');
         },
         update: function(e,ui){
             updatePostOrder();
             updateAdd();
-            //console.log(attr("id"));
-          //  console.log(e);
-           console.log();
+           
+var i = 0;
+$('#txtselectedlist').val("");
+for (i = 0; i < a_href.length; i++)
+{
+   value_assign += a_href[i] + ",";
+}
+a_href.length = 0;
+console.log(value_assign);
+$('#txtselectedlist').val(value_assign);
+
+
+
+// console.log(e);
+// alert(i);
+            // console.log(a_href);
+           
+          // console.log(ui);
+      //  console.log($('addid').siblings('.selected'));
        // console.log(e.target.id)
           if(e.target.id == 'sortable2')
           {
             $('#card-modal').modal('show');
             set_value(1);
-           
+          
           }
           else if(e.target.id == 'sortable3')
           {
@@ -1121,6 +1184,8 @@ $('#first_name').change(function(){
 }
 
  $(document).ready(function(){
+    $("#first_name").select2();
+  //  alert();
   $("#search").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $("#sortable2 div").filter(function() {
@@ -1173,13 +1238,13 @@ function getchagecount()
 
    </script>
    
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script> -->
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script src="multiselect/jquery.multiselect.js"></script>
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> 
+ <!--<script src="multiselect/jquery.multiselect.js"></script> -->
 <script src="./packboardassets/js/bootstrap.bundle.min.js"></script>
-<script src="./packboardassets/js/custom.js"></script>
+ <script src="./packboardassets/js/custom.js"></script>  
 
 @endsection
 
