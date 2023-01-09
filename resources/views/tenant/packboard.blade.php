@@ -846,14 +846,14 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
 
  var a_href = [];
  var value_assign = "";
- 
+ var ddl_value_assign = [];
 
 
 
 
 
 
-
+//var separate_value_assign = "'" ;
 
 $(function () {
     $('.droptrue').on('click', 'div', function () {
@@ -862,6 +862,8 @@ $(function () {
    // a_href = $(this).attr('id');
    //text.val( a_href.push(i).attr('id') );  
     a_href.push($(this).attr('id'));
+    ddl_value_assign.push($(this).attr('id'));
+    console.log(ddl_value_assign);
      //  console.log(a_href);
         // var Div=$(this).closest("p:eq(0)").html();
         
@@ -911,10 +913,14 @@ $('#txtselectedlist').val("");
 for (i = 0; i < a_href.length; i++)
 {
    value_assign += a_href[i] + ",";
+   
 }
 a_href.length = 0;
 console.log(value_assign);
 $('#txtselectedlist').val(value_assign);
+// 
+dropdown(ddl_value_assign);
+// $("#first_name").trigger();
 
 
 
@@ -1022,8 +1028,17 @@ $(document).ready(function(e) {
             });
         //var lenght_name = $(".loadMore li").length;
     });
+function dropdown(e)
+{
 
+  var slice = e.slice(0, -1);
+ 
+   $('#first_name').val(e).trigger('change');
+ console.log();
+    //$("#first_name").val(e).trigger('change');
+}
     $(document).ready(function(){
+       
   $("#hold").click(function(){
   
    //alert(  );
@@ -1044,8 +1059,8 @@ function restrictAlphabets(e){
      {
      
        document.getElementById("first").value = id;
-     
-        $("#first_name").val(patient_id);
+       $('#first_name').val(patient_id).trigger('change');
+      //  $("#first_name").val(patient_id);
         document.getElementById("no_of_weeks").value = no_of_weeks;
         document.getElementById("address").value = note_from_patient;
     
