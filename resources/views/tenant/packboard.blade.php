@@ -55,7 +55,7 @@
       font-family:inherit !Important;
     }
 .selected {
-    background:LightGray !important;
+    /* background:LightGray !important; */
 }
 
           </style>
@@ -159,7 +159,7 @@
                                 <a href="javascript:void(0)" class="dropdown-toggle"  id="filterby"> Filter By <img src="images/filter.svg" alt="" /> </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="javascript:void(0);"  id="show">
+                                        <a class="dropdown-item" href="{{url('/packboard')}}"  id="show">
                                             <input class="form-check-input" type="checkbox" value="" id="1"/>
                                             Show all (All)
                                         </a>
@@ -307,14 +307,17 @@
                                    
                                    @if(isset($patientdata->patients->first_name) && $patientdata->patients->first_name!="")
                                  
-                                    <div class="pack-card brd-color2" id="{{$patientdata->patients->id}}" >
-                                        
+                                    <div class="pack-card brd-color2" id="{{$patientdata->patients->id}}">
+                                    <div class="checkbox">
+                                            <input type="checkbox" id="checkbox{{$patientdata->id}}"><label for="checkbox{{$patientdata->id}}"></label>
+                                        </div>
                                   
                                         <div class="card-info"  id="packed_{{$patientdata->id}}">
-                                      
-                                            <h3>{{$patientdata->patients->first_name.' '.$patientdata->patients->last_name}}</h3>
+                                     
+                                      <h3>{{$patientdata->patients->first_name.' '.$patientdata->patients->last_name}}</h3>
+                                           
                                             <ul>
-                                                <li><span>Carer</span></li>
+                                              <li><span>Carer</span></li>
                                                 <li>
                                                     <a href="javascript:void(0);" class="view_details"> <img src="images/arrow-drop-down.svg" alt="" /> View Details</a>
                                                 </li>
@@ -394,6 +397,10 @@
                                 @foreach ($checkings     as $Checking )
                                 @if(isset($Checking->patients->first_name) && $Checking->patients->first_name!="")
                                     <div class="pack-card brd-color1" id="{{$Checking->patients->id}}">
+                                    <div class="checkbox">
+                                            <input type="checkbox" id="checkbox{{$Checking->id}}"><label for="checkbox{{$Checking->id}}"></label>
+                                        </div>
+                                 
                                         <div class="card-info">
                                             <h3>{{$Checking->patients->first_name.' '.$Checking->patients->last_name}}</h3>
                                             <ul>
@@ -468,6 +475,10 @@
                                 @foreach ($Pickups     as $pickup )
                                 @if(isset($pickup->patients->first_name) && $pickup->patients->first_name!="")
                                     <div class="pack-card brd-color1" id="{{$pickup->patients->id}}">
+                                    <div class="checkbox">
+                                            <input type="checkbox" id="checkbox{{$pickup->id}}"><label for="checkbox{{$pickup->id}}"></label>
+                                        </div>
+                                 
                                         <div class="card-info">
                                             <h3>{{$pickup->patients->first_name.' '.$pickup->patients->last_name}}</h3>
                                             <ul>
@@ -554,24 +565,40 @@
                 </div>
             </div>
         </div>
-
+        <div class="modal fade" tabindex="-1" role="dialog" id="alert-models" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Warning Drag</h5>
+        <button type="button" class="close" data-dismiss="modal" id="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Cannot Reversed Drag & Drop.</p>
+      </div>
+      
+    </div>
+  </div>
+</div>
         
         <div class="modal fade" id="card-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" >
                         <h5 class="modal-title" ><img src="images/browsers-outline.svg" alt="" /><span  id="typess"></span> </h5>
-                        <a href="javascript:void(0);" data-bs-dismiss="modal" class="close-btn"   ><img src="images/close-circle.svg" alt="" /></a>
+                        <a href="{{url('/packboard')}}" data-bs-dismiss="modal" class="close-btn"   ><img src="images/close-circle.svg" alt="" id="close"/></a>
                     </div>
-                    <form action="{{ url('save_packed_fields') }}" method="post">  
-  {{ csrf_field() }}   
-                       <input type="text" name="text" id="txtselectedlist" value="" style="display:none"/>
-                       <input type="text" name="type" id="type" value="" style="display:none"/>
-                       <input type="text" name="id" id="first" style="display:none"/>
+                    
         <!-- Modal -->
                     <div class="modal-body loadMore">
+                    <form action="{{ url('save_packed_fields') }}" method="post">  
+                           {{ csrf_field() }}   
+                       <input type="text" name="text" id="txtselectedlist" value="" style="display:none"/>
+                       <input type="text" name="type" id="type" value="" style="display:none"/>
+                       <input type="text" name="id" id="first" style="display:none"/>   
+                
                         <div class="form-group">
-                       
                               <label class="family" for="name">{{__('Patient Name')}} <span style="color:red">*</span></label>
                               
                                <select onchange="getchagecount()" placeholder="Select Patient" id="first_name" name="patient_id[]"   class="form-control js-example-basic-multiple" multiple="mutliple"> 
@@ -694,7 +721,7 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
 
                            <div class="form-group" style="background-color : lightblue">
                               <label class="family" for="no_of_weeks" style="margin-left: 10px;  margin-top: 2px;  !important  ">{{__('Number of Weeks ')}}</label>
-                              <input class="family text-center form-input" readonly  value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}" style="float: right;margin: 1%;width: 8%;margin-bottom: .5rem;"  onkeypress="return restrictAlphabets(event);" >
+                              <input class="family text-center form-input" readonly  value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}" style="float: right;margin-top: -13%;width: 8%;margin-bottom: .5rem;"  onkeypress="return restrictAlphabets(event);" >
                               <input type="text" readonly   value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}"  class="form-control @error('no_of_weeks') is-invalid @enderror" maxlength="3" onkeypress="return restrictAlphabets(event);" id="no_of_weeks"   name="no_of_weeks" placeholder="No Of Weeks" style="display:none;" >
                               @error('no_of_weeks')
                                 <span class="invalid-feedback" role="alert">
@@ -703,7 +730,8 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
                               @enderror
                             </div>
                             <div class="form-group col-md-12"  id="notesdiv">
-                                <label for="dob" class="family">{{__('Date Of Birth')}}</label>
+                            <label for="dob" class="family">{{__('Date Of Birth:')}} <span>(dd/mm/yy)</span></label>
+                                <!-- <label for="dob" class="family">{{__('Date Of Birth')}}</label> -->
                                 <input type="text" readonly value="{{old('dob')}}" class="form-control @error('dob') is-invalid @enderror"  max="{{Carbon\Carbon::now()->format('d/m/Y')}}"   id="dob" placeholder="Date Of Birth" >
                                 @error('dob')
                                 <span class="invalid-feedback" role="alert">
@@ -711,13 +739,23 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
                                 </span>
                                 @enderror
                             </div>
-                      
+                            <div class="form-group" id="p">
+                                <label>Receiver</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="who_pickup" id="inlineRadio1" value="Patient"/>
+                                    <label class="form-check-label" for="inlineRadio1">Patient</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="who_pickup" id="inlineRadio2" value="carer" />
+                                    <label class="form-check-label" for="inlineRadio2">Carer</label>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label>Address:</label>
                                 <textarea class="form-control" name="address" id="address" placeholder="107 Friar John Way, SECRET HARBOUR, Western Australia (WA), 6173" rows="4"></textarea>
                             </div>
 
-<button type="submit" id="edit" class="btn btn-primary" style="width:100%"> Save</button>
+<button type="submit" id="edit" class="btn btn-primary" ><img src="images/save.svg" alt="" /> Save</button>
 
                            
                         </form>
@@ -848,31 +886,28 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
  var value_assign = "";
  var ddl_value_assign = [];
 
-
+var drag = 0;
 
 
 
 
 //var separate_value_assign = "'" ;
-
+    
 $(function () {
-    $('.droptrue').on('click', 'div', function () {
+    $('.droptrue').on('click', 'div', function (ui,e) {
         $(this).toggleClass('selected');
-       //  console.log($(this).attr('id'));
-   // a_href = $(this).attr('id');
-   //text.val( a_href.push(i).attr('id') );  
-    a_href.push($(this).attr('id'));
-    ddl_value_assign.push($(this).attr('id'));
-    console.log(ddl_value_assign);
-     //  console.log(a_href);
-        // var Div=$(this).closest("p:eq(0)").html();
-        
-        // console.log($(this).closest("p:eq(0)").html());
+        a_href.push($(this).attr('id'));
+        ddl_value_assign.push($(this).attr('id'));
+       // console.log(ddl_value_assign);
+
+    console.log( $(this).parent().attr('id').replace("sortable",""));
+  drag = $(this).parent().attr('id').replace("sortable","");
       if($(this).hasClass('selected'))
       {
         console.log('true');
       }
-      else{
+      else
+      {
         console.log('false');
       }
     });
@@ -905,10 +940,17 @@ $(function () {
             $('.selected').removeClass('selected');
         },
         update: function(e,ui){
+           
+            var ids =ui.item.parent().attr('id').replace("sortable","");
+           // console.log(drag +'>'+ ids);
+          if (drag > ids) {
+            $('#alert-models').modal('show');
+          }
+          else
+          {
             updatePostOrder();
             updateAdd();
-           
-var i = 0;
+            var i = 0;
 $('#txtselectedlist').val("");
 for (i = 0; i < a_href.length; i++)
 {
@@ -918,34 +960,30 @@ for (i = 0; i < a_href.length; i++)
 a_href.length = 0;
 console.log(value_assign);
 $('#txtselectedlist').val(value_assign);
-// 
+
 dropdown(ddl_value_assign);
-// $("#first_name").trigger();
 
-
-
-// console.log(e);
-// alert(i);
-            // console.log(a_href);
-           
-          // console.log(ui);
-      //  console.log($('addid').siblings('.selected'));
-       // console.log(e.target.id)
           if(e.target.id == 'sortable2')
           {
+            $("#p").hide();
             $('#card-modal').modal('show');
+           
             set_value(1);
           
           }
           else if(e.target.id == 'sortable3')
           {
+            $("#p").hide();
             $('#card-modal').modal('show');
+           
             set_value(2);
            
           }
           else if(e.target.id == 'sortable4')
           {
+            $("#p").show();
             $('#card-modal').modal('show');
+           
             set_value(3);
            
           }
@@ -953,6 +991,8 @@ dropdown(ddl_value_assign);
           {
             document.getElementById("typess").innerHTML="To Pack";
           }
+          }
+
           
         },
        
@@ -1077,23 +1117,32 @@ function set_value(a)
    // alert(a);
     if(a==1)
     {
+        $("#p").hide();
        // alert();
         document.getElementById("typess").innerHTML="Packed";
         document.getElementById("type").value=a;
     }
     else if(a==2)
     {
+        $("#p").hide();
         document.getElementById("typess").innerHTML="Checked";
         document.getElementById("type").value = a;
     }
     else if(a==3)
     {
+        $("#p").show();
         document.getElementById("typess").innerHTML="Picked up";
         document.getElementById("type").value = a;
     }
    // document.getElementById("type").value = a,b,c;
     
  }
+ $('#close').click(function() {
+    location.reload();
+});
+// $('#card-modal').click(function() {
+//     location.reload();
+// });
  function set_model(a)
 {
     document.getElementById("editcard").value = a;

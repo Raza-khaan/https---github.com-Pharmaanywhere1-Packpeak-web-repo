@@ -136,7 +136,7 @@ class Checking extends Controller {
 	   {
 		$validate_array = array(
 		
-			'no_of_weeks' => 'required|numeric|min:1',
+			// 'no_of_weeks' => 'required|numeric|min:1',
 			
 		);
 		if ($request->id == Null)
@@ -147,7 +147,7 @@ class Checking extends Controller {
 			//dd($str);
 			
 			//dd($split_str);
-			//$str = ($request->patient_id);
+			$str = ($request->patient_id);
 			
 			 foreach ($str as $ipatient_name ) {
 				//dd($ipatient_name);
@@ -207,7 +207,7 @@ class Checking extends Controller {
 	{
 		$validate_array = array(
 		
-			'no_of_weeks' => 'required|numeric|min:1',
+			// 'no_of_weeks' => 'required|numeric|min:1',
 			
 		);
 		if ($request->id == Null)
@@ -218,10 +218,11 @@ class Checking extends Controller {
 			// return;		
 			$str =explode("," , $multi_id);
 			//dd($str);	
+			$str = ($request->patient_id);
 			 foreach ($str as $ipatient_name ) {
 			//	dd($ipatient_name);
 			$request->patient_id = $ipatient_name;
-			dump($request->patient_id);
+			//dump($request->patient_id);
 		   $insert_data = array(
 			'patient_id' =>  $request->patient_id,
 			'no_of_weeks' => $request->no_of_weeks,
@@ -271,7 +272,7 @@ elseif($request->type == 3)
 {
 	$validate_array = array(
 		
-		'no_of_weeks' => 'required|numeric|min:1',
+		// 'no_of_weeks' => 'required|numeric|min:1',
 		
 	);
 	if ($request->id == Null)
@@ -281,13 +282,16 @@ elseif($request->type == 3)
 			$multi_id = rtrim($multi_id, ",");
 			// dump($multi_id);
 			// return;		
+
 			$str =explode("," , $multi_id);
+			$str = ($request->patient_id);
 			foreach ($str as $ipatient_name ) {
 			$request->patient_id = $ipatient_name;
 			$insert_data = array(
 				'patient_id' => $request->patient_id,
 				'no_of_weeks' => $request->no_of_weeks,
 				'location' => " ",
+				'pick_up_by'=>$request->who_pickup,
 				'pharmacist_signature' => " ",
 				'notes_from_patient' => $request->address,
 				

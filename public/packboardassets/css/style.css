@@ -1168,4 +1168,67 @@ span.select2.select2-container.select2-container--default.select2-container--bel
     color: #fff;
     border-color: #0000;
 }
+.pack-card.selected .checkbox,
+.pack-card:hover .checkbox{
+    opacity: 1;
+    visibility: visible;
+}
 
+.pack-card .checkbox input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.pack-card .checkbox label:before {
+    content: "";
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    height: 14px;
+    width: 14px;
+    display: block;
+    border-radius: 100%;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.pack-card.selected .checkbox :before{
+    background: #0071f2;
+    border-color: #0071f2;
+}
+.pack-card.selected .checkbox :after {
+    content: "\f00c";
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 14px;
+    height: 14px;
+    font-family: "Font Awesome 5 Pro";
+    font-size: 8px;
+    color: #fff;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pack-card .checkbox{
+    position: absolute;
+    left: 5px;
+    top: 17px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+.pack-card.selected,
+.pack-card:hover{
+    padding-left: 25px;
+}

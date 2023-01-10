@@ -116,6 +116,8 @@ class HomeController extends Controller {
 		$completed = $tasks->where('id');
 		$final = Carbon::now()->startOfMonth()->format('Y-m-d');
         $currentdate = Carbon::now()->endOfMonth()->format('Y-m-d');
+		$final_date = $final. '-' .$currentdate;
+		
 		// $mytime = Carbon::now();
         // $currentdate = $mytime->toDateString();
 		// $final = $mytime->firstOfMonth(); 
@@ -132,6 +134,7 @@ class HomeController extends Controller {
 
 		$enddate = "2050-01-01"." 23:59:59";
 		if($request->enddate !=null){
+			//dd($request->enddate);
 		$enddate = $request->enddate." 23:59:59";
 		}
 
@@ -298,7 +301,7 @@ class HomeController extends Controller {
 				
 			
 			//return $data['patients'][0]->latestPickups;
-			return view('tenant.packboard',compact('currentdate','final','getpatientlastpickup','completed'))->with($data);
+			return view('tenant.packboard',compact('currentdate','final','getpatientlastpickup','completed','final_date'))->with($data);
 		} else {
 			return redirect('dashboard')->with(["msg" => '<div class="alert alert-danger"> you don`t have  <strong>Access</strong> to this page .</div>']);
 		}
