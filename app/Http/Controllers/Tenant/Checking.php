@@ -272,7 +272,7 @@ elseif($request->type == 3)
 {
 	$validate_array = array(
 		
-		// 'no_of_weeks' => 'required|numeric|min:1',
+		 'no_of_weeks' => 'required|numeric|min:1',
 		
 	);
 	if ($request->id == Null)
@@ -354,12 +354,27 @@ elseif($request->type == 3)
 		
 		return redirect()->back()->with(["msg" => '<div class="alert alert-danger">Packed of this patient (<strong>' . $patient_name . '</strong>) deleted Successfully.</div>']);
 	}
+	public function packed_unhold_button(Request $request, $tenantName,$id)
+	{
+	// dd('a');
+	 $user = Packed::find($id);
+	   $user->hold='0';
+	   $patient_name = $user->patients->first_name . ' ' . $user->patients->last_name;
+	   $user->save();
+	   
+	  // return 'success';
+	   return redirect()->back()->with(["msg" => '<div class="alert alert-success">Packed of this patient (<strong>' . $patient_name . '</strong>) unHold Successfully.</div>']);
+	}
+ 
    public function packed_hold_button(Request $request, $tenantName,$id)
    {
+	
 	$user = Packed::find($id);
       $user->hold='1';
-	  $patient_name = $user->patients->first_name . ' ' . $user->patients->last_name;
+	//  $patient_name = $user->patients->first_name . ' ' . $user->patients->last_name;
       $user->save();
+	  
+	 // return 'success';
       return redirect()->back()->with(["msg" => '<div class="alert alert-warning">Packed of this patient (<strong>' . $patient_name . '</strong>) Hold Successfully.</div>']);
    }
    public function checking_hold_button(Request $request, $tenantName,$id)
@@ -370,6 +385,14 @@ elseif($request->type == 3)
       $user->save();
       return redirect()->back()->with(["msg" => '<div class="alert alert-warning">Checking of this patient (<strong>' . $patient_name . '</strong>) Hold Successfully.</div>']);
    }
+   public function checking_unhold_button(Request $request, $tenantName,$id)
+   {
+	  $user = Checkings::find($id);
+      $user->hold='0';
+	  $patient_name = $user->patients->first_name . ' ' . $user->patients->last_name;
+      $user->save();
+      return redirect()->back()->with(["msg" => '<div class="alert alert-success">Checking of this patient (<strong>' . $patient_name . '</strong>) unHold Successfully.</div>']);
+   }
    public function pickup_hold_button(Request $request, $tenantName,$id)
    {
 	$user = Pickups::find($id);
@@ -378,7 +401,15 @@ elseif($request->type == 3)
       $user->save();
       return redirect()->back()->with(["msg" => '<div class="alert alert-warning">Pickup of this patient (<strong>' . $patient_name . '</strong>) Hold Successfully.</div>']);
    }
+ public function pickup_unhold_button(Request $request, $tenantName,$id)
+ {
+	$user = Pickups::find($id);
+	$user->hold='0';
+	$patient_name = $user->patients->first_name . ' ' . $user->patients->last_name;
+	$user->save();
+	return redirect()->back()->with(["msg" => '<div class="alert alert-success">Pickup of this patient (<strong>' . $patient_name . '</strong>) unHold Successfully.</div>']);
 
+ }
 	public function pickup_board_Delete(Request $request, $tenantName, $id)
 	{
 		$delete = Pickups::find($id);

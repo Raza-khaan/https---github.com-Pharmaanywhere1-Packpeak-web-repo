@@ -117,24 +117,30 @@
                   
                        
                         <div class="col-md-3 col-sm-12">
-                            <div class="form-group">
+                        <div class="form-group">
+                                <label>
+                                    Select Date: <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#alert-modal"><i class="far fa-times"></i> Clear All</a>
+                                </label>
+                                <input type="text" class="form-control" name="startdate" id="date" value="" />
+                            </div>
+                            <!-- <div class="form-group">
                                 <label>
                                      Start Date: <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#alert-modal"><i class="far fa-times"></i> Clear All</a>
                                 </label>
-                                <input type="date" class="form-control"  name="startdate"  value="{{ $final }}"/>
+                                <input type="date" class="form-control"  name="startdate"  value="{{ $final }}"/> -->
                                 <!-- <input type="date" class="form-control" name="enddate"  value="{{ date(' Y-m-d') }}"/> -->
-                            </div>
+                            <!-- </div>
                             
                         </div>  
                         <div class="col-md-3 col-sm-12">
                             <div class="form-group">
                                 <label>
                                      End Date: <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#alert-modal"></a>
-                                </label>
+                                </label> -->
                                 <!-- <input type="date" class="form-control" name="startdate"  value="{{ date(' Y-m-d') }}"/> -->
-                                <input type="date" class="form-control" name="enddate"  value="{{ $currentdate}}"/>
+                                <!-- <input type="date" class="form-control" name="enddate"  value="{{ $currentdate}}"/>
                             </div>
-                            
+                             -->
                         </div>
                        
                        
@@ -326,9 +332,10 @@
                                       
                                         <div class="card-btn">
                                             @if ($patientdata->hold == '1')
-                                            <a href="{{url('packed_hold_button',$patientdata->id)}}"  class="active"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="{{url('packed_unhold_button',$patientdata->id)}}" class="active"><i class="fas fa-clock"></i>On Hold</a>
                                             @elseif ($patientdata->hold == '0')
-                                            <a href="{{url('packed_hold_button',$patientdata->id)}}" id="set_hold" onclick="save_hold()"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="#packed_{{$patientdata->id}}" onclick="savehold({{$patientdata->id}});" id="save_hold"><i class="fas fa-clock"></i>On Hold</a>
+                                             <!-- <button class="card-btn"  id="save_hold"> <i class="fas fa-clock"></i>On Hold</button>  -->
                                             @endif
                                         </div>
 
@@ -351,7 +358,7 @@
                                             @if ($patientdata->hold == '1')
                                             <a href="{{url('packed_hold_button',$patientdata->id)}}" class="active"><i class="fas fa-clock"></i>On Hold</a>
                                             @elseif ($patientdata->hold == '0')
-                                            <a href="{{url('packed_hold_button',$patientdata->id)}}"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="#packed_{{$patientdata->id}}" onclick="savehold({{$patientdata->id}});" id="save_hold"><i class="fas fa-clock"></i>On Hold</a>
                                             @endif
                                                    
                                                 </li>
@@ -412,9 +419,9 @@
                                         </div>
                                         <div class="card-btn">
                                         @if ($Checking->hold == '1')
-                                            <a href="{{url('checking_hold_button',$Checking->id)}}" class="active"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="{{url('checking_unhold_button',$Checking->id)}}" class="active"><i class="fas fa-clock"></i>On Hold</a>
                                             @elseif ($Checking->hold == '0')
-                                            <a href="{{url('checking_hold_button',$Checking->id)}}"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="#checked_{{$Checking->patients->id}}" onclick="checkinghold({{$Checking->id}})"><i class="fas fa-clock"></i>On Hold</a>
                                             @endif
                                         </div>
 
@@ -433,9 +440,9 @@
                                                 <li><a href="{{url('checking_board_Delete',$Checking->id)}}" class="delete-btn"> <img src="images/delete.svg" alt=""> Delete</a></li>
                                                 <li>
                                                 @if ($Checking->hold == '1')
-                                            <a href="{{url('checking_hold_button',$Checking->id)}}" class="active"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="{{url('checking_unhold_button',$Checking->id)}}" class="active"><i class="fas fa-clock"></i>On Hold</a>
                                             @elseif ($Checking->hold == '0')
-                                            <a href="{{url('checking_hold_button',$Checking->id)}}"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="#checked_{{$Checking->patients->id}}" onclick="checkinghold({{$Checking->id}})"><i class="fas fa-clock"></i>On Hold</a>
                                             @endif
                                                 </li>
                                             </ul>
@@ -490,9 +497,9 @@
                                         </div>
                                         <div class="card-btn">
                                         @if ($pickup->hold == '1')
-                                            <a href="{{url('pickup_hold_button',$pickup->id)}}" class="active"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="{{url('pickup_unhold_button',$pickup->id)}}" class="active"><i class="fas fa-clock"></i>On Hold</a>
                                             @elseif ($pickup->hold == '0')
-                                            <a href="{{url('pickup_hold_button',$pickup->id)}}"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="#pickup{{$pickup->id}}" onclick="pickuphold({{$pickup->id}})"><i class="fas fa-clock"></i>On Hold</a>
                                             @endif
                                         </div>
 
@@ -511,9 +518,9 @@
                                                 <li><a href="{{url('pickup_board_Delete',$pickup->id)}}" class="delete-btn"> <img src="images/delete.svg" alt=""> Delete</a></li>
                                                 <li>
                                                 @if ($pickup->hold == '1')
-                                            <a href="{{url('pickup_hold_button',$pickup->id)}}" class="active"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="{{url('pickup_unhold_button',$pickup->id)}}" class="active"><i class="fas fa-clock"></i>On Hold</a>
                                             @elseif ($pickup->hold == '0')
-                                            <a href="{{url('pickup_hold_button',$pickup->id)}}"><i class="fas fa-clock"></i>On Hold</a>
+                                            <a href="#pickup{{$pickup->id}}" onclick="pickuphold({{$pickup->id}})"><i class="fas fa-clock"></i>On Hold</a>
                                             @endif
                                                   
                                                 </li>
@@ -719,10 +726,12 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
 
 
 
-                           <div class="form-group" style="background-color : lightblue">
-                              <label class="family" for="no_of_weeks" style="margin-left: 10px;  margin-top: 2px;  !important  ">{{__('Number of Weeks ')}}</label>
-                              <input class="family text-center form-input" readonly  value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}" style="float: right;margin-top: -13%;width: 8%;margin-bottom: .5rem;"  onkeypress="return restrictAlphabets(event);" >
-                              <input type="text" readonly   value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}"  class="form-control @error('no_of_weeks') is-invalid @enderror" maxlength="3" onkeypress="return restrictAlphabets(event);" id="no_of_weeks"   name="no_of_weeks" placeholder="No Of Weeks" style="display:none;" >
+                           <div class="form-group" >
+                              <label class="family" for="no_of_weeks"   >{{__('Number of Weeks ')}}</label>
+                              <!-- <input class="family text-center form-input" readonly  value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}" style="float: right;margin-top: -13%;width: 8%;margin-bottom: .5rem;"  onkeypress="return restrictAlphabets(event);" > -->
+                            </div>
+                            <div style="margin-top: -18px; margin-bottom: 23px;">
+                              <input type="number"    value="{{(old('no_of_weeks'))?old('no_of_weeks'):$default_cycle[0]['default_cycle']}}"  class="form-control @error('no_of_weeks') is-invalid @enderror" maxlength="3" onkeypress="return restrictAlphabets(event);" id="no_of_weeks"   name="no_of_weeks" placeholder="No Of Weeks"  >
                               @error('no_of_weeks')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -1154,10 +1163,10 @@ function set_value(a)
     document.getElementById("hold").value = a;
     
  }
- function save_hold()
-{
- 
- }
+//  function save_hold()
+// {
+   
+//  }
 
  function reset()
 {
@@ -1298,8 +1307,110 @@ function getchagecount()
         $("#notesdiv").fadeIn();
     }
 }
+var today = new Date();
+var endDate = new Date();
+endDate.setMonth(endDate.getMonth() + 1);
+$(function () {
+        $("#date").daterangepicker(
+            {
+                startDate: today, // after open picker you'll see this dates as picked
+    endDate: endDate,
+    locale: {
+       format: 'DD-MM-YYYY',
+    },
+                opens: "left",
+            },
+            function (start, end, label) {
+                console.log("A new date selection was made: " + start.format("YYYY-MM-DD") + " to " + end.format("YYYY-MM-DD"));
+            }
+        );
+    });
+
+// $(document).ready(function(e,start,end){
+//   $('#daterange').datepicker({
+//     numberOfMonths :2,
+//    // dateFormat: "dd/mm/yy" + '-' +"dd/mm/yy"
+//    dateFormat: "dd/mm/yy" + "-" + "dd/mm/yy",
+//    separator: " to "
+//   }
+// //   function (start, end, label) {
+// //     dateFormat:"A new date selection was made: " + start.format("YYYY-MM-DD") + " to " + end.format("YYYY-MM-DD")
+// // }
+// );            });
+
+      function savehold(val)
+      {
+
+// alert(1);
+// return;
+        //  event.preventDefault();
+        //   alert('ok');
+            $.ajax({
+                type: "Get",
+               // alert('kkk');
+                url: "{{url('packed_hold_button')}}/"+val,
+               
+                success: function(data) {
+               // alert('data save');
+                },
+                failure: function(data) {
+                    console.log('Failed');
+                }
+
+            });
+            
 
 
+        }
+function saveunhold(value)
+{
+   // alert('ok');
+    $.ajax({
+                type: "Get",
+               // alert('kkk');
+                url: "{{url('packed_unhold_button')}}/"+value,
+               
+                success: function(data) {
+               // alert('data save');
+                },
+                failure: function(data) {
+                    console.log('Failed');
+                }
+
+            });  
+}
+function checkinghold(val)
+{
+    $.ajax({
+                type: "Get",
+               // alert('kkk');
+                url: "{{url('checking_hold_button')}}/"+val,
+               
+                success: function(data) {
+               // alert('data save');
+                },
+                failure: function(data) {
+                    console.log('Failed');
+                }
+
+            }); 
+}
+function pickuphold(val)
+{
+    $.ajax({
+                type: "Get",
+               // alert('kkk');
+                url: "{{url('pickup_hold_button')}}/"+val,
+               
+                success: function(data) {
+               // alert('data save');
+                },
+                failure: function(data) {
+                    console.log('Failed');
+                }
+
+            }); 
+}
    </script>
    
      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script> -->

@@ -113,25 +113,33 @@ class HomeController extends Controller {
 	public function packboard(Request $request)
 	{
 		$tasks = packed::all();
-		$completed = $tasks->where('id');
-		$final = Carbon::now()->startOfMonth()->format('Y-m-d');
-        $currentdate = Carbon::now()->endOfMonth()->format('Y-m-d');
-		$final_date = $final. '-' .$currentdate;
-		
-		// $mytime = Carbon::now();
-        // $currentdate = $mytime->toDateString();
-		// $final = $mytime->firstOfMonth(); 
-		//$weekdate =$mytime->subDays(30);
-        //$final = $weekdate->format('Y-m-d');
-	//dd($final,$currentdate);
-		$hold = $request->hold;
-		
+		 $completed = $tasks->where('id');
+		 $final = Carbon::now()->startOfMonth()->format('Y-m-d');
+		// //dump($final);
+         $currentdate = Carbon::now()->endOfMonth()->format('Y-m-d');
+	    //  $set_date_range =  Carbon::now()->startOfMonth()->format('m/d/Y'). '-' .Carbon::now()->endOfMonth()->format('m/d/Y');
+		//  dump($set_date_range);
+		  $hold = $request->hold;
+		//$testing = $request->startdate;
+		//$testing  = explode(' - ' ,$testing);
+		//dd($testing);
 		$startdate = "1900-01-01"." 00:00:00";
 		if($request->startdate !=null){
-		$startdate =$request->startdate." 00:00:00";
+		$startdate =$request->startdate;
+		
+		//$dats = $startdate[0]."00:00:00" .$startdate[1]."23:59:59";
+		$startdate  = explode(' - ' ,$startdate);
+	//	$date_end  = explode(' - ' ,$startdate);
+		//date('Y-m-d',$time);
+		$startdate = date('Y-m-d', strtotime($startdate[0]));
+		$date_end = date('Y-m-d', strtotime($startdate[1]));
+		// $dare = [$startdate[0] . " 00:00:00",$startdate[1] . " 23:59:59"];
+	//	$dare1 = $dare->format('Y-m-d');
+	//	dd($date_end);
+		//dump($startdate);
 		}
 
-
+		
 		$enddate = "2050-01-01"." 23:59:59";
 		if($request->enddate !=null){
 			//dd($request->enddate);
@@ -147,8 +155,8 @@ class HomeController extends Controller {
 			//dd($data['patients']);
 				if($hold == '1' )
 				{
-				$data['packed'] = Packed::select()->where('created_at' , '>=' ,$startdate)
-										->where('created_at' , '<=' ,$enddate)
+				$data['packed'] = Packed::select()->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
+										//->where('created_at' , '<=' ,$enddate)
 										->where('hold', '=', $hold)
 										->orderbydesc('id')
 										->get();
@@ -164,8 +172,8 @@ class HomeController extends Controller {
 			
 			if($hold == '1')
 			{
-				$data['checkings'] = Checkings::select()->where('created_at' , '>=' ,$startdate)
-				->where('created_at', '<=' ,$enddate)
+				$data['checkings'] = Checkings::select()->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
+				//->where('created_at', '<=' ,$enddate)
 				->where('hold', '=', $hold)
 				->orderbydesc('id')
 				->get();	
@@ -181,8 +189,8 @@ class HomeController extends Controller {
 			}
 
 			if ($hold == '1') {
-				$data['Pickups'] = Pickups::select()->where('created_at' , '>=' ,$startdate)
-				->where('created_at', '<=' ,$enddate)
+				$data['Pickups'] = Pickups::select()->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
+				//->where('created_at', '<=' ,$enddate)
 				->where('hold', '=', $hold)
 				->orderbydesc('id')
 				->get();
@@ -245,63 +253,13 @@ class HomeController extends Controller {
 	
 					$getpatientlastpickup = Pickups::whereBetween('created_at',[$final,$currentdate])
 					->orderbydesc('id')->take(1)->get();
-					//dd($getpatientlastpickup);
-					//
-					//$finalgetpatientlastpickup = $getpatientlastpickup->format('Y-m-d');
-					//dd($getpatientlastpickup);
-				// 	if(!$getpatientlastpickup ->isEmpty())
-				// 	{
-					
-				// 		//Get latest pickup date from database 
-				// 		$last_pick_date = $getpatientlastpickup[0]->last_pick_up_date;
-				// 		//dd($last_pick_date);
-				// 		// convert latest pickup date format as its varchar in databse 
-				// 		if($last_pick_date != null)
-				// 		{
-	
-							
-				// 			$last_pick_date =  substr($last_pick_date, 6, 4) .'/'.substr($last_pick_date, 3, 2) .'/'.substr($last_pick_date, 0, 2);
-				// 			$weekdiffer =  $date->diffIndays($last_pick_date);
-				// 		dump($last_pick_date);
-	
-				// 		$nextpickupdate = Carbon::parse($last_pick_date)->addDays($pharmacy_cyle * 7);
-				// 		$finalnextpickup = $nextpickupdate->format('Y-m-d');
-				// 		dump($finalnextpickup);
-				// 	// 	$pickup = PickUp::where('created_at','=')
-				// 	// ->get();
-				// 		if ($finalnextpickup >= $final && $finalnextpickup <= $currentdate) 
-				// 		 {
-				// 			// $duedate = "";
-				// 		    // $pack = array('patientname'=>$patientname,'dob'=>$patientdob,'lastpickup'=>$last_pick_date,
-				// 			// 'noofweekspickup'=>$getpatientlastpickup[0]->weeks_last_picked_up,'duedays'=>$duedate,
-				// 			// 'nextpickupdate'=>$nextpickupdate,
-				// 			// 'message'=>$this);
-				// 			dd('razaif');
-				// 			//$data['Pickups'] = Pickups::get();
-				// 		}
-				// 		else
-				// 		{
-				// 			//return view('tenant.packboard');
-				// 			dd('aa');
-				// 		}
 
-				// 		}
-				// 		else
-				// 		{
-                //      dd('raza1');
-				// 		}
-				// 	}
-				// 	else
-				// 	{
-                // dd('raza2');
-				// 	}
-				// }
 			}}
 					
 				
 			
 			//return $data['patients'][0]->latestPickups;
-			return view('tenant.packboard',compact('currentdate','final','getpatientlastpickup','completed','final_date'))->with($data);
+			return view('tenant.packboard',compact('currentdate','final','getpatientlastpickup','completed'))->with($data);
 		} else {
 			return redirect('dashboard')->with(["msg" => '<div class="alert alert-danger"> you don`t have  <strong>Access</strong> to this page .</div>']);
 		}

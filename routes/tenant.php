@@ -154,8 +154,11 @@ Route::domain('{account}.' . env('PROJECT_HOST', 'localhost'))->group(function (
 			Route::get('checking_board_Delete/{id}', 'Checking@checking_board_Delete')->name('checking_board_Delete/{id}')->where('id', '[0-9]+')->middleware('CheckPharmacyAdmin');
 			Route::get('pickup_board_Delete/{id}', 'Checking@pickup_board_Delete')->name('pickup_board_Delete/{id}')->where('id', '[0-9]+')->middleware('CheckPharmacyAdmin');
 			Route::get('packed_hold_button/{id}', 'Checking@packed_hold_button')->name('packed_hold_button');
+			Route::get('packed_unhold_button/{id}', 'Checking@packed_unhold_button')->name('packed_unhold_button');
 			Route::get('checking_hold_button/{id}', 'Checking@checking_hold_button')->name('checking_hold_button');
+			Route::get('checking_unhold_button/{id}', 'Checking@checking_unhold_button')->name('checking_unhold_button');
 			Route::get('pickup_hold_button/{id}', 'Checking@pickup_hold_button')->name('pickup_hold_button');
+			Route::get('pickup_unhold_button/{id}', 'Checking@pickup_unhold_button')->name('pickup_unhold_button');
 			//Route::get('gettopack/{id}', 'Checking@pickup_hold_button')->name('pickup_hold_button');
             Route::get('gettopack', 'HomeController@gettopack')->name('gettopack');
 //-------------------------------------------------------------------------------
