@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="Time" transform="translate(1504 2238)">
+    <g id="Iconly_Bold_Time-Circle" data-name="Iconly/Bold/Time-Circle" transform="translate(-1502 -2236)">
+      <g id="Time-Circle" transform="translate(0 0)">
+        <path id="Path_4991" data-name="Path 4991" d="M8,0A8,8,0,1,1,0,8,8,8,0,0,1,8,0ZM7.72,3.944a.6.6,0,0,0-.6.6h0v4.04a.6.6,0,0,0,.3.512h0l3.136,1.872a.612.612,0,0,0,.312.088.594.594,0,0,0,.512-.3.6.6,0,0,0-.208-.824h0L8.32,8.24v-3.7A.6.6,0,0,0,7.72,3.944Z" fill="#ffca3a"/>
+      </g>
+    </g>
+    <rect id="Rectangle_3855" data-name="Rectangle 3855" width="20" height="20" transform="translate(-1504 -2238)" fill="none"/>
+  </g>
+</svg>
