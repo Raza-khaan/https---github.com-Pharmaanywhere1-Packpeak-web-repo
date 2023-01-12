@@ -1,0 +1,4 @@
+first_name,last_name,dob,address,phone_number,facilities_id,location,text_when_picked_up_deliver
+Pradeep,ku ar4,2/21/2001,Gomti  nagar Lucknow,8789876567,3,"shelf,fridge",1
+Nitesh,ku ar5,2/21/2001,Gomti  nagar Lucknow,8789876567,3,"shelf,fridge",2
+Hariom,ku ar6,2/21/2001,Gomti  nagar Lucknow,8789876567,3,"shelf,fridge",3
