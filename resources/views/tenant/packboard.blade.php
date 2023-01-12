@@ -398,18 +398,23 @@
                                         <div class="add-card">
                                         <a href="javascript:void(0);" onclick="set_value('2');" data-bs-toggle="modal" data-bs-target="#card-modal"><i class="fal fa-plus"></i> Add Card</a>
                                     </div>
+                                    <a href="{{url('time_limt')}}"><i class="fas fa-clock"></i>last entry</a>
                                     </div>
                                 </div>
                                 <div class="box-body droptrue" id="sortable3">
                                 @foreach ($checkings     as $Checking )
                                 @if(isset($Checking->patients->first_name) && $Checking->patients->first_name!="")
+                                
                                     <div class="pack-card brd-color1" id="{{$Checking->patients->id}}">
+                                  
                                     <div class="checkbox">
                                             <input type="checkbox" id="checkbox{{$Checking->id}}"><label for="checkbox{{$Checking->id}}"></label>
                                         </div>
                                  
                                         <div class="card-info">
                                             <h3>{{$Checking->patients->first_name.' '.$Checking->patients->last_name}}</h3>
+                                           
+                                            
                                             <ul>
                                                 <li><span>Patient</span></li>
                                                 <li>

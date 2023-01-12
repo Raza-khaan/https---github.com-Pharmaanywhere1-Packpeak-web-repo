@@ -435,6 +435,11 @@ elseif($request->type == 3)
 		
 		return redirect()->back()->with(["msg" => '<div class="alert alert-danger">Checking of this patient (<strong>' . $patient_name . '</strong>) deleted Successfully.</div>']);
 	}
+	public function time_limt(Request $request)
+	{
+		$data = Checkings::orderBy('id', 'DESC')->first();
+		dd($data);
+	}
 	/* save Checking here  */
 	public function save_pack(Request $request) {
 		$validate_array = array(
