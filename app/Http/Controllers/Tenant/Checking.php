@@ -14,6 +14,7 @@ use App\Models\Tenant\PatientLocation;
 use DB;
 use Illuminate\Http\Request;
 use PDF;
+use Carbon\Carbon;
 
 class Checking extends Controller {
 	protected $views = '';
@@ -436,9 +437,16 @@ elseif($request->type == 3)
 		return redirect()->back()->with(["msg" => '<div class="alert alert-danger">Checking of this patient (<strong>' . $patient_name . '</strong>) deleted Successfully.</div>']);
 	}
 	public function time_limt(Request $request)
-	{
-		$data = Checkings::orderBy('id', 'DESC')->first();
+	{ 
+		$date = Carbon::now()->toTimeString();
+	//	$date = Carbon::now();
+		dd($date);
+		$data = Checkings::select('created_at')->latest('created_at')->first();
+		
 		dd($data);
+		return 'success';
+		//dd($data);
+		//return json('1');
 	}
 	/* save Checking here  */
 	public function save_pack(Request $request) {

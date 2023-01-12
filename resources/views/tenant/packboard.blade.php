@@ -318,7 +318,7 @@
                                             <input type="checkbox" id="checkbox{{$patientdata->id}}"><label for="checkbox{{$patientdata->id}}"></label>
                                         </div>
                                   
-                                        <div class="card-info"  id="packed_{{$patientdata->id}}">
+                                        <div class="card-info"  id="packed_{{$patientdata->id}}"  >
                                      
                                       <h3>{{$patientdata->patients->first_name.' '.$patientdata->patients->last_name}}</h3>
                                            
@@ -398,7 +398,7 @@
                                         <div class="add-card">
                                         <a href="javascript:void(0);" onclick="set_value('2');" data-bs-toggle="modal" data-bs-target="#card-modal"><i class="fal fa-plus"></i> Add Card</a>
                                     </div>
-                                    <a href="{{url('time_limt')}}"><i class="fas fa-clock"></i>last entry</a>
+                                    <a href="{{url('time_limt')}}">latest entry</a>
                                     </div>
                                 </div>
                                 <div class="box-body droptrue" id="sortable3">
@@ -915,7 +915,7 @@ $(function () {
        // console.log(ddl_value_assign);
 
     console.log( $(this).parent().attr('id').replace("sortable",""));
-  drag = $(this).parent().attr('id').replace("sortable","");
+    drag = $(this).parent().attr('id').replace("sortable","");
       if($(this).hasClass('selected'))
       {
         console.log('true');
@@ -964,6 +964,7 @@ $(function () {
           {
             updatePostOrder();
             updateAdd();
+            latest_entry();
             var i = 0;
 $('#txtselectedlist').val("");
 for (i = 0; i < a_href.length; i++)
@@ -1045,7 +1046,28 @@ function updateAdd() {
 }
 
   
+function latest_entry()
+{
+   
+    $.ajax({
+                method: "get",
+               // alert('kkk');
+                url: "{{url('/time_limt')}}",
+               
+               success: function(data) {
+                alert('success');
+                },
+                failure: function(data) {
+                    console.log('Failed');
+                },
+                error: function(data)
+                {
+                    console.log(data)
+                }
 
+            }); 
+          //  alert('1');
+}
 
 function reset()
 {
