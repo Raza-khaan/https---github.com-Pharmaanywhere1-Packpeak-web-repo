@@ -123,28 +123,30 @@ class HomeController extends Controller {
 		//$testing = $request->startdate;
 		//$testing  = explode(' - ' ,$testing);
 		//dd($testing);
-		$startdate = "1900-01-01"." 00:00:00";
+		$startdates = "1900-01-01"." 00:00:00";
+		$date_end = "2050-01-01"." 23:59:59";
 		if($request->startdate !=null){
 		$startdate =$request->startdate;
 		
 		//$dats = $startdate[0]."00:00:00" .$startdate[1]."23:59:59";
 		$startdate  = explode(' - ' ,$startdate);
+	//	dd($startdate[0]);
 	//	$date_end  = explode(' - ' ,$startdate);
 		//date('Y-m-d',$time);
-		$startdate = date('Y-m-d', strtotime($startdate[0]));
-		$date_end = date('Y-m-d', strtotime($startdate[1]));
+		$startdates = date('Y-m-d', strtotime($startdate[0])). " 00:00:00";
+		$date_end = date('Y-m-d', strtotime($startdate[1])). " 23:59:59";
 		// $dare = [$startdate[0] . " 00:00:00",$startdate[1] . " 23:59:59"];
-	//	$dare1 = $dare->format('Y-m-d');
-	//	dd($date_end);
+     	//	$dare1 = $dare->format('Y-m-d');
+		//dd($date_end);
 		//dump($startdate);
 		}
 
-		
-		$enddate = "2050-01-01"." 23:59:59";
-		if($request->enddate !=null){
-			//dd($request->enddate);
-		$enddate = $request->enddate." 23:59:59";
-		}
+		//dd($date_end);
+		// $enddate = "2050-01-01"." 23:59:59";
+		// if($request->enddate !=null){
+		// 	//dd($request->enddate);
+		// $enddate = $request->enddate." 23:59:59";
+		// }
 
 		if ($request->form9 == '1') {
 			$data = array();
@@ -155,25 +157,32 @@ class HomeController extends Controller {
 			//dd($data['patients']);
 				if($hold == '1' )
 				{
-				$data['packed'] = Packed::select()->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
-										//->where('created_at' , '<=' ,$enddate)
+				$data['packed'] = Packed::select()
+				//->whereBetween('created_at',[$startdates,$date_end])
+				//->where('created_at' , '>=' ,$startdates." 00:00:00")
+				
+										//->where('created_at' , '<=' ,$date_end." 23:59:59")
 										->where('hold', '=', $hold)
 										->orderbydesc('id')
 										->get();
 				}
 				elseif($hold == NULL)
 				{
-
-				$data['packed'] = Packed::select()->where('created_at' , '>=' ,$startdate)
-									->where('created_at' , '<=' ,$enddate)
+				$data['packed'] = Packed::select()->whereBetween('created_at',[$startdates,$date_end])
+				//->where('created_at' , '>=' ,$startdate)
+				//->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
+									//->where('created_at' , '<=' ,$date_end)
 									->orderbydesc('id')
 									->get();
 				}
 			
 			if($hold == '1')
 			{
-				$data['checkings'] = Checkings::select()->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
-				//->where('created_at', '<=' ,$enddate)
+				$data['checkings'] = Checkings::select()
+				//->whereBetween('created_at',[$startdates,$date_end])
+				//->where('created_at' , '>=' ,$startdate)
+				//->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
+				//->where('created_at', '<=',$date_end)
 				->where('hold', '=', $hold)
 				->orderbydesc('id')
 				->get();	
@@ -181,15 +190,19 @@ class HomeController extends Controller {
 			}
 			elseif($hold == NULL )
 			{
-				$data['checkings'] = Checkings::select()->where('created_at' , '>=' ,$startdate)
-				->where('created_at', '<=' ,$enddate)
+				$data['checkings'] = Checkings::select()->whereBetween('created_at',[$startdates,$date_end])
+				//->where('created_at' , '>=' ,$startdate)
+				//->where('created_at', '<=',$date_end)
+				//->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
 				->orderbydesc('id')
 				//->where('hold', '=', $hold)
 				->get();
 			}
 
 			if ($hold == '1') {
-				$data['Pickups'] = Pickups::select()->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
+				$data['Pickups'] = Pickups::select()
+				//->whereBetween('created_at',[$startdates,$date_end])
+				//->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
 				//->where('created_at', '<=' ,$enddate)
 				->where('hold', '=', $hold)
 				->orderbydesc('id')
@@ -197,8 +210,10 @@ class HomeController extends Controller {
 			}
 			elseif($hold == NULL)
 			{
-				$data['Pickups'] = Pickups::select()->where('created_at' , '>=' ,$startdate)
-				->where('created_at', '<=' ,$enddate)
+				$data['Pickups'] = Pickups::select()->whereBetween('created_at',[$startdates,$date_end])
+				//->whereBetween('created_at',[$startdate." 00:00:00",$date_end." 23:59:59"])
+				// ->where('created_at' , '>=' ,$startdate)
+				// ->where('created_at', '<=' ,$enddate)
 				->orderbydesc('id')
 				//->where('hold', '=', $hold)
 				->get();	
