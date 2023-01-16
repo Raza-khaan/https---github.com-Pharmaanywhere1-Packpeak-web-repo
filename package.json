@@ -26,6 +26,7 @@
     "dependencies": {
         "jquery-tableexport": "^1.0.1",
         "jspdf": "^2.5.1",
+        "sweetalert": "^2.1.2",
         "thedatepicker": "^0.7.5"
     }
 }

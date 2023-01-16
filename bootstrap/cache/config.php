@@ -745,6 +745,49 @@
     'http_only' => true,
     'same_site' => NULL,
   ),
+  'sweetalert' => 
+  array (
+    'cdn' => NULL,
+    'alwaysLoadJS' => false,
+    'neverLoadJS' => false,
+    'timer' => 5000,
+    'width' => '32rem',
+    'height_auto' => true,
+    'padding' => '1.25rem',
+    'animation' => 
+    array (
+      'enable' => false,
+    ),
+    'animatecss' => 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+    'show_confirm_button' => true,
+    'show_close_button' => false,
+    'toast_position' => 'top-end',
+    'timer_progress_bar' => false,
+    'middleware' => 
+    array (
+      'autoClose' => false,
+      'toast_position' => 'top-end',
+      'toast_close_button' => true,
+      'timer' => 6000,
+      'auto_display_error_messages' => false,
+    ),
+    'customClass' => 
+    array (
+      'container' => NULL,
+      'popup' => NULL,
+      'header' => NULL,
+      'title' => NULL,
+      'closeButton' => NULL,
+      'icon' => NULL,
+      'image' => NULL,
+      'content' => NULL,
+      'input' => NULL,
+      'actions' => NULL,
+      'confirmButton' => NULL,
+      'cancelButton' => NULL,
+      'footer' => NULL,
+    ),
+  ),
   'tenancy' => 
   array (
     'key' => 'base64:YoE3dKG93Qz+5xhF+Tz4y9aqdseDT2oNYRxywZyKA5Q=',
@@ -935,24 +978,48 @@
   'dompdf' => 
   array (
     'show_warnings' => false,
-    'orientation' => 'portrait',
-    'defines' => 
+    'public_path' => NULL,
+    'convert_entities' => true,
+    'options' => 
     array (
-      'font_dir' => 'C:\\xampp\\htdocs\\Pack-peak\\storage\\fonts/',
-      'font_cache' => 'C:\\xampp\\htdocs\\Pack-peak\\storage\\fonts/',
+      'font_dir' => 'C:\\xampp\\htdocs\\Pack-peak\\storage\\fonts',
+      'font_cache' => 'C:\\xampp\\htdocs\\Pack-peak\\storage\\fonts',
       'temp_dir' => 'C:\\Users\\RAZAKH~1\\AppData\\Local\\Temp',
       'chroot' => 'C:\\xampp\\htdocs\\Pack-peak',
+      'allowed_protocols' => 
+      array (
+        'file://' => 
+        array (
+          'rules' => 
+          array (
+          ),
+        ),
+        'http://' => 
+        array (
+          'rules' => 
+          array (
+          ),
+        ),
+        'https://' => 
+        array (
+          'rules' => 
+          array (
+          ),
+        ),
+      ),
+      'log_output_file' => NULL,
       'enable_font_subsetting' => false,
       'pdf_backend' => 'CPDF',
       'default_media_type' => 'screen',
       'default_paper_size' => 'a4',
+      'default_paper_orientation' => 'portrait',
       'default_font' => 'serif',
       'dpi' => 96,
       'enable_php' => false,
       'enable_javascript' => true,
       'enable_remote' => true,
       'font_height_ratio' => 1.1,
-      'enable_html5_parser' => false,
+      'enable_html5_parser' => true,
     ),
   ),
   'flare' => 
@@ -1007,6 +1074,7 @@
         'include_separator_line' => false,
         'excel_compatibility' => false,
         'output_encoding' => '',
+        'test_auto_detect' => true,
       ),
       'properties' => 
       array (

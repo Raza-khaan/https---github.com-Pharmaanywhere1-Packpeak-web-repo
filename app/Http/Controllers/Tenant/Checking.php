@@ -15,6 +15,7 @@ use DB;
 use Illuminate\Http\Request;
 use PDF;
 use Carbon\Carbon;
+use Alert;
 
 class Checking extends Controller {
 	protected $views = '';
@@ -436,34 +437,46 @@ elseif($request->type == 3)
 		
 		return redirect()->back()->with(["msg" => '<div class="alert alert-danger">Checking of this patient (<strong>' . $patient_name . '</strong>) deleted Successfully.</div>']);
 	}
-	public function time_limt(Request $request)
+	public function time_limt_packed(Request $request)
 	{ 
-// 		//$to = Carbon::createFromFormat('Y-m-d H:s:i', '2015-5-5 3:30:34');
-// 		$data_two = Checkings::select('created_at')->latest('created_at')->first();
+		$data['patients'] = Patient::get();
+		$chk = new Checkings();
+		$data_two = Checkings::select()->latest('created_at')->first();
+	//	dd($data_two);
+		$result = $data_two->created_at->format('Y-m-d H:i:s');
+		$result = Carbon::parse($result);
+
+		$date = Carbon::now()->format('Y-m-d H:i:s');
+		$date = Carbon::parse($date);
+	
 		
-// 		$startdates = Carbon::createFromFormat('Y-m-d H:i:s', $data_two);
-// 		//date('Y-m-d H:s:i', strtotime($data_two));
-//         //$from = $data_two->format('Y-m-d H:s:i');
-//   dd($startdates);
-//         $diff_in_hours = $to->diffInHours($from);
-// 		$date = Carbon::now();
-// 	//	$date = Carbon::now();
-// 	$data_two = Checkings::select('created_at')->latest('created_at')->first();
-// 	dd($data_two);
-// 		$sum = $data_two-$date;
-// 		dd($sum);
-// 		//dd($data_two);
-// 		$data_twos = date('H:i:s' ,strtotime($data_two));
-// 		dd($data_twos);
-// 		//$startdates = date('Y-m-d', strtotime($startdate[0])). " 00:00:00";
-// //$child1 = date('n.j.Y', $timestamp); // d.m.YYYY
-//         // $child2 = date('H:i:m', $data_two); 
+		$totalDuration = $date->diffInHours($result);
+		if($totalDuration < 12)
+		{			
+			$chk = $data_two;
+			//dd($chk);
+		}
+	//	$dublicate = "Dublication Entry Found";
+		return response()->json([$chk]);
+		//return $totalDuration;
+	}
+	public function time_limt_checking(Request $request)
+	{ 
+		$data_two = Pickups::select('created_at')->latest('created_at')->first();
+		$result = $data_two->created_at->format('Y-m-d H:i:s');
+		$result = Carbon::parse($result);
+		 //dd($result);
+		//return $data_two->format('Y-m-d H:i');
+		$date = Carbon::now()->format('Y-m-d H:i:s');
+		$date = Carbon::parse($date);
+		//dd($date);
 		
-// 		//$data_two = $data_two->format('H:i');
-// 		dd($child2);
-// 		return 'success';
-// 		//dd($data);
-// 		//return json('1');
+		$totalDuration = $date->diffInHours($result);
+
+		//Alert::error('Error Title', 'Error Message');
+	//	dd($totalDuration);
+	     
+		return $totalDuration;//->with('error', 'The error message here!');//->with("result" , '<div class="alert alert-danger">Checking of this patient deleted Successfully.</div>');
 	}
 	/* save Checking here  */
 	public function save_pack(Request $request) {

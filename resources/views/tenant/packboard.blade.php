@@ -7,10 +7,11 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
          
         <link rel="stylesheet" type="text/css" href="{{ URL::asset('packboardassets/css/style.css') }}" /> 
-        
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>
         <link rel="stylesheet" type="text/css"  href="{{ URL::asset('packboardassets/css/responsive.css') }}"  />
          <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />  -->
        
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
 
         
         
@@ -64,11 +65,22 @@
     @endsection
    
     @section('content')
+    @include('sweetalert::alert')
     <!-- Header Wrapper. Contains Header content -->
-    <div class="dash-wrap">
+    <div class="dash-wrap" >
           <div class="dashborad-header">
             <!-- <a id="menu-bar" href="{{url('create_plan')}}"><i class="fa fa-bars"></i></a> -->
-            <h2>Pack Board </h2>
+            <h2>Packs Board</h2>
+            <div>
+            <li>
+            <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" id="tosearch" />
+
+            </div>
+            </li>
+            </ul>
+            </div>   
+
             @if(Session::has('msg'))
               {!!  Session::get("msg") !!}
             @endif
@@ -101,7 +113,7 @@
           </div>
 
 </div>
-
+                    
 <div class="content-wrapper">
 
 <div class="container">
@@ -219,16 +231,16 @@
                 
                 <div class="pack-block"  >
                    
-                    <div class="row main-row" > 
+                    <div class="row main-row"  > 
                         
-                        <div class="col-lg-3 col-md-6 col-sm-12" >
+                        <div class="col-lg-3 col-md-6 col-sm-12" id="">
                             <div class="pack-box" >
                                 <ul>
                                     <li>
 @foreach ($getpatientlastpickup as $patientpickup)
     
 
-                                        <div class="box-header" >
+                                        <div class="box-header " >
                                             <h2>To Pack</h2>
                                             <div class="form-group" style="margin-bottom: 0rem; !important">
                                                 <ul>
@@ -398,7 +410,7 @@
                                         <div class="add-card">
                                         <a href="javascript:void(0);" onclick="set_value('2');" data-bs-toggle="modal" data-bs-target="#card-modal"><i class="fal fa-plus"></i> Add Card</a>
                                     </div>
-                                    <a href="{{url('time_limt')}}">latest entry</a>
+                                    <a href="{{url('time_limt_packed')}}">latest entry</a>
                                     </div>
                                 </div>
                                 <div class="box-body droptrue" id="sortable3">
@@ -595,22 +607,34 @@
 </div>
         
         <div class="modal fade" id="card-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+        
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" >
-                        <h5 class="modal-title" ><img src="images/browsers-outline.svg" alt="" /><span  id="typess"></span> </h5>
+                        <h5 class="modal-title" ><img src="images/browsers-outline.svg" alt="" /><span  id="typess"></span>     
+              </h5>
                         <a href="{{url('/packboard')}}" data-bs-dismiss="modal" class="close-btn"   ><img src="images/close-circle.svg" alt="" id="close"/></a>
                     </div>
-                    
+                   
+          
+         
         <!-- Modal -->
                     <div class="modal-body loadMore">
                     <form action="{{ url('save_packed_fields') }}" method="post">  
-                           {{ csrf_field() }}   
+                           {{ csrf_field() }}  
+                         
+    
+ 
                        <input type="text" name="text" id="txtselectedlist" value="" style="display:none"/>
                        <input type="text" name="type" id="type" value="" style="display:none"/>
                        <input type="text" name="id" id="first" style="display:none"/>   
                 
                         <div class="form-group">
+                        <div class="alert alert-danger">
+                           
+        {{ session()->get('dublicate') }}
+    </div>
                               <label class="family" for="name">{{__('Patient Name')}} <span style="color:red">*</span></label>
                               
                                <select onchange="getchagecount()" placeholder="Select Patient" id="first_name" name="patient_id[]"   class="form-control js-example-basic-multiple" multiple="mutliple"> 
@@ -904,7 +928,6 @@ var drag = 0;
 
 
 
-
 //var separate_value_assign = "'" ;
     
 $(function () {
@@ -964,7 +987,20 @@ $(function () {
           {
             updatePostOrder();
             updateAdd();
-            latest_entry();
+            if(ids == 3)
+            {
+                latest_entry();
+            }
+            else if(ids == 4)
+            {
+                latest_entry_checking();
+            }
+            else
+            {
+                console.log('error');
+            }
+            
+            
             var i = 0;
 $('#txtselectedlist').val("");
 for (i = 0; i < a_href.length; i++)
@@ -1046,16 +1082,104 @@ function updateAdd() {
 }
 
   
+function latest_entry_checking()
+{
+   
+    $.ajax({
+                method: "get",
+               // alert('kkk');
+                url: "{{url('/time_limt_checking')}}",
+                dataType: 'JSON',
+                data: {_token   : '{!! csrf_token() !!}',
+                weight   : datatab,
+                project_id : id 
+                },
+               
+               success: function(data) {
+               
+//                 if(data <= 12)
+//                 {
+// //                     swal({  
+// //   title: "Dublicate Entry found!",  
+// //   text: "Dublicate Entry found!",  
+// //   icon: "danger",  
+// //  // button: "{{url('/packboard')}}", 
+// //   timer: 8888, 
+// // }).then(function (data) {
+// //   if (true) {
+// //     window.location = "{{url('/packboard')}}";
+// //   }
+// // }); 
+//  alert('Dublicate entry with json')
+//                 }
+//                 else
+//                 {
+                   
+                 
+//                 }
+                
+                },
+                failure: function(data) {
+                    console.log('Failed');
+                },
+                error: function(data)
+                {
+                    console.log(data)
+                }
+
+            }); 
+          //  alert('1');
+}
+  
 function latest_entry()
 {
    
     $.ajax({
                 method: "get",
                // alert('kkk');
-                url: "{{url('/time_limt')}}",
+                url: "{{url('/time_limt_packed')}}",
                
                success: function(data) {
-                alert('success');
+                if (data.length == 0) 
+                {
+                    alert('1');
+                }
+                else if(data.length > 0)
+                {
+                   // console.log(data);
+                 //   alert(data[0].id);
+                // alert(data[1].first_name);
+                //document.getElementById("first_name").value = data[0].patient_id;
+             //   $('#first_name').val(patient_id).trigger('change') = data[0].patient_id;
+                // $('#first_name').val(patient_id) =data[0].patient_id;
+              //  $('#first_name').val(patient_id).trigger('change') = data[0].patient_id;
+                document.getElementById("first_name").value = data[0].first_name;
+                 document.getElementById("no_of_weeks").value = data[0].no_of_weeks;
+                 document.getElementById("address").value = data[0].note_from_patient;
+
+                  // alert('2');   
+                }
+                // if(data <= 12)
+                // {
+                    
+                //     // swal({  
+                //     // title: "Dublicate Entry found!",  
+                //     // text: "Dublicate Entry found!",  
+                //     // icon: "danger",  
+                //     // // button: "{{url('/packboard')}}", 
+                //     // timer: 8888, 
+                //     // }).then(function (data) {
+                //     // if (true) {
+                //     // window.location = "{{url('/packboard')}}";
+                //     // }
+                //     // });
+                //     alert('Dublicate entry with json');
+                // }
+                // else
+                // {
+                   
+                // }
+                
                 },
                 failure: function(data) {
                     console.log('Failed');
@@ -1318,7 +1442,14 @@ $(document).ready(function(){
     });
   });
 });
-
+$(document).ready(function(){
+  $("#tosearch").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".droptrue div").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
  
 function getchagecount()
 {
