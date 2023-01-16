@@ -1,0 +1,27 @@
+/*!
+ * Contact Buttons Plugin Demo 0.1.0
+ * https://github.com/joege/contact-buttons-plugin
+ *
+ * Copyright 2015, José Gonçalves
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+
+h1 {
+  text-transform: uppercase;
+  font-weight: 300;
+  margin: 0 0 1em;
+  text-align: center;
+}
+h1 span {
+  font-weight: 700;
+  display: block;
+}
+p + p {
+  margin-top: 1.5em;
+}
+.git {
+  background: #000;
+}
