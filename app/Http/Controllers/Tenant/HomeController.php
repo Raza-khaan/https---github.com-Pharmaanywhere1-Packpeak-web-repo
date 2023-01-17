@@ -265,16 +265,28 @@ class HomeController extends Controller {
 					
 					$patientname = $patientlist->first_name . ' '.   $patientlist->last_name;
 					$patientdob = $patientlist->dob;
-	
+	            
 					$getpatientlastpickup = Pickups::whereBetween('created_at',[$final,$currentdate])
 					->orderbydesc('id')->take(1)->get();
 
 			}}
-					
+			$packed_patient_count = Packed::select('patient_id')
+			->groupBy('patient_id')->get();	
+			$checking_patient_count = Checking::select('patient_id')
+			->groupBy('patient_id')->get();	
+			$pickup_patient_count = Pickups::select('patient_id')
+			->groupBy('patient_id')->get();	
+			// $packed_patient_count = DB::table('Packed')
+            //      ->select('patient_id')
+            //      ->groupBy('patient_id')
+            //      ->get();
+			//	 dd($packed_patient_count);	
+				//  $packed_patient_count = Packed::orderBy('patient_id')
+				//  ->groupBy('count')
 				
-			
+				//  ->get();
 			//return $data['patients'][0]->latestPickups;
-			return view('tenant.packboard',compact('currentdate','final','getpatientlastpickup','completed'))->with($data);
+			return view('tenant.packboard',compact('currentdate','final','getpatientlastpickup','completed','packed_patient_count','checking_patient_count','pickup_patient_count'))->with($data);
 		} else {
 			return redirect('dashboard')->with(["msg" => '<div class="alert alert-danger"> you don`t have  <strong>Access</strong> to this page .</div>']);
 		}

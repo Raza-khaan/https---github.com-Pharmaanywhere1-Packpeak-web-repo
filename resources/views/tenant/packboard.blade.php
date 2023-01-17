@@ -299,7 +299,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="pack-box" id="">
                                 <div class="box-header">
-                                    <h2>Packed <span>{{ $packed->count() }}</span></h2>
+                                    <h2>Packed <span>{{ $packed_patient_count->count() }}/{{ $patients->count() }}</span></h2>
                                     <div class="form-group">
                                         <ul>
                                             <li>
@@ -312,7 +312,7 @@
                                             
                                         </ul>
                                         <div class="add-card">
-                                        <a href="javascript:void(0);" onclick="set_value('1');" data-bs-toggle="modal" data-bs-target="#card-modal"><i class="fal fa-plus" ></i> Add Card</a>
+                                        <a href="javascript:void(0);" onclick="set_value('1');removealert('0')" class="errorhide" data-bs-toggle="modal" data-bs-target="#card-modal"><i class="fal fa-plus" ></i> Add Card</a>
                                     </div>
                                     </div>
                                     
@@ -330,12 +330,16 @@
                                             <input type="checkbox" id="checkbox{{$patientdata->id}}"><label for="checkbox{{$patientdata->id}}"></label>
                                         </div>
                                   
-                                        <div class="card-info"  id="packed_{{$patientdata->id}}"  >
+                                        <div class="card-info"  id="packed_{{$patientdata->id}}"  style="margin-bottom: -6%;">
                                      
                                       <h3>{{$patientdata->patients->first_name.' '.$patientdata->patients->last_name}}</h3>
                                            
                                             <ul>
-                                              <li><span>Carer</span></li>
+                                              <li>
+                                                <span style="margin-bottom: -9%;">{{date("j/n/Y, h:i A",strtotime($patientdata->created_at))}}</span>
+                                            </li>
+                                              </ul>
+                                              <ul>
                                                 <li>
                                                     <a href="javascript:void(0);" class="view_details"> <img src="images/arrow-drop-down.svg" alt="" /> View Details</a>
                                                 </li>
@@ -393,7 +397,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">   
                             <div class="pack-box">
                                 <div class="box-header">
-                                    <h2>Checked <span>{{ $checkings->count() }}</span></h2>
+                                    <h2>Checked <span>{{ $checking_patient_count->count() }}/{{ $patients->count() }}</span></h2>
                                     <div class="form-group">
                                         <ul>
                                             <li>
@@ -408,27 +412,29 @@
                                             
                                             </ul>
                                         <div class="add-card">
-                                        <a href="javascript:void(0);" onclick="set_value('2');" data-bs-toggle="modal" data-bs-target="#card-modal"><i class="fal fa-plus"></i> Add Card</a>
+                                        <a href="javascript:void(0);" onclick="set_value('2');removealert('0')" data-bs-toggle="modal" data-bs-target="#card-modal"><i class="fal fa-plus"></i> Add Card</a>
                                     </div>
-                                    <a href="{{url('time_limt_packed')}}">latest entry</a>
+                                    <!-- <a href="{{url('time_limt_packed')}}">latest entry</a> -->
                                     </div>
                                 </div>
                                 <div class="box-body droptrue" id="sortable3">
                                 @foreach ($checkings     as $Checking )
                                 @if(isset($Checking->patients->first_name) && $Checking->patients->first_name!="")
                                 
-                                    <div class="pack-card brd-color1" id="{{$Checking->patients->id}}">
+                                    <div class="pack-card brd-color1" id="{{$Checking->patients->id}}" >
                                   
                                     <div class="checkbox">
                                             <input type="checkbox" id="checkbox{{$Checking->id}}"><label for="checkbox{{$Checking->id}}"></label>
                                         </div>
                                  
-                                        <div class="card-info">
+                                        <div class="card-info" style="margin-bottom: -6%;">
                                             <h3>{{$Checking->patients->first_name.' '.$Checking->patients->last_name}}</h3>
                                            
                                             
                                             <ul>
-                                                <li><span>Patient</span></li>
+                                                <li><span   style="margin-bottom: -11%;">{{date("j/n/Y, h:i A",strtotime($Checking->created_at))}}</span></li>
+                                                </ul>
+                                                <ul>
                                                 <li>
                                                     <a href="javascript:void(0);" class="view_details"> <img src="images/arrow-drop-down.svg" alt="" /> View Details</a>
                                                 </li>
@@ -479,7 +485,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="pack-box">
                                 <div class="box-header">
-                                    <h2>Picked Up <span>{{ $Pickups->count() }}</span></h2>
+                                    <h2>Picked Up <span>{{ $pickup_patient_count->count() }}/{{ $patients->count() }}</span></h2>
                                     <div class="form-group">
                                         <ul>
                                             <li>
@@ -491,7 +497,7 @@
                                             </li>
                                         </ul>
                                         <div class="add-card">
-                                        <a href="javascript:void(0);"  onclick="set_value('3')" data-bs-toggle="modal" data-bs-target="#card-modal"><i class="fal fa-plus"></i> Add Card</a>
+                                        <a href="javascript:void(0);"  onclick="set_value('3');removealert('0')" data-bs-toggle="modal" data-bs-target="#card-modal"><i class="fal fa-plus"></i> Add Card</a>
                                     </div>
                                     </div>
                                 </div>
@@ -503,11 +509,13 @@
                                             <input type="checkbox" id="checkbox{{$pickup->id}}"><label for="checkbox{{$pickup->id}}"></label>
                                         </div>
                                  
-                                        <div class="card-info">
+                                        <div class="card-info" style="margin-bottom: -6%;">
                                             <h3>{{$pickup->patients->first_name.' '.$pickup->patients->last_name}}</h3>
                                             <ul>
-                                                <li><span>Patient</span></li>
-                                                <li>
+                                                 <li><span   style="margin-bottom: -11%;">{{date("j/n/Y, h:i A",strtotime($pickup->created_at))}}</span></li>
+                                               </ul>
+                                               <ul>
+                                                  <li>
                                                     <a href="javascript:void(0);" class="view_details"> <img src="images/arrow-drop-down.svg" alt="" /> View Details</a>
                                                 </li>
                                             </ul>
@@ -623,7 +631,9 @@
                     <div class="modal-body loadMore">
                     <form action="{{ url('save_packed_fields') }}" method="post">  
                            {{ csrf_field() }}  
-                         
+                           <div class="alert alert-danger" role="alert" id="errordiv" >
+ <span id="errormessage"></span>
+</div>
     
  
                        <input type="text" name="text" id="txtselectedlist" value="" style="display:none"/>
@@ -631,10 +641,7 @@
                        <input type="text" name="id" id="first" style="display:none"/>   
                 
                         <div class="form-group">
-                        <div class="alert alert-danger">
-                           
-        {{ session()->get('dublicate') }}
-    </div>
+                        
                               <label class="family" for="name">{{__('Patient Name')}} <span style="color:red">*</span></label>
                               
                                <select onchange="getchagecount()" placeholder="Select Patient" id="first_name" name="patient_id[]"   class="form-control js-example-basic-multiple" multiple="mutliple"> 
@@ -821,6 +828,7 @@ data-last_noteForPatientDate="{{!empty($last_noteForPatient)?$last_noteForPatien
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
 
 <script type="text/javascript">
+  
   var geocoder;
   var map;
   
@@ -1080,8 +1088,10 @@ function updatePostOrder() {
 function updateAdd() {
     
 }
+function removealert(type){
+  $("#errordiv").fadeOut();
+}
 
-  
 function latest_entry_checking()
 {
    
@@ -1089,14 +1099,28 @@ function latest_entry_checking()
                 method: "get",
                // alert('kkk');
                 url: "{{url('/time_limt_checking')}}",
-                dataType: 'JSON',
-                data: {_token   : '{!! csrf_token() !!}',
-                weight   : datatab,
-                project_id : id 
-                },
                
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                success: function(data) {
-               
+             //  alert(data[0].verifyid);
+                if (data[0].verifyid == 1){
+              //  alert(data.length);
+                $("#errordiv").fadeIn();
+                 document.getElementById("errormessage").innerHTML = "Dublicate Entry";
+                 document.getElementById("first").value = data[0].id;
+                // document.getElementById("first_name").value = data[0].first_name;
+                 document.getElementById("no_of_weeks").value = data[0].no_of_weeks;
+                 document.getElementById("address").value = data[0].notes_from_patient;
+                  
+               }
+               else if(data[0].verifyid == -1)
+                {
+                    $("#errordiv").fadeOut();
+                  // alert('2');   
+                }
+                
+                
 //                 if(data <= 12)
 //                 {
 // //                     swal({  
@@ -1138,14 +1162,16 @@ function latest_entry()
                 method: "get",
                // alert('kkk');
                 url: "{{url('/time_limt_packed')}}",
-               
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                success: function(data) {
-                if (data.length == 0) 
-                {
-                    alert('1');
-                }
-                else if(data.length > 0)
-                {
+              //  alert(data[0].verifyid);
+                // alert(data.length);
+                if (data[0].verifyid == 1) 
+                {   
+                  //  alert(data.length);
+                     $("#errordiv").fadeIn();
+                document.getElementById("errormessage").innerHTML = "Dublicate Entry";
                    // console.log(data);
                  //   alert(data[0].id);
                 // alert(data[1].first_name);
@@ -1153,10 +1179,16 @@ function latest_entry()
              //   $('#first_name').val(patient_id).trigger('change') = data[0].patient_id;
                 // $('#first_name').val(patient_id) =data[0].patient_id;
               //  $('#first_name').val(patient_id).trigger('change') = data[0].patient_id;
-                document.getElementById("first_name").value = data[0].first_name;
+              document.getElementById("first").value = data[0].id;
+               // document.getElementById("first_name").value = data[0].first_name;
                  document.getElementById("no_of_weeks").value = data[0].no_of_weeks;
                  document.getElementById("address").value = data[0].note_from_patient;
 
+                    
+                }
+                else if(data[0].verifyid == -1)
+                {
+                    $("#errordiv").fadeOut();
                   // alert('2');   
                 }
                 // if(data <= 12)
@@ -1408,6 +1440,7 @@ $('#first_name').change(function(){
 }
 
  $(document).ready(function(){
+   
     $("#first_name").select2();
   //  alert();
   $("#search").on("keyup", function() {
@@ -1464,15 +1497,18 @@ function getchagecount()
     {
         $("#notesdiv").fadeIn();
     }
-}
-var today = new Date();
-var endDate = new Date();
-endDate.setMonth(endDate.getMonth() + 1);
+ }
+ var date=new Date(); 
+                    var firstDay=new Date(date.getFullYear(), date.getMonth(), 1); 
+                    var lastDay=new Date(date.getFullYear(), date.getMonth() + 1, 0);
+// var today = new Date();
+// var endDate = new Date();
+// endDate.setMonth(endDate.getMonth() + 1);
 $(function () {
         $("#date").daterangepicker(
             {
-                startDate: today, // after open picker you'll see this dates as picked
-    endDate: endDate,
+                startDate: firstDay, // after open picker you'll see this dates as picked
+    endDate: lastDay,
     locale: {
        format: 'DD-MM-YYYY',
     },

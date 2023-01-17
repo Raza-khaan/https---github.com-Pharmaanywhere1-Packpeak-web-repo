@@ -439,10 +439,15 @@ elseif($request->type == 3)
 	}
 	public function time_limt_packed(Request $request)
 	{ 
-		$data['patients'] = Patient::get();
-		$chk = new Checkings();
+		
+		//$data['patients'] = Patient::get();
+		//$chk = new Checkings();
+//return $chk;
+		//new Checkings();
+		//dd($chk);
 		$data_two = Checkings::select()->latest('created_at')->first();
 	//	dd($data_two);
+	
 		$result = $data_two->created_at->format('Y-m-d H:i:s');
 		$result = Carbon::parse($result);
 
@@ -451,18 +456,42 @@ elseif($request->type == 3)
 	
 		
 		$totalDuration = $date->diffInHours($result);
-		if($totalDuration < 12)
-		{			
+		//dd($totalDuration);
+		// if ($totalDuration) {
+		
+		// 	$chk = $data_two;
+			
+		// 	return response()->json([$chk]);
+		// }
+		//dd($totalDuration);
+		if($totalDuration < 12 )
+		{	
+			$chk = new Checkings();		
 			$chk = $data_two;
+			$chk->verifyid=1;
+			return response()->json([$chk]);
+			//dd($chk);
+			
 			//dd($chk);
 		}
-	//	$dublicate = "Dublication Entry Found";
+		else{
+			$chk = new Checkings();	
+			$chk->verifyid=-1;
+			return response()->json([$chk]);
+		}
+		//dd($chk);
 		return response()->json([$chk]);
+		//dd($chk);
+	
+		//dd($chk);
+		//$dublicate = "Dublication Entry Found";
+		//return response()->json([$chk]);
 		//return $totalDuration;
 	}
 	public function time_limt_checking(Request $request)
 	{ 
-		$data_two = Pickups::select('created_at')->latest('created_at')->first();
+	//	$chk = new Pickups();
+		$data_two = Pickups::select()->latest('created_at')->first();
 		$result = $data_two->created_at->format('Y-m-d H:i:s');
 		$result = Carbon::parse($result);
 		 //dd($result);
@@ -472,11 +501,33 @@ elseif($request->type == 3)
 		//dd($date);
 		
 		$totalDuration = $date->diffInHours($result);
-
+		if($totalDuration < 1 )
+		{	
+			$chk = new Pickups();		
+			$chk = $data_two;
+			$chk->verifyid=1;
+			return response()->json([$chk]);
+			//dd($chk);
+			
+			//dd($chk);
+		}
+		else{
+			$chk = new Pickups();	
+			$chk->verifyid=-1;
+			return response()->json([$chk]);
+		}
+		//dd($chk);
+		return response()->json([$chk]);
 		//Alert::error('Error Title', 'Error Message');
 	//	dd($totalDuration);
-	     
-		return $totalDuration;//->with('error', 'The error message here!');//->with("result" , '<div class="alert alert-danger">Checking of this patient deleted Successfully.</div>');
+	// if($totalDuration < 12)
+	// {			
+	// 	$chk = $data_two;
+	// 	//dd($chk);
+	// }
+//	$dublicate = "Dublication Entry Found";
+	//return response()->json([$totalDuration]);
+		//return $totalDuration;//->with('error', 'The error message here!');//->with("result" , '<div class="alert alert-danger">Checking of this patient deleted Successfully.</div>');
 	}
 	/* save Checking here  */
 	public function save_pack(Request $request) {
