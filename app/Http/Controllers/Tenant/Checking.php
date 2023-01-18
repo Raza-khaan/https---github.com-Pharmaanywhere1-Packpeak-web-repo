@@ -511,6 +511,7 @@ elseif($request->type == 3)
 			
 			//dd($chk);
 		}
+		
 		else{
 			$chk = new Pickups();	
 			$chk->verifyid=-1;
