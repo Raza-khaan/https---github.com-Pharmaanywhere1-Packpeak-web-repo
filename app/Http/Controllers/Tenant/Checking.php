@@ -8,6 +8,7 @@ use App\Models\Tenant\Packed;
 use App\Models\Tenant\Pickups;
 use App\Models\Tenant\EventsLog;
 use App\Models\Tenant\Location;
+use App\Models\Tenant\calender;
 use App\Models\Tenant\NotesForPatient;
 use App\Models\Tenant\Patient;
 use App\Models\Tenant\PatientLocation;
@@ -1224,5 +1225,34 @@ dd('raza');
         return  $pdf->download(time().'.pdf');
 
 	}
-
+ public function full_calender()
+ {
+	//dd('ok');
+	return view('tenant.full_calender');
+ }
+ public function calender_events(Request $req)
+ {
+    //  $calender = new calender;
+	//  $calender->event_date=$req->getdate;
+	//  $calender->event_name=$req->name;
+	//  $calender->save();
+	 $insert_data = array(
+		 'event_date' =>$req->event_date,
+		 'event_name' => $req->event_name
+		// 'event_date' => $req->input('getdate'), //$request->title
+		// 'event_name' => $req->input('name')
+		
+	);
+	
+	
+//	dd($insert_data);
+calender::create($insert_data);
+return response()->json(
+	[
+	  'success' => true,
+	  'message' => 'Data inserted successfully'
+	]);
+	//dd($req->getdate);
+	// dd('ok');
+ }
 }

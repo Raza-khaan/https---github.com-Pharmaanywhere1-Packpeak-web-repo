@@ -163,6 +163,9 @@ Route::domain('{account}.' . env('PROJECT_HOST', 'localhost'))->group(function (
 			Route::get('/time_limt_checking', 'Checking@time_limt_checking')->name('time_limt_checking');
 			//Route::get('gettopack/{id}', 'Checking@pickup_hold_button')->name('pickup_hold_button');
             Route::get('gettopack', 'HomeController@gettopack')->name('gettopack');
+			//-----------------------------------------------------------------
+			Route::get('full_calender', 'Checking@full_calender')->name('full_calender');
+			Route::post('calender_events', 'Checking@calender_events')->name('calender_events');
 //-------------------------------------------------------------------------------
 
 			Route::get('checkings_report', 'Checking@checkings_report')->name('checkings_report');

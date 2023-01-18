@@ -214,7 +214,7 @@
                         <div class="col-md-2"  style="height: 60px !important; ">
                         
                         <!-- <input type="submit" name=""  class="btn btn-success" value="Calender" id="" style=" padding: 7px; !important"> -->
-                       <button class="btn btn-success" style=" padding: 7px; !important"> <a href="" type="button" style="color : white;">Full calender</a></button>
+                       <button class="btn btn-success" style=" padding: 7px; !important"> <a href="{{url('full_calender')}}" type="button" style="color : white;">Full calender</a></button>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
