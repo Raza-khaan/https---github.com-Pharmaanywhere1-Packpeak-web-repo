@@ -166,6 +166,9 @@ Route::domain('{account}.' . env('PROJECT_HOST', 'localhost'))->group(function (
 			//-----------------------------------------------------------------
 			Route::get('full_calender', 'Checking@full_calender')->name('full_calender');
 			Route::post('calender_events', 'Checking@calender_events')->name('calender_events');
+			Route::get('calender_events_fetch', 'Checking@calender_events_fetch')->name('calender_events_fetch');
+			Route::get('calender_events_edit', 'Checking@calender_events_edit')->name('calender_events_edit');
+			Route::get('calender_event_delete', 'Checking@calender_event_delete')->name('calender_event_delete');
 //-------------------------------------------------------------------------------
 
 			Route::get('checkings_report', 'Checking@checkings_report')->name('checkings_report');

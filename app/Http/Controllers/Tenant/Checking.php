@@ -1255,4 +1255,29 @@ return response()->json(
 	//dd($req->getdate);
 	// dd('ok');
  }
+ public function calender_events_fetch()
+	{  //$user = User::find($id);
+		$calender_events = calender::all();
+		//dd($calender_events);
+		return response()->json([$calender_events]);
+	}
+	public function calender_events_edit()
+	{  //$user = User::find($id);
+		$calender = calender::all();
+		//dd($calender_events);
+		return response()->json($calender);
+	}
+	public function calender_event_delete()	
+	{
+		dd('ok'); 
+		
+		
+		//$user = User::find($id);
+		// $calender = calender::all();
+		// //dd($calender_events);
+		// return response()->json($calender);
+		// $user = User::find($id);
+        // $user->delete();
+        // return redirect('/show_member')->with('status',"Data deleted successfully");
+	}
 }

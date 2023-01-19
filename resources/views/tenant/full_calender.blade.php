@@ -730,8 +730,10 @@ body {
 <meta name="csrf-token" content="{{ csrf_token() }}" /> 
 </head>
   <body>
-    <div id='wrap'>
-        <div id='calendar'></div>
+	<div>
+   <a href="{{url('calender_event_delete')}}">check</a> 
+  </div><div id='wrap' >
+        <div id='calendar' ></div>
         <div style='clear:both'></div>
         </div>
        
@@ -744,9 +746,9 @@ body {
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      
-      <div class="modal-body">
      
+      <div class="modal-body" >
+     <input type="text" name="id" id="id">
       <div>
             <input type="text" name="event_date" id="getdate" placeholder="" readonly>
         </div>
@@ -763,6 +765,37 @@ body {
     </div>
   </div>
 </div>
+<!-- <div class="modal" tabindex="-1" role="dialog" id="alerts-models">
+     <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Event title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+      <div class="modal-body" >
+     <input type="text" name="id" id="eventids">
+      <div>
+            <input type="text" name="event_date" id="getdates" placeholder="" readonly>
+        </div>
+        <div>
+            <input type="text" name="event_name" id="names" placeholder="Event">
+        </div>
+     
+      </div>
+      <div class="modal-footer">
+      <button type="button" id="submit" class="btn btn-primary">Save Event</button>
+	  <form action="{{url('calender_event_delete')}}" method="get">
+	  <button type="submit" id="delete_event" class="btn btn-danger">Delete Event</button>
+	  </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+     
+    </div>
+  </div>
+</div> -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -774,6 +807,49 @@ body {
   <script> 
   
         $(document).ready(function() {
+
+			
+var event_array = [];
+//var event_name = null;
+
+			$.ajax({
+                method: "get",            
+                url: "{{url('/calender_events_fetch')}}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+               success: function(jsondata) {
+				 //  console.log(jsondata);
+for(var i =0 ; i<jsondata[0].length;i++)
+{
+	
+	//console.log(jsondata[0][Number(i)].id);
+	const AD = {id: jsondata[0][i].id, title:jsondata[0][i].event_name, start:jsondata[0][i].event_date,allDay: false ,className: 'info'};
+	event_array.push(AD);
+}
+//console.log(event_array);
+			}
+			
+               });
+			   $.ajax({
+                method: "get",            
+                url: "{{url('/calender_events_edit')}}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data) {
+				//console.log(data);
+				
+				 document.getElementById("id").value = data[0].id;
+               // document.getElementById("first_name").value = data[i].first_name;
+                 document.getElementById("getdate").value = data[0].event_date;
+                 document.getElementById("name").value = data[0].event_name;
+			   
+				 //  console.log(jsondata);
+
+			}
+			
+               });
+             
+
 	  var date = new Date();
 		var d = date.getDate();
 		var m = date.getMonth();
@@ -803,6 +879,7 @@ body {
 		-----------------------------------------------------------------*/		
       
 		var calendar =  $('#calendar').fullCalendar({
+			
 			header: {
 				left: 'title',
 				center: 'agendaDay,agendaWeek,month',
@@ -827,12 +904,14 @@ body {
 			allDaySlot: false,//cambie a true
             selectHelper: true,
             dayClick: function (date, allDay, jsEvent, view) {
+				 
                 if (allDay) {
+					
                     // Clicked on the day number 
                     //$('#alert-models').modal('show'); 
                     var data =  calendar.fullCalendar('changeView', 'agendaDay'/* or 'basicDay' */)
                         .fullCalendar('gotoDate', date.getFullYear(), date.getMonth(), date.getDate());
-
+						
                   // alert(date.getFullYear(), date.getMonth(),date.getDate());
                  //  = fullCalendar(date.getFullYear(), date.getMonth(), date.getDate());
                      
@@ -845,8 +924,8 @@ body {
                   
                     $('#alert-models').modal('show'); 
                   //  var dt = new Date();
-var time = startDate.getHours() ;
-var timemin =  startDate.getMinutes() ;
+var time = startDate.getHours();
+var timemin =  startDate.getMinutes();
 var timesec = startDate.getSeconds();
 // alert(time+":"+timemin+":"+timesec);
 var finaltime = time+":"+timemin+":"+timesec;
@@ -893,13 +972,30 @@ var finaltime = time+":"+timemin+":"+timesec;
                     //     calendar.fullCalendar('unselect');
                                      
                     // });
+					
                   
-                }    
+                } 
+				//$(".fc-event-inner").click(function(){
+					$("#wrap").click(function(){
+						//this.find(fc-event-id).text;
+				//	function savehold()
+				//	{
+						//alert('hello');
+ 					$('#alert-models').modal('show');
+				//	}
+				});
+// 					document.getElementById("eventid").value = data.id;
+//                // document.getElementById("first_name").value = data[i].first_name;
+//                  document.getElementById("getdate").value = data.event_date;
+//                  document.getElementById("name").value = data.event_name;
+					
+//  });
                            
 			},
-			droppable: true, // this allows things to be dropped onto the calendar !!!
+			droppable: true,
+			 // this allows things to be dropped onto the calendar !!!
 			drop: function(date, allDay) { // this function is called when something is dropped
-			
+				
 				// retrieve the dropped element's stored Event Object
 				var originalEventObject = $(this).data('eventObject');
 				
@@ -920,54 +1016,54 @@ var finaltime = time+":"+timemin+":"+timesec;
 					$(this).remove();
 				}
 				
-			},
-			
-			events: [
-				{
-					title: 'All Day Event',
-					start: new Date(y, m, 1)
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: new Date(y, m, d-3, 16, 0),
-					allDay: false,
-					className: 'info'
-				},
-				{
-					id: 999,
-					title: 'Repeating Event',
-					start: new Date(y, m, d+4, 16, 0),
-					allDay: false,
-					className: 'info'
-				},
-				{
-					title: 'Meeting',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false,
-					className: 'important'
-				},
-				{
-					title: 'Lunch',
-					start: new Date(y, m, d, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false,
-					className: 'important'
-				},
-				{
-					title: 'Birthday Party',
-					start: new Date(y, m, d+1, 19, 0),
-					end: new Date(y, m, d+1, 22, 30),
-					allDay: false,
-				},
-				{
-					title: 'Click for Google',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/',
-					className: 'success'
-				}
-			],			
+			}, 
+			events: event_array
+			// events: [
+			// 	{
+			// 		title: event_name,
+			// 		start: event_datetime
+			// 	},
+			// 	{
+			// 		id: 999,
+			// 		title: event_name,
+			// 		start: new Date(y, m, d+4, 16, 0),
+			// 		allDay: false,
+			// 		className: 'info'
+			// 	},
+			// 	{
+			// 		id: 999,
+			// 		title: 'Repeating Event',
+			// 		start: new Date(y, m, d+4, 16, 0),
+			// 		allDay: false,
+			// 		className: 'info'
+			// 	},
+			// 	{
+			// 		title: 'Meeting',
+			// 		start: new Date(y, m, d, 10, 30),
+			// 		allDay: false,
+			// 		className: 'important'
+			// 	},
+			// 	{
+			// 		title: 'Lunch',
+			// 		start: new Date(y, m, d, 12, 0),
+			// 		end: new Date(y, m, d, 14, 0),
+			// 		allDay: false,
+			// 		className: 'important'
+			// 	},
+			// 	{
+			// 		title: 'Birthday Party',
+			// 		start: new Date(y, m, d+1, 19, 0),
+			// 		end: new Date(y, m, d+1, 22, 30),
+			// 		allDay: false,
+			// 	},
+			// 	{
+			// 		title: 'Click for Google',
+			// 		start: new Date(y, m, 28),
+			// 		end: new Date(y, m, 29),
+			// 		url: 'http://google.com/',
+			// 		className: 'success'
+			// 	}
+			// ],			
 		});
 		
 		
@@ -7151,6 +7247,7 @@ $.ajaxSetup({
                 },
            success:function(response){
               if(response.success){
+				
                 location.href = "{{url('full_calender')}}"
               //  console.log(response);
                 //  alert(response.message) //Message come from controller
