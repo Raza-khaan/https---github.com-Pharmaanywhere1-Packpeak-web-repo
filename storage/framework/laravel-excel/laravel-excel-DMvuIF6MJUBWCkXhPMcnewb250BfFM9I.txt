@@ -1,0 +1,10 @@
+first_name,last_name,dob,address,phone_number,facilities_id,location,text_when_picked_up_deliver
+Viabhav,Ver,29-12-2020,USA,8789876567ggg,pc,"1,2",1
+Seth,Ver,29-12-2020,USA,8789876567,pc,"2,3",1
+Jhon,Ver,19-04-1996,USA,8789876567,pc,"3,1",1
+Jhon,Ver,29-12-2020,USA,8789876567,pc,"1,2,3",1
+Jhon,Ver,29-12-2020,USA,8789876567,pc,"3,1",1
+george,Ver,29-12-2020,CANADA,8789876567,pc,2,1
+amr,Ver,29-12-2020,aus,8789876567,pc,"2,3",0
+test,Ver,12-12-2020,sri lanka,8789876567,jojo,2,1
+hgg,Ver,29-12-2020,ISLamabad,8789876567,pc,"2,3",0

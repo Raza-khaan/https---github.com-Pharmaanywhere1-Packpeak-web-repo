@@ -1,0 +1,1884 @@
+/*** Fonts Css ***/
+@font-face {
+	font-family: 'Product-Sans-Regular';
+	src: url(../webfonts/Product-Sans-Regular.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Product-Sans-Medium';
+	src: url(../webfonts/Product-Sans-Medium.ttf) format('truetype');
+}
+@font-face {
+	font-family: 'Product-Sans-Bold';
+	src: url(../webfonts/Product-Sans-Bold.ttf) format('truetype');
+}
+
+/*** End Of Fonts Css ***/
+
+/********* Dashboard Css *********/
+body {
+	background-color: #F5F6FA;
+}
+h1, h2, h3 {
+	margin: 0;
+}
+.small-logo {
+	display: none;
+}
+.side-menu {
+	background-color: #001833;
+	padding: 20px;
+	width: 25%;
+	padding-right: 15px;
+    padding-left: 15px;
+}
+.side-menu .nav {
+	margin-top: 30px;
+}
+.side-menu .nav a {
+	font-size: 21px;
+	color: #CCCCCC;
+	line-height: 32px;
+	font-family: 'Product-Sans-Regular';
+	padding: 10px 0px;
+}
+.side-menu .nav a:hover {
+	text-decoration: none;
+}
+.side-menu .nav a.active {
+	background-color: transparent;
+	color: #CCCCCC;
+}
+.side-menu .nav a img {
+	margin-right: 10px;
+	position: relative;
+	top: -2px;
+	width: 20px;
+}
+.side-menu .accordion .sidenav a {
+	font-size: 20px;
+	color: #CCCCCC;
+	line-height: 32px;
+	font-family: 'Product-Sans-Regular';
+	padding: 0px 0px;
+	text-decoration: none;
+}
+.side-menu .accordion .sidenav a.active {
+	font-weight: 500;
+	color: #001833;
+	background-color: #ffffff;
+	padding: 10px;
+	border-radius: 5px;
+}
+.side-menu .accordion .sidenav i {
+	color: #CCCCCC;
+}
+.side-menu .accordion .sidenav a img {
+	width: 20px;
+	margin-right: 15px;
+	position: relative;
+	top: -3px;
+}
+.side-menu .accordion .sidenav ul li a {
+	font-size: 18px;
+	line-height: 21px;
+	margin-bottom: 20px;
+}
+.side-menu .accordion {
+	padding-top: 40px;
+}
+.side-menu .accordion ul {
+  margin: 20px 0px 0px;
+  padding: 0;
+}
+.side-menu .accordion .sidenav {
+  position: relative;
+  padding: 10px 0px;
+  list-style: none;
+}
+.side-menu .accordion .pagenav ul {
+  display: none;
+  margin: 0;
+}
+.side-menu .accordion .sidenav li {
+  list-style: none;
+  padding-left: 35px;
+}
+.side-menu .accordion .sidenav h4 {
+  margin: 0;
+  cursor: pointer;
+}
+.side-menu .accordion .sidenav h4 i {
+  font-size: 24px;
+  position: absolute;
+  right: 0px;
+  top: 20px;
+  line-height: 20px;
+  transition: .2s;
+  -webkit-transition: .2s;
+  -ms-transition: .2s;
+}
+.side-menu .accordion .sidenav.open h4 i {
+  transform: rotate(90deg);
+}
+.logout {
+	position: absolute;
+	bottom: 20px;
+}
+.logout a img {
+	margin-right: 15px;
+}
+.logout a {
+    font-size: 20px;
+    color: #CCCCCC;
+    line-height: 32px;
+    font-family: 'Product-Sans-Regular';
+    padding: 0px 0px;
+    text-decoration: none;
+}
+.body-overflow {
+	overflow: hidden;
+}
+.side-menu-hide {
+	display: none;
+}
+.menu-arrow {
+	position: absolute;
+    right: 15px;
+    top: 50px;
+}
+.dashborad-header h2 {
+	display: inline-block;
+	font-size: 30px;
+	color: #001833;
+	line-height: 40px;
+	font-family: 'Product-Sans-Bold';
+}
+.dashborad-header {
+	padding: 30px 20px;
+	background-color: #fff;
+	margin: 0px -15px 30px;
+}
+.user-menu {
+	float: right;
+}
+.user-menu .dropdown-toggle {
+	font-size: 20px;
+	color: #001833;
+	line-height: 32px;
+	font-family: 'Product-Sans-Regular';
+}
+.user-menu .dropdown-toggle:focus {
+	box-shadow: none;
+}
+.user-menu .online span {
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: #14F649;
+	display: inline-block;
+	margin-right: 10px;
+}
+.user-menu .online {
+	font-size: 14px;
+	color: #707070;
+	line-height: 21px;
+	font-family: 'Product-Sans-Regular';
+	padding-left: 20px;
+	text-align: center;
+	position: relative;
+	top: -20px;
+	margin: 0;
+}
+.user-menu .profile {
+	display: inline;
+	position: relative;
+	top: -15px;
+}
+.user-menu .profile .dropdown-menu a {
+	font-size: 15px;
+	color: #001833;
+	line-height: 21px;
+	font-family: 'Product-Sans-Regular';
+	font-weight: 500;
+}
+.dashboard-side {
+	background-color: #F5F6FA;
+	width: 75%;
+	padding-right: 15px;
+    padding-left: 15px;
+}
+.phrma-info {
+	margin-bottom: 30px;
+}
+.pharmici-info {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+}
+.pharmici-info span {
+	font-size: 38px;
+	color: #001833;
+	line-height: 46px;
+	font-family: 'Product-Sans-Bold';
+	margin-bottom: 10px;
+}
+.pharmici-info p {
+	font-size: 13px;
+	color: #001833;
+	line-height: 20px;
+	font-family: 'Product-Sans-Regular';
+	white-space: nowrap;
+	margin-bottom: 7px;
+}
+.pharmici-info a {
+	font-size: 16px;
+	color: #707070;
+	line-height: 24px;
+	font-family: 'Product-Sans-Regular';
+	text-decoration: underline;
+	display: block;
+}
+.pharmici-info a:hover {
+	text-decoration: none;
+	cursor: #000;
+}
+.pharmici-info .store {
+	padding-top: 25px;
+	background-color: #FF7B59;
+	width: 78px;
+	height: 78px;
+	display: inline-block;
+	text-align: center;
+	border-radius: 10px;
+}
+.pharmici-info .pharma {
+	background-color: #1982C4;
+}
+.pharmici-info .assist {
+	background-color: #FF595E;
+}
+.pharmici-info .patient {
+	background-color: #6A4C93;
+}
+.pharma-location {
+	background-color: #fff;
+	border-radius: 10px;
+	margin-bottom: 30px;
+}
+.pharma-search {
+	padding: 20px 15px;
+}
+.pharma-search .map-search input {
+	background-color: #F5F6FA;
+	font-size: 16px;
+	color: #707070;
+	line-height: 24px;
+	font-family: 'Product-Sans-Regular';
+	margin-top: 20px;
+	border: none;
+	padding-left: 40px;
+}
+.pharma-search .map-search img {
+	position: relative;
+	left: 12px;
+	top: -32px;
+}
+.pharma-loc {
+	border-top: 1px solid #CECECE;
+	padding: 10px 0px;
+}
+.pharma-nam-box {
+	width: 45px;
+	height: 45px;
+	background-color: #1982C4;
+	border-radius: 50%;
+	text-align: center;
+	display: inline-block;
+	float: left;
+	margin-top: 7px;
+}
+.pharma-nam-box p {
+	font-size: 21px;
+	color: #fff;
+	line-height: 45px;
+	font-family: 'Product-Sans-Medium';
+	text-transform: uppercase;
+	margin: 0;
+}
+.pharmacy-name {
+	display: inline-block;
+	padding-left: 15px;
+}
+.pharmacy-name .pharma-title {
+	font-size: 21px;
+	color: #001833;
+	line-height: 32px;
+	font-family: 'Product-Sans-Regular';
+	margin: 0;
+}
+.pharmacy-name .dist {
+	font-size: 16px;
+	color: #707070;
+	line-height: 24px;
+	font-family: 'Product-Sans-Regular';
+}
+.pharmacy-name .open-dot {
+	width: 6px;
+	height: 6px;
+	background-color: #707070;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0px 10px;
+}
+.pharmacy-name .open-til {
+	font-size: 16px;
+	color: #0071F2;
+	line-height: 24px;
+	font-family: 'Product-Sans-Regular';
+}
+.pharma-loc-wrap {
+	height: 500px;
+	overflow: auto;
+}
+.pharma-loc-wrap::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 0 6px #fff;
+  -ms-box-shadow: inset 0 0 6px #fff;
+  -moz-box-shadow: inset 0 0 6px #fff;
+  -o-box-shadow: inset 0 0 6px #fff;
+  background-color: #ccc;
+  width: 15px;
+  height: 15px;
+}
+.pharma-loc-wrap::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(204, 204, 204, 1);
+  -ms-box-shadow: inset 0 0 6px rgba(204, 204, 204, 1);
+  -moz-box-shadow: inset 0 0 6px rgba(204, 204, 204, 1);
+  -o-box-shadow: inset 0 0 6px rgba(204, 204, 204, 1);
+  border-radius: 2px;
+  background-color: transparent;
+}
+.pharma-loc-wrap::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+.menu-arrow-right {
+	display: none;
+}
+#map-responsive {
+    overflow:hidden;
+    padding-bottom:50%;
+    position:relative;
+    height: 100%;
+}
+#map-responsive iframe {
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+/** Pharmacies Css **/
+.dash-breadcrumb .breadcrumb {
+	background-color: transparent;
+	padding-top: 0;
+}
+.dash-breadcrumb .breadcrumb li a {
+	font-size: 16px;
+	color: #707070;
+	line-height: 24px;
+	font-family: 'Product-Sans-Regular';
+}
+.dash-breadcrumb .breadcrumb li a img {
+	width: 15px;
+	margin-right: 15px;
+	position: relative;
+	top: -2px;
+}
+.dash-breadcrumb .breadcrumb li a i {
+	width: 13px;
+	margin: 0px 15px;
+}
+.dash-breadcrumb .breadcrumb-item.active {
+	color: #001833;
+}
+.pharma-add {
+	display: inline-block;
+}
+.pharma-add a {
+	font-size: 20px;
+	color: #0071F2;
+	line-height: 32px;
+	font-family: 'Product-Sans-Regular';
+	text-decoration: none;
+	padding: 16px 25px;
+}
+.pharma-add a.active {
+	background-color: #F5FAFF;
+	border-radius: 5px;
+	padding: 16px 34px;
+	margin-right: 5px;
+}
+.pharma-add a:nth-child(2) {
+	color: #707070;
+}
+.all-subscriptions {
+	margin-bottom: 50px;
+}
+.all-subscriptions h2 {
+	font-size: 38px;
+	color: #001833;
+	line-height: 46px;
+	font-family: 'Product-Sans-Bold';
+	margin-bottom: 20px;
+}
+.plans {
+	background-color: #fff;
+	border-radius: 10px;
+	text-align: center;
+	padding: 40px 15px;
+}
+.plans .basic {
+	background-color: #1982C4;
+	border-radius: 10px;
+	width: 78px;
+	height: 78px;
+	display: inline-block;
+	padding-top: 22px;
+	margin-bottom: 30px;
+}
+.plans .stand {
+	background-color: #FF595E;
+}
+.plans .prem {
+	background-color: #001833;
+}
+.plans h3 {
+	font-size: 28px;
+	color: #001833;
+	line-height: 42px;
+	font-family: 'Product-Sans-Regular';
+	margin-bottom: 10px;
+}
+.plans p {
+	font-size: 16px;
+	color: #001833;
+	line-height: 24px;
+	font-family: 'Product-Sans-Regular';
+}
+.plans .edit-plan-btn {
+	font-size: 16px;
+	color: #0071F2;
+	line-height: 24px;
+	font-family: 'Product-Sans-Regular';
+	text-decoration: underline;
+	display: block;
+	margin-bottom: 30px;
+}
+.plans .form-setting-btn {
+	font-size: 21px;
+	color: #707070;
+	line-height: 32px;
+	font-family: 'Product-Sans-Regular';
+	text-decoration: none;
+	border: 1px solid #707070;
+	border-radius: 7px;
+	display: block;
+	margin-bottom: 15px;
+	height: 57px;
+	padding: 10px 20px;
+}
+/*** Reports Css ***/
+.dashboard-side .report-add a {
+	color: #707070;
+	margin: 0px 10px;
+}
+.dashboard-side .report-add a.active {
+    color: #0071F2;
+}
+.reset-patien .btn:focus {
+	box-shadow: none;
+}
+.reset-patien .reset-btn {
+	border: 1px solid #707070;
+	padding: 10px 50px;
+	background-color: transparent;
+	display: inline-block;
+	text-align: center;
+	color: #707070;
+	font-size: 19px;
+	line-height: 26px;
+	font-family: 'Product-Sans-Medium';
+}
+.reset-patien .reset-btn:hover {
+	background-color: #0071F2;
+	color: #fff;
+}
+.reset-patien .add-pat-btn {
+	padding: 10px 50px;
+	background-color: #0071F2;
+	display: inline-block;
+	text-align: center;
+	color: #ffffff;
+	font-size: 19px;
+	line-height: 26px;
+	font-family: 'Product-Sans-Medium';
+	margin-left: 10px;
+	border: 1px solid #0071F2;
+}
+.reports-breadcrum {
+	margin-bottom: 20px;
+}
+.reports-breadcrum .dash-breadcrumb {
+	display: inline-block;
+}
+.reports-breadcrum .reset-patien {
+	display: inline-block;
+	float: right;
+}
+.patient-information {
+	background-color: #ffffff;
+	padding: 25px 30px;
+	border-radius: 10px;
+	box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.06);
+	-webkit-box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.06);
+  	-moz-box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.06);
+}
+.patient-information h3 {
+	color: #001833;
+	font-size: 24px;
+	line-height: 30px;
+	font-family: 'Product-Sans-Regular';
+	margin-bottom: 15px;
+}
+.patient-information label {
+	color: #ffffff;
+	font-size: 16px;
+	line-height: 24px;
+	font-family: 'Product-Sans-Regular';
+}
+.patient-information h2 {
+	color: #ffffff;
+	font-size: 28px;
+	line-height: 42px;
+	font-family: 'Product-Sans-Regular';
+}
+.patient-information label {
+	color: #001833;
+	font-size: 16px;
+	line-height: 24px;
+	font-family: 'Product-Sans-Regular';
+}
+.patient-information label span {
+	color: #FF595E;
+	margin-left: 5px;
+}
+.patient-information select {
+	border: 1px solid #F5F6FA;
+	background-color: #F5F6FA;
+	font-size: 17px;
+	font-weight: 500;
+	height: 55px;
+}
+.patient-information input {
+	border: 1px solid #F5F6FA;
+	background-color: #F5F6FA;
+	color: #707070;
+	font-size: 17px;
+	font-weight: 500;
+	height: 55px;
+}
+.patient-information input::placeholder {
+	color: #707070;
+}
+.patient-information input:focus {
+	box-shadow: none;
+	border: 1px solid #e3e4e7;
+}
+.patient-information select:focus {
+	box-shadow: none;
+	border: 1px solid #e3e4e7;
+}
+.patient-information textarea {
+	border: 1px solid #F5F6FA;
+	background-color: #F5F6FA;
+	color: #707070;
+	font-size: 18px;
+	font-weight: 500;
+}
+.patient-information textarea:focus {
+	box-shadow: none;
+	border: 1px solid #e3e4e7;
+}
+.eg-date {
+	position: relative;
+	top: -15px;
+}
+.notes {
+	background-color: #ffffff;
+	padding: 30px;
+	margin: 20px 0px;
+	border-radius: 10px;
+	box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.06);
+	-webkit-box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.06);
+  	-moz-box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.06);
+}
+.notes h3 {
+	color: #001833;
+	font-size: 24px;
+	line-height: 30px;
+	font-family: 'Product-Sans-Regular';
+	margin-bottom: 15px;
+}
+.note-text {
+	border: 3px dashed #CECECE;
+	padding: 15px 15px 0px;
+	border-radius: 10px;
+}
+.note-text p {
+	color: #001833;
+	font-size: 15px;
+	line-height: 25px;
+	font-family: 'Product-Sans-Regular';
+}
+/*** Registration Css ***/
+.add-pat-btn i {
+	position: relative;
+	top: 2px;
+}
+.register-plan label {
+	margin-bottom: 15px;
+}
+.register-plan a {
+	color: #0071F2;
+    font-size: 16px;
+    line-height: 25px;
+    font-family: 'Product-Sans-Regular';
+    border: 1px solid #0071F2;
+    padding: 7px 28px;
+    border-radius: 25px;
+    margin-right: 12px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 7px;
+}
+.register-plan .standard {
+	color: #FF595E;
+	border: 1px solid #FF595E;
+}
+.register-plan .premium {
+	color: #001833;
+	border: 1px solid #001833;
+}
+.confirm-pass i {
+	position: absolute;
+    right: 25px;
+    bottom: 12px;
+}
+.packpeak-set label {
+	margin-bottom: 28px;
+}
+.packpeak-set p {
+	color: #001833;
+    font-size: 14px;
+    line-height: 25px;
+    font-family: 'Product-Sans-Regular';
+    display: inline-block;
+}
+.packpeak-set p span {
+	color: #001833;
+	background-color: #F5F6FA;
+	padding: 15px 20px;
+	border-radius: 5px;
+	margin: 0px 5px;
+	font-weight: 600;
+}
+.packpeak-set .favourt {
+	color: #707070;
+    font-size: 14px;
+    line-height: 25px;
+    font-family: 'Product-Sans-Regular';
+    padding-left: 12px;
+}
+.packpeak-set .favourt i {
+	margin-right: 10px;
+}
+.term-check label {
+	margin-right: 10px;
+}
+/*** Search Results Css ***/
+.patient-info-export {
+	margin-bottom: 20px;
+}
+.patient-info-export h3 {
+	display: inline-block;
+}
+.patient-info-export .dropdown {
+	display: inline-block;
+	float: right;
+}
+.patient-info-export .dropdown button {
+	color: #0071F2;
+    font-size: 20px;
+    line-height: 25px;
+    font-family: 'Product-Sans-Regular';
+    background-color: #E8F3F9;
+    border: none;
+    padding: 10px 25px;
+}
+.patient-info-export .dropdown button:focus {
+	box-shadow: none !important;
+}
+.patient-info-export .dropdown .dropdown-menu a {
+	font-size: 15px;
+	color: #001833;
+	line-height: 21px;
+	font-family: 'Product-Sans-Regular';
+	font-weight: 500;
+}
+.patinet-info-form {
+	border-bottom: 1px solid #CECECE;
+	padding-bottom: 20px;
+	margin-bottom: 30px;
+}
+.pick-up-patient {
+	margin-bottom: 20px;
+}
+.pick-up-patient h3 {
+    color: #001833;
+    font-size: 26px;
+    line-height: 30px;
+    font-family: 'Product-Sans-Regular';
+    margin-bottom: 20px;
+}
+.pick-up-patient table th {
+	color: #001833;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 500;
+    font-family: 'Product-Sans-Regular';
+    padding: 15px 0;
+    border-bottom: 1px solid #CECECE;
+    border-top: 0;
+}
+.pick-up-patient table td {
+	color: #001833;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: 'Product-Sans-Regular';
+    padding: 15px 0;
+    border-bottom: 1px solid #CECECE;
+    vertical-align: middle;
+}
+.patimet-info-det .patinet-info-form h4 {
+	color: #001833;
+    font-size: 21px;
+    line-height: 25px;
+    font-family: 'Product-Sans-Regular';
+    margin-bottom: 20px;
+}
+.serch-prvw-results {
+	margin-bottom: 10px;
+}
+.serch-prvw-results .table-striped tbody tr:nth-of-type(odd) {
+	background-color: #F5F6FA;
+}
+.serch-prvw-results .table-striped {
+	border-bottom: 1px solid #CECECE;
+}
+.serch-prvw-results .table-striped td {
+	border: none;
+	color: #001833;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+}
+.serch-prvw-results .table-striped td:nth-child(1) {
+	width: 20%;
+}
+.serch-prvw-results .table-striped td:nth-child(2) {
+	font-family: 'Product-Sans-Medium';
+}
+.serch-prvw-results h3 {
+	color: #001833;
+    font-size: 26px;
+    line-height: 30px;
+    font-family: 'Product-Sans-Regular';
+    margin-bottom: 20px;
+}
+/*** All logs Css ***/
+.all-logs-info h3 {
+	margin-bottom: 3px;
+}
+.all-logs-info p {
+	color: #001833;
+    font-size: 15px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+    margin-bottom: 15px;
+    display: inline-block;
+}
+.search-logs .table-search {
+	margin-bottom: 40px;
+}
+.search-logs .table-search i {
+	position: absolute;
+	bottom: 15px;
+	left: 20px;
+	color: #707070;
+}
+.search-logs .table-search input {
+    border: 1px solid #F5F6FA;
+    background-color: #F5F6FA;
+    color: #707070;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Product-Sans-Regular';
+    height: 45px;
+    padding-left: 45px;
+}
+.search-logs .table-search input::placeholder {
+	color: #707070;
+}
+.search-logs .serch-log-btn {
+	border: 1px solid #707070;
+	background-color: transparent;
+	padding: 10px 35px;
+	border-radius: 5px;
+	height: 45px;
+	font-size: 16px;
+	line-height: 24px;
+	font-family: 'Product-Sans-Regular';
+}
+.search-logs .serch-log-btn:hover {
+	background-color: #001833;
+	box-shadow: none;
+	color: #fff;
+}
+.search-logs .serch-log-btn:focus {
+	box-shadow: none;
+}
+.search-logs .table th {
+	color: #001833;
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 500;
+    font-family: 'Product-Sans-Medium';
+    border-top: 0;
+    border-bottom: 1px solid #CECECE;
+    padding-left: 0;
+}
+.search-logs .table td {
+	color: #001833;
+    font-size: 15px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+    border-top: 0;
+    border-bottom: 1px solid #CECECE;
+    padding: 15px 15px 15px 0px;
+    vertical-align: middle;
+}
+.search-logs .table td .login {
+	color: #14F649;
+    font-size: 15px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+    background-color: #E8FEED;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0;
+    width: 70px;
+    text-align: center;
+}
+.search-logs .table td.form-btns a i {
+	font-size: 14px;
+}
+.search-logs .table td.form-btns .edit {
+	color: #0071F2;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+    background-color: #E8F3F9;
+    border-radius: 5px 10px;
+    padding: 7px;
+    width: 25px;
+    height: 25px;
+}
+.search-logs .table td.form-btns .delete {
+	color: #FF4147;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+    background-color: #FFE1E2;
+    border-radius: 5px;
+    padding: 7px 10px;
+    margin-left: 7px;
+    width: 25px;
+    height: 25px;
+}
+.search-logs .table td .lgout {
+    font-size: 15px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+    background-color: #FFE1E2;
+	color: #FF4147;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0;
+    width: 70px;
+    text-align: center;
+}
+.search-logs .table td .create {
+    font-size: 15px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+    background-color: #E8F3F9;
+	color: #0071F2;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 0;
+    width: 70px;
+    text-align: center;
+}
+.table-bottom nav {
+	display: inline-block;
+}
+.table-bottom nav .pagination .page-link .back-arrow {
+	background-color: #F4F5F9;
+	border-radius: 7px;
+	display: inline-block;
+}
+.table-bottom ul li {
+	margin: 0px 10px 0px 0px;
+}
+.table-bottom ul li a {
+	border: none;
+	font-size: 16px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+	color: #707070;
+}
+.table-bottom ul li a:hover {
+	background-color: transparent;
+}
+.table-bottom ul li .back-arrow {
+	background-color: #F4F5F9;
+	color: #707070;
+	padding: 10px 15px;
+	display: inline-block;
+	border-radius: 7px;
+}
+.table-bottom ul li .next-arrow {
+	background-color: #F4F5F9;
+	color: #707070;
+	padding: 10px 15px;
+	display: inline-block;
+	border-radius: 7px;
+}
+.table-bottom ul li a.active {
+	background-color: #001833;
+	color: #fff;
+	padding: 9px 18px;
+	display: inline-block;
+	border-radius: 7px;
+}
+.show-result-out {
+	text-align: right;
+}
+.show-result-out select {
+	font-size: 16px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+	color: #707070;
+	background-color: #F3F4F8;
+	height: auto;
+	display: inline-block;
+	margin-right: 15px;
+	width: 75px;
+}
+.show-result-out p {
+	font-size: 15px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+	color: #001833;
+	display: inline-block;
+}
+.preview-record {
+	display: inline-block;
+}
+/***                        ***/
+/*** Pharmacy Dashboard Css ***/
+.phar-admin-box {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+.pharmici-dash-info {
+	background-color: #fff;
+    padding: 20px;
+	box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.06);
+	border-radius: 10px;
+    text-align: center;
+}
+.pharmici-dash-info .phar-store {
+	padding-top: 23px;
+    background-color: #1982C4;
+    width: 78px;
+    height: 78px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+	margin-bottom: 10px;
+}
+.pharmici-dash-info .techn {
+	background-color: #FF595E;
+}
+.pharmici-dash-info .patien {
+	background-color: #6A4C93;
+}
+.pharmici-dash-info .calend {
+	background-color: #FF7B59;
+}
+.pharmici-dash-info .notific {
+	background-color: #FFCA3A;
+}
+.pharmici-dash-info span {
+	font-size: 38px;
+	color: #001833;
+	line-height: 46px;
+	font-family: 'Product-Sans-Bold';
+	margin-bottom: 5px;
+	display: block;
+}
+.pharmici-dash-info p {
+	font-size: 16px;
+    color: #001833;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+    white-space: nowrap;
+    margin-bottom: 30px;
+}
+.pharmici-dash-info a {
+	font-size: 16px;
+    color: #707070;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+    text-decoration: underline;
+    display: block;
+}
+.pharmacy-calender {
+	background-color: #ffffff;
+	padding: 20px 30px;
+	box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.06);
+	border-radius: 10px;
+}
+.picks p {
+	font-size: 15px;
+    color: #707070;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+	margin-bottom: 5px;
+}
+.picks p .last-pk {
+	width: 6px;
+	height: 6px;
+	display: inline-block;
+	background-color: #0071F2;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+.picks p .due-pk {
+	width: 6px;
+	height: 6px;
+	display: inline-block;
+	background-color: #FFCA3A;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+.week-pick h3 {
+	font-size: 26px;
+    color: #001833;
+    line-height: 40px;
+    font-family: 'Product-Sans-Bold';
+}
+.week-pick p {
+	font-size: 15px;
+    color: #707070;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+}
+.show-by {
+	text-align: right;
+}
+.show-by p {
+	font-size: 15px;
+    color: #707070;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+	display: inline-block;
+}
+.show-by select {
+	display: inline-block;
+	width: auto;
+	background-color: #F5F6FA;
+	border: none;
+	font-size: 15px;
+	margin-left: 5px;
+}
+.show-by select:focus {
+	box-shadow: none;
+	background-color: #F5F6FA;
+}
+.calender-box {
+	border-top: 1px solid #CECECE;
+}
+.calender-box table {
+	text-align: center;
+}
+.calender-box table thead th {
+	font-size: 20px;
+    color: #707070;
+    line-height: 32px;
+    font-family: 'Product-Sans-Regular';
+	font-weight: 400;
+	border: none;
+}
+.calender-box table tbody td {
+	font-size: 24px;
+    color: #001833;
+    line-height: 42px;
+    font-family: 'Product-Sans-Medium';
+	border: none;
+}
+.chart-vr-line span {
+	border-left: 1px solid #CECECE;
+	height: 220px;
+	display: inline-block
+}
+.chart-vr-line span.active {
+	border-color: #0071F2;
+}
+.pick-detail {
+	background-color: #ffffff;
+	padding: 15px 20px;
+	box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.06);
+	text-align: left;
+	border-left: 7px solid #0071F2;
+	border-radius: 7px;
+	width: 230px;
+	position: absolute;
+	transform: translate(20%,-110px);
+	-webkit-transform: translate(20%,-110px);
+}
+.pick-detail h3 {
+	font-size: 16px;
+    color: #0071F2;
+    line-height: 24px;
+    font-family: 'Product-Sans-Medium';
+}
+.pick-detail h4 {
+	font-size: 14px;
+    color: #707070;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+	margin: 0;
+}
+.pick-detail-add {
+	transform: translate(20%,-110px);
+	-webkit-transform: translate(20%,-160px);
+	border-left: 7px solid #FFCA3A;
+}
+.pick-detail-add h3 {
+	color: #707070;
+}
+/*** Pickups Css ***/
+.pick-add {
+	background-color: #F5F6FA;
+	padding: 13px 0px;
+	border-radius: 7px;
+}
+.pick-add a.active {
+	background-color: #E8F3F9;
+	color: #0071F2;;
+}
+.dashboard-side  .pick-add a {
+	margin: 0px;
+}
+.note-from-patien {
+	min-height: 270px;
+}
+.schdul-pick h3 {
+	display: inline-block;
+}
+.patin-note {
+	background-color: #FFEEEF;
+	padding: 10px 30px;
+	display: inline-block;
+	float: right;
+	border-radius: 5px;
+}
+.patin-note p {
+	font-size: 14px;
+    color: #FF595E;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+	margin: 0;
+}
+.patin-note p i {
+	margin-left: 10px;
+}
+.sign-note a {
+	position: absolute;
+	right: 60px;
+	margin-top: -23px;
+	color: #FF4147;
+}
+.sign-note .note-text {
+	padding: 30px 0px;
+}
+.patien-signs p {
+	font-size: 16px;
+    color: #707070;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+	margin: 0;
+}
+.patien-signs {
+	padding: 44px 0px;
+}
+.patien-signs a {
+	display: inline-block;
+	text-align: center;
+	width: 30%;
+	margin-bottom: 10px;
+}
+.patien-signs a i {
+	font-size: 30px;
+}
+.patien-signs input[type="file"] {
+	opacity: 0;
+    position: absolute;
+    left: 35%;
+    width: 30%;
+    margin: 0 auto;
+	cursor: pointer;
+}
+.who-picking {
+	margin-top: 30px;
+}
+.notes-modal .close span i {
+	color: #FF4147;
+}
+.notes-modal .close:focus {
+	outline: 0;
+}
+.notes-modal .modal-header {
+	padding: 15px 0px;
+}
+.notes-modal .modal-body {
+	padding: 15px 0px;
+}
+.notes-modal .modal-content {
+	padding: 0px 20px 25px;
+}
+.notes-modal h5 {
+	font-size: 24px;
+    color: #001833;
+    line-height: 28px;
+    font-family: 'Product-Sans-Medium';
+	margin: 0;
+}
+.notes-modal p {
+	font-size: 16px;
+    color: #707070;
+    line-height: 26px;
+    font-family: 'Product-Sans-Regular';
+	font-weight: 400;
+	margin: 0;
+}
+.pick-report {
+	background-color: #F5F6FA;
+	padding: 13px 0px;
+	border-radius: 0px;
+}
+.dashboard-side .pick-report a.active {
+	background-color: #001833;
+	color: #fff;
+	border-radius: 0;
+}
+.dashboard-side .pick-add a.active {
+	background-color: #E8F3F9;
+	padding: 16px 25px !important;
+}
+.dashboard-side .pick-report a:nth-child(2) {
+	padding: 16px 34px;
+}
+.dashboard-side .pick-add a {
+	color: #707070;
+}
+.pick-calender {
+	background-color: #F5F6FA;
+	padding: 13px 0px;
+	border-radius: 7px;
+}
+.dashboard-side .pick-calender a.active {
+	background-color: #001833;
+	color: #fff;
+	border-radius: 0;
+}
+.dashboard-side .pick-calender a:nth-child(3) {
+	padding: 16px 34px;
+}
+.side-menu .accordion .sidenav a.active {
+    font-weight: 500;
+    color: #001833;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+}
+.check-notifi {
+	font-size: 18px;
+    color: #001833;
+    line-height: 26px;
+    font-family: 'Product-Sans-Regular';
+	font-weight: 400;
+}
+.check-notifi span {
+	background-color: #F5F6FA;
+	width: 25px;
+	height: 25px;
+	border-radius: 5px;
+	display: inline-block;
+	color: #0071F2;
+	text-align: center;
+	margin-right: 10px;
+}
+.check-notifi span i {
+	font-size: 13px;
+}
+.search-logs .setting-phar-table td {
+	color: #001833;
+}
+.update-information .form-group label {
+	color: #001833;
+    font-size: 15px;
+    line-height: 24px;
+    font-family: 'Product-Sans-Regular';
+}
+.update-information .form-group input {
+	border: 1px solid #F5F6FA;
+    background-color: #F5F6FA;
+    color: #001833;
+    font-size: 18px;
+    font-weight: 500;
+    height: 55px;
+}
+.update-information .form-group input::placeholder {
+	color: #001833;
+}
+.update-information .form-group select {
+	border: 1px solid #F5F6FA;
+	background-color: #F5F6FA;
+	color: #001833;
+	font-size: 17px;
+	font-weight: 500;
+	height: 55px;
+}
+.update-information input:focus {
+	box-shadow: none;
+	border: 1px solid #e3e4e7;
+}
+.update-information select:focus {
+	box-shadow: none;
+	border: 1px solid #e3e4e7;
+}
+.update-information .update-btn {
+	padding: 10px 50px;
+    background-color: #0071F2;
+    display: block;
+    text-align: center;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 26px;
+    font-family: 'Product-Sans-Medium';
+    border: 1px solid #0071F2;
+	width: 100%;
+}
+.update-information .reset-btn {
+	border: 1px solid #707070;
+    padding: 10px 50px;
+    background-color: transparent;
+    display: block;
+    text-align: center;
+    color: #707070;
+    font-size: 20px;
+    line-height: 26px;
+    font-family: 'Product-Sans-Medium';
+	width: 100%;
+}
+.seting-heading h2 {
+	font-size: 24px;
+    color: #001833;
+    line-height: 30px;
+    font-family: 'Product-Sans-Bold';
+    margin-bottom: 0px;
+}
+.update-information label span {
+    color: #FF595E;
+	margin-left: 5px;
+}
+/*** Pharmacy Dashboard Css ***/
+/***                        ***/
+/*** Media Query Css ***/
+@media only screen and (min-width: 992px) and (max-width: 1400px) {
+	.report-add a {
+		font-size: 17px;
+	}
+}
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+	.expand-sidebar {
+		-ms-flex: 0 0 15% !important;
+	    flex: 0 0 15% !important;
+	    max-width: 15% !important;
+	}
+	.expand-dashborad {
+		-ms-flex: 0 0 85% !important;
+	    flex: 0 0 85% !important;
+	    max-width: 85% !important;
+	}
+	.pharmici-info .store {
+		padding-top: 15px;
+		width: 60px;
+		height: 60px;
+	}
+	.pharmici-info {
+		margin-bottom: 20px;
+	}
+	.expand-sidebar {
+	    width: 15% !important;
+	}
+	.expand-dashborad {
+		width: 85%;
+	    margin-left: 15%;
+	}
+	.reports-breadcrum {
+		margin-bottom: 65px;
+	}
+	.phar-admin-box {
+		-ms-flex: 0 0 25%;
+		flex: 0 0 25%;
+		max-width: 25%;
+		margin-bottom: 20px;
+	}
+}
+@media only screen and (min-width: 992px) {
+	.phrma-info h2 {
+		display: none;
+	}
+	#menu-bar {
+		display: none;
+	}
+	#menu-bar-close {
+		display: none;
+	}
+	.small-logo-mobile {
+		display: none;
+	}
+	.user-menu .dropdown-toggle img {
+		margin-right: 10px;
+		position: relative;
+		top: 5px;
+	}
+	.side-menu {
+		height: 100%;
+		position: fixed;
+		overflow: hidden;
+		z-index: 1001;
+	}
+	.dash-wrap {
+		margin-bottom: 30px;
+	}
+	.dashboard-side {
+		margin-left: 25%;
+	}
+	.mini-sidebar .logo-head .logo {
+	    display: none;
+	}
+	.mini-sidebar .logo-head .small-logo {
+	    display: inline-flex;
+	}
+	.mini-sidebar .menu-arrow-right {
+		display: block;
+	}
+	.mini-sidebar .menu-arrow-left {
+		display: none;
+	}
+	.mini-sidebar .side-menu .accordion a span {
+		display: none;
+	}
+	.mini-sidebar .side-menu .accordion .sidenav i {
+		display: none;
+	}
+	.mini-sidebar .logout {
+		text-align: center;
+		width: 100%;
+		padding-right: 15px;
+	}
+	.mini-sidebar .logout span {
+		display: none;
+	}
+	.mini-sidebar .side-menu .nav a {
+		text-align: center;
+	}
+	.mini-sidebar .accordion .sidenav {
+		text-align: center;
+	}
+	.expand-sidebar {
+	    width: 10% !important;
+	}
+	.expand-dashborad {
+		width: 90%;
+	    margin-left: 10%;
+	}
+	.mini-sidebar .open ul {
+		display: none !important;
+	}
+	.pharma-add-mobile {
+		display: none;
+	}
+	.pharma-register h2 {
+		display: none;
+	}
+	.seting-heading {
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.open-sidebar {
+		width: 40% !important;
+	}
+	.register-plan a {
+		display: inline-block;
+		margin-bottom: 12px;
+		font-size: 15px;
+		padding: 7px 21px;
+	}
+	.phar-admin-box {
+		-ms-flex: 0 0 25%;
+		flex: 0 0 25%;
+		max-width: 25%;
+		margin-bottom: 20px;
+	}
+}
+@media only screen and (max-width: 991px) {
+	.dashborad-header {
+		padding: 20px 15px;
+	}
+	.dashborad-header h2 {
+		display: none;
+	}
+	.user-menu .dropdown-toggle {
+		padding: 0 0 0 10px;
+		font-size: 18px;
+	}
+	.user-menu .dropdown-toggle span {
+		display: none;
+	}
+	.user-menu .online {
+		display: none;
+	}
+	.phrma-info h2 {
+		font-size: 21px;
+	    color: #001833;
+	    line-height: 30px;
+	    font-family: 'Product-Sans-Bold';
+	    margin-bottom: 20px;
+	}
+	.phrma-info {
+		margin-bottom: 20px;
+	}
+	.logo-head {
+		display: none;
+	}
+	.side-menu .nav {
+		margin-top: 0;
+	}
+	.logout {
+		position: inherit;
+	}
+	.side-menu {
+		display: none;
+	}
+	.dashboard-side {
+		width: 100%;
+	}
+	.dashborad-header .small-logo-mobile {
+		position: absolute;
+	    left: 50%;
+	    transform: translate(-50%, -25%);
+	    -webkit-transform: translate(-50%, -25%);
+	}
+	.dashborad-header .small-logo-mobile img {
+		width: 80%;
+	}
+	#menu-bar {
+		color: #001833;
+		font-size: 20px;
+	}
+	.open-sidebar {
+		display: block;
+		position: fixed;
+		left: 0px;
+		width: 70%;
+		height: 100%;
+		z-index: 1001;
+		padding-top: 45px;
+	    -webkit-transition: all 3s ease-in-out;
+	    -moz-transition: all 3s ease-in-out;
+	    transition: all 3s ease-in-out;
+	}
+	#menu-bar-close {
+		padding: 0;
+		position: absolute;
+		right: 15px;
+	    top: 15px;
+	    border: 1px solid #fff;
+	    padding: 0px 10px;
+	    color: #fff;
+	}
+	.pharmici-info {
+		margin-bottom: 20px;
+	}
+	.pharma-nam-box {
+		margin-top: 2px;
+	}
+	.pharmacy-name .pharma-title {
+		font-size: 18px;
+		line-height: 25px;
+	}
+	.pharmacy-name span {
+		font-size: 14px;
+	}
+	.dashborad-header {
+		margin: 0px -15px 20px;
+	}
+	.side-menu .accordion {
+		padding-top: 0;
+	}
+	.user-menu .profile {
+		top: -10px;
+	}
+	.dash-breadcrumb {
+		padding-top: 20px;
+	}
+	.pharma-add {
+		display: none;
+	}
+	.pharma-add-mobile {
+		display: block;
+		background-color: #ececec;
+		padding: 15px;
+		text-align: center;
+	}
+	.pharma-add-mobile a {
+		font-size: 16px;
+		padding: 12px 20px !important;
+	}
+	.all-subscriptions h2 {
+		font-size: 26px;
+		line-height: 35px;
+	}
+	.plans {
+		margin-bottom: 20px;
+	}
+	.pharma-add-mobile a {
+		margin-bottom: 7px;
+		display: inline-block;
+		font-size: 16px;
+		padding: 8px 9px !important;
+	}
+	.reports-breadcrum .reset-patien {
+		float: none;
+		width: 100%;
+		text-align: center;
+	}
+	.reset-patien .reset-btn {
+		padding: 7px 30px;
+	}
+	.reset-patien .add-pat-btn {
+		padding: 7px 25px;
+	}
+	.patient-information {
+		margin-bottom: 20px;
+	}
+	.pharma-register h2 {
+		font-size: 24px;
+	    color: #001833;
+	    line-height: 30px;
+	    font-family: 'Product-Sans-Bold';
+	    margin-bottom: 0px;
+	}
+	.patient-information h3 {
+		font-size: 18px;
+		margin-bottom: 15px;
+	}
+	.pick-up-patient h3 {
+		font-size: 18px;
+		margin-bottom: 15px;
+	}
+	.pick-up-patient table th {
+		font-size: 17px;
+		white-space: nowrap;
+		padding-right: 15px;
+	}
+	.pick-up-patient table td {
+		font-size: 15px;
+		white-space: nowrap;
+		padding-right: 15px;
+	}
+	.serch-prvw-results .table-striped td {
+		white-space: nowrap;
+	}
+	.serch-prvw-results h3 {
+		font-size: 20px;
+	}
+	.patient-info-export .dropdown button {
+		font-size: 18px;
+		padding: 10px 20px;
+	}
+	.patient-info-export h3 {
+		margin-bottom: 0;
+	}
+	.search-logs .table th {
+		white-space: nowrap;
+	}
+	.search-logs .table td {
+		white-space: nowrap;
+	}
+	.patient-info-export h3 {
+		font-size: 17px;
+		line-height: 20px;
+	}
+	.patient-info-export p {
+		font-size: 12px;
+		line-height: 15px;
+	}
+	.table-bottom {
+		margin-top: 25px;
+	}
+	.show-result-out {
+		text-align: center;
+	}
+	.pick-calender a {
+		color: #707070;
+		border: 1px solid #000;
+		padding: 7px 20px !important;
+		margin-right: 5px;
+	}
+	.pick-report a {
+		color: #707070;
+		border: 1px solid #000;
+		padding: 7px 20px !important;
+		margin-right: 5px;
+	}
+	.who-picking {
+		margin-top: 10px;
+	}
+}
+@media only screen and (max-width: 767px) {
+	.pharmacy-calender {
+		margin-bottom: 20px;
+	}
+	.btn-search-mobile {
+		width: 100%;
+		text-align: center;
+		margin-top: 15px;
+	}
+	.phar-admin-box {
+		-ms-flex: 0 0 50%;
+		flex: 0 0 50%;
+		max-width: 50%;
+		margin-bottom: 20px;
+	}
+	.picks {
+		text-align: center;
+	}
+	.show-by {
+		text-align: center;
+	}
+	.patin-note {
+		padding: 10px;
+	}
+	.patin-note p {
+		font-size: 12px;
+	}
+	.patient-information {
+		padding: 15px 20px;
+		min-height: auto;
+	}
+	.who-picking .custom-control-inline {
+		margin-bottom: 10px;
+	}
+	.week-pick h3 {
+		font-size: 22px;
+	}
+	.calender-box table thead th {
+		font-size: 18px;
+	}
+	.calender-box table tbody td {
+		font-size: 20px;
+		line-height: 25px;
+	}
+	.pick-add {
+		background-color: #ececec;
+		text-align: center;
+	}
+	.pick-report {
+		background-color: #ececec;
+    	text-align: center;
+		padding-top: 15px;
+		border-radius: 7px;
+	}
+	.dashboard-side .pick-add a {
+		margin: 0px 10px 10px;
+	}
+	.dashboard-side .pick-report a {
+		margin: 0px 5px 7px 0px;
+	}
+	.dashboard-side .pick-report a:nth-child(1) {
+		background-color: transparent;
+	}
+	.pick-detail {
+		width: 150px;
+		padding: 13px 15px;
+		position: relative;
+	}
+	.pick-detail h4 {
+		font-size: 13px;
+		line-height: 16px;
+	}
+	.table-bottom nav {
+		text-align: center;
+	}
+	.table-bottom nav  .pagination {
+		display: inline-flex;
+	}
+	.search-logs .table th {
+		font-size: 18px;
+	}
+	.dash-breadcrumb .breadcrumb {
+		margin-bottom: 0;
+	}
+	.pharmici-dash-info p {
+		margin-bottom: 15px;
+	}
+}
+@media only screen and (max-width: 320px) {
+	.patient-info-export .dropdown button {
+		font-size: 14px;
+    	padding: 9px 15px;
+	}
+}

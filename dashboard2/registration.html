@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Dashboard</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <!-- Animation CSS -->
+  <link rel="stylesheet" href="assets/css/animation.css">
+  <!-- Your custom styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Dashboard -->
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="side-menu">
+        <div class="logo-head">
+          <a class="logo" href="index.html"><img src="assets/images/logo.png" alt=""></a>
+          <a class="small-logo" href="#"><img src="assets/images/logo-small.png" alt=""></a>
+          <a class="menu-arrow" href="javascript:void(0);" id="close-btn"><img class="menu-arrow-left" src="assets/images/arrow.png" alt=""><img class="menu-arrow-right" src="assets/images/arrow-right.png" alt=""></a>
+        </div>
+
+        <div class="accordion">
+          <a id="menu-bar-close" href="#"><i class="fa fa-times"></i></a>
+          <ul>
+            <li class="sidenav">
+              <a class="nav-link active" href="index.html"><img src="assets/images/dashboard.png" alt=""><span>Dashborad</span></a>
+            </li>
+            <li class="sidenav">
+              <h4><a href="#"><img src="assets/images/medkit.png" alt=""><span>Pharmacies</span></a><i class="fa fa-angle-right"></i></h4>
+              <ul style="display: none;">
+                <li class="page_item"><a class="nav-link" href="pharmacies.html">Pharmacies</a></li>
+              </ul>
+            </li>
+            <li class="sidenav">
+              <h4><a href="#"><img src="assets/images/people.png" alt=""><span>Users</span></a><i class="fa fa-angle-right"></i></h4>
+              <ul style="display: none;">
+                <li class="page_item"><a class="nav-link" href="#">Users</a></li>
+              </ul>
+            </li>
+            <li class="sidenav">
+              <h4><a href="#"><img src="assets/images/forms.png" alt=""><span>Forms</span></a><i class="fa fa-angle-right"></i></h4>
+              <ul style="display: none;">
+                <li class="page_item"><a class="nav-link" id="v-pills-forms-tab" data-toggle="pill" href="#v-pills-forms" role="tab" aria-controls="v-pills-forms" aria-selected="false">Forms</a></li>
+              </ul>
+            </li>
+            <li class="sidenav">
+              <h4><a href="#"><img src="assets/images/reports.png" alt=""><span>Reports</span></a><i class="fa fa-angle-right"></i></h4>
+              <ul style="display: none;">
+                <li class="page_item"><a class="nav-link" href="reports.html">Reports</a></li>
+                <li class="page_item"><a class="nav-link" href="registration.html">Add New Pharmacy</a></li>
+              </ul>
+            </li>
+            <li class="sidenav">
+              <h4><a href="#"><img src="assets/images/cog.png" alt=""><span>Settings</span></a><i class="fa fa-angle-right"></i></h4>
+              <ul style="display: none;">
+                <li class="page_item"><a class="nav-link" href="settings.html">Settings</a></li>
+              </ul>
+            </li>
+            <li class="sidenav"><a class="nav-link" href="#"><img src="assets/images/search.png" alt=""><span>Search</span></a></li>
+            <li class="sidenav"><a class="nav-link" href="#"><img src="assets/images/document-lock.png" alt=""><span>Logs</span></a></li>
+          </ul>
+        </div>
+        <div class="logout">
+          <a href="#" class="nav-link"><img src="assets/images/exit.png" alt=""><span>Logout</span></a>
+        </div>
+      </div>
+
+      <div class="dashboard-side">
+        <div class="dash-wrap">
+          <div class="dashborad-header">
+            <a id="menu-bar" href="#"><i class="fa fa-bars"></i></a>
+            <h2>Pharmacy Registration</h2>
+            <a class="small-logo-mobile" href="#"><img src="assets/images/mobile-logo.png" alt=""></a>
+            <div class="user-menu">
+              
+               <div class="profile"> 
+                  <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="assets/images/user.png" alt=""> <span>Amir Eid</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="#">My Profile</a>
+                      <a class="dropdown-item" href="#">Setting</a>
+                      <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                  </div>
+                  <p class="online"><span></span>Online</p>
+                </div>
+            </div>
+          </div>
+
+          <div class="pharma-register">
+              <h2>Pharmacy Registration</h2>
+          </div>
+
+          <div class="reports-breadcrum">
+
+            <nav class="dash-breadcrumb" aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"><img src="assets/images/icon-home.png" alt="">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Reports</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add New Pharmacy</li>
+              </ol>
+            </nav>
+
+            <div class="reset-patien">
+              <a class="btn reset-btn" href="#">Reset</a>
+              <a class="btn reset-btn add-pat-btn" href="#">Register Pharmacy<i class="ml-2 fas fa-arrow-circle-right"></i></a>
+            </div>
+
+          </div>
+
+          <div class="report-forms">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="patient-information">
+                  <h3>Pharmacy Information</h3>
+                  <form class="report-form">
+                    <div class="row">
+                      <div class="form-group col-md-12 register-plan">
+                        <label class="d-block">Choose Your Subscription Plan*</label>
+                        <a href="#">Basic Plan</a>
+                        <a class="standard" href="#">Standard Plan</a>
+                        <a class="premium" href="#">Premium Plan</a>
+                      </div>
+                      <div class="form-group col-md-12 packpeak-set">
+                        <label>We will setup Packpeaks for you at:</label>
+                        <p>https://www <span>Centree-Health</span> .packpeak.com.au</p>
+                        <a class="favourt" href="#"><i class="far fa-heart"></i>Add to favorites</a>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Company Name<span>*</span></label>
+                        <input type="text" class="form-control" placeholder="Centree Health">
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Company Namess<span>*</span></label>
+                        <input type="text" class="form-control" placeholder="Centree Health">
+                      </div>
+                      <div class="form-group col-md-12 col-lg-6">
+                        <label>Password:<span>*</span></label>
+                        <input type="text" class="form-control" placeholder="**********">
+                      </div>
+                      <div class="form-group col-md-12 col-lg-6 confirm-pass">
+                        <label>Confirm Password:<span>*</span></label>
+                        <input type="text" class="form-control" placeholder="**********">
+                        <i class="fas fa-check-circle"></i>
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Address: <a href="#">Set in maps</a></label>
+                        <textarea rows="3" type="text" class="form-control" placeholder="108-114 Jonson Street, Byron Bay NSW, Australia"></textarea>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="patient-information">
+                  <h3>Personal Information</h3>
+                  <form class="report-form">
+                    <div class="row">
+                      <div class="form-group col-md-6">
+                        <label>First Name<span>*</span></label>
+                        <input type="text" class="form-control" placeholder="John">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label>Last Name<span>*</span></label>
+                        <input type="text" class="form-control" placeholder="Doe">
+                      </div>
+                      <div class="col-md-12">
+                        <label for="inputState">Phone Number<span>*</span></label>
+                      </div>
+                      <div class="form-group col-4 col-md-3">
+                        <select id="inputState" class="form-control">
+                          <option selected>+61</option>
+                          <option>...</option>
+                          <option>...</option>
+                          <option>...</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-8 col-md-9">
+                        <input type="text" class="form-control" placeholder="7 7010 1111">
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Email<span>*</span></label>
+                        <input type="text" class="form-control" placeholder="john.doe@mail.com">
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Username<span>*</span></label>
+                        <input type="text" class="form-control" placeholder="john.doe343">
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label>Pin<span>*</span></label>
+                        <input type="text" class="form-control" placeholder="********">
+                      </div>
+                      <div class="form-group col-md-12">
+                        <div class="form-check term-check">
+                          <input type="checkbox" class="form-check-input">
+                          <label class="form-check-label">I agreed to the Packpeaks <a href="">Terms, Conditions</a> and <a href="#">Privacy Policy</a></label>
+                        </div>
+                      </div> 
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End Of Dashboard -->
+
+<!-- jQuery -->
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="assets/js/popper.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<!-- Your custom scripts -->
+<script type="text/javascript" src="assets/js/custom.js"></script>
+
+</body>
+</html>
