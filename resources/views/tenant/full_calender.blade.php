@@ -1001,7 +1001,7 @@ var finaltime = time+":"+timemin+":"+timesec;
 		console.log(info.events);
 		document.getElementById("id").value =info.id;
 		// document.getElementById("first_name").value = data[i].first_name;
-		document.getElementById("getdate").value =info.start;
+		document.getElementById("getdate").value =info.start.formatDate('Y/M/D');
 		document.getElementById("name").value = info.title;
 
     }
