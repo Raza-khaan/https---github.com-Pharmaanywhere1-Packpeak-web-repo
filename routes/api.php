@@ -22,7 +22,7 @@ Route::post('passwords/email', 'Api\Pharmacy@sendResetLinkEmail');
 Route::post("sendNotification", "Api\PostController@sendNotification");
 
 Route::get('packpeakapp', 'Api\Pharmacy@packpeakapp');
-
+Route::get('patientrecord','Api\Pharmacy@patientrecord');
 Route::get('getAppLogoutTime/{website_id}', 'Api\Pharmacy@getAppLogoutTime');
 
 Route::group(['middleware' => 'auth:api'], function () {
@@ -55,5 +55,5 @@ Route::group(['middleware' => 'auth:api'], function () {
 	// Route::get('updateAppLogoutTime/{website_id}','Api\Pharmacy@updateAppLogoutTime');
 
 	// Route::post("sendNotification","Api\PostController@sendNotification");
-
+	
 });

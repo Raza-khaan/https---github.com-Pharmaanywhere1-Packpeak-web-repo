@@ -747,8 +747,9 @@ body {
         </button>
       </div>
      
-      <div class="modal-body" >
-     <input type="text" name="id" id="id">
+      <div class="modal-body">
+     <input type="text" name="id" id="id" style="display:none">
+	 <!-- <input type="text" name="type" id="type" > -->
       <div>
             <input type="text" name="event_date" id="getdate" placeholder="" readonly>
         </div>
@@ -758,44 +759,15 @@ body {
      
       </div>
       <div class="modal-footer">
-      <button type="button" id="submit" class="btn btn-primary">Save Event</button>
+      <button type="button" id="submit"  class="btn btn-primary">Save Event</button>
+	  <button type="button" id="delete" class="btn btn-danger">Delete Event</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
      
     </div>
   </div>
 </div>
-<!-- <div class="modal" tabindex="-1" role="dialog" id="alerts-models">
-     <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Event title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-     
-      <div class="modal-body" >
-     <input type="text" name="id" id="eventids">
-      <div>
-            <input type="text" name="event_date" id="getdates" placeholder="" readonly>
-        </div>
-        <div>
-            <input type="text" name="event_name" id="names" placeholder="Event">
-        </div>
-     
-      </div>
-      <div class="modal-footer">
-      <button type="button" id="submit" class="btn btn-primary">Save Event</button>
-	  <form action="{{url('calender_event_delete')}}" method="get">
-	  <button type="submit" id="delete_event" class="btn btn-danger">Delete Event</button>
-	  </form>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-     
-    </div>
-  </div>
-</div> -->
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -806,9 +778,8 @@ body {
    
   <script> 
   
-        $(document).ready(function() {
-
-			
+$(document).ready(function() {	
+		
 var event_array = [];
 //var event_name = null;
 
@@ -821,8 +792,7 @@ var event_array = [];
 				 //  console.log(jsondata);
 for(var i =0 ; i<jsondata[0].length;i++)
 {
-	
-	//console.log(jsondata[0][Number(i)].id);
+		//console.log(jsondata[0][Number(i)].id);
 	const AD = {id: jsondata[0][i].id, title:jsondata[0][i].event_name, start:jsondata[0][i].event_date,allDay: false ,className: 'info'};
 	event_array.push(AD);
 }
@@ -830,24 +800,24 @@ for(var i =0 ; i<jsondata[0].length;i++)
 			}
 			
                });
-			   $.ajax({
-                method: "get",            
-                url: "{{url('/calender_events_edit')}}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function(data) {
-				//console.log(data);
+			//    $.ajax({
+            //     method: "get",            
+            //     url: "{{url('/calender_events_edit')}}",
+            //     contentType: "application/json; charset=utf-8",
+            //     dataType: "json",
+            //     success: function(data) {
+			// 	//console.log(data);
 				
-				 document.getElementById("id").value = data[0].id;
-               // document.getElementById("first_name").value = data[i].first_name;
-                 document.getElementById("getdate").value = data[0].event_date;
-                 document.getElementById("name").value = data[0].event_name;
+			// 	 document.getElementById("id").value = data[0].id;
+            //    // document.getElementById("first_name").value = data[i].first_name;
+            //      document.getElementById("getdate").value = data[0].event_date;
+            //      document.getElementById("name").value = data[0].event_name;
 			   
-				 //  console.log(jsondata);
+			// 	 //  console.log(jsondata);
 
-			}
+			// }
 			
-               });
+            //    });
              
 
 	  var date = new Date();
@@ -904,7 +874,7 @@ for(var i =0 ; i<jsondata[0].length;i++)
 			allDaySlot: false,//cambie a true
             selectHelper: true,
             dayClick: function (date, allDay, jsEvent, view) {
-				 
+				 console.log(allDay);
                 if (allDay) {
 					
                     // Clicked on the day number 
@@ -921,7 +891,7 @@ for(var i =0 ; i<jsondata[0].length;i++)
             
             select: function (startDate, endDate, allDay,date) {
                 if (!allDay) {
-                  
+					$("#delete").hide();
                     $('#alert-models').modal('show'); 
                   //  var dt = new Date();
 var time = startDate.getHours();
@@ -975,12 +945,13 @@ var finaltime = time+":"+timemin+":"+timesec;
 					
                   
                 } 
-				//$(".fc-event-inner").click(function(){
-					$("#wrap").click(function(){
+				$(".fc-event-inner").click(function(){
+					//$("#wrap").click(function(){
 						//this.find(fc-event-id).text;
 				//	function savehold()
 				//	{
 						//alert('hello');
+						$("#delete").show();
  					$('#alert-models').modal('show');
 				//	}
 				});
@@ -1017,7 +988,24 @@ var finaltime = time+":"+timemin+":"+timesec;
 				}
 				
 			}, 
-			events: event_array
+			events: event_array,
+			eventClick: function(info) {
+    
+//console.log(info);
+
+    if (info) {
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		console.log(info.events);
+		document.getElementById("id").value =info.id;
+		// document.getElementById("first_name").value = data[i].first_name;
+		document.getElementById("getdate").value =info.start;
+		document.getElementById("name").value = info.title;
+
+    }
+  }
 			// events: [
 			// 	{
 			// 		title: event_name,
@@ -7233,7 +7221,8 @@ $.ajaxSetup({
     $("#submit").click(function(e){
 
         e.preventDefault();
-
+		var id = $("input[name=id]").val();
+		
         var event_date = $("input[name=event_date]").val();
         var event_name = $("input[name=event_name]").val();
       //  var url = '{{ url('postinsert') }}';
@@ -7242,6 +7231,8 @@ $.ajaxSetup({
            url:"{{url('calender_events')}}",
            method:'POST',
            data:{
+			id:id,
+		
             event_date:event_date, 
             event_name:event_name
                 },
@@ -7260,6 +7251,70 @@ $.ajaxSetup({
            }
         });
 	});
+// 	$("#submit").click("#delete",function(e){
+
+// e.preventDefault();
+// var id = $("input[name=id]").val();
+// var event_date = $("input[name=event_date]").val();
+// var event_name = $("input[name=event_name]").val();
+// //  var url = '{{ url('postinsert') }}';
+// //alert(event_date);
+// $.ajax({
+//    url:"{{url('calender_event_delete')}}",
+//    method:'get',
+//    data:{
+// 	id:id,
+// 	event_date:event_date, 
+// 	event_name:event_name
+// 		},
+//    success:function(response){
+// 	  if(response.success){
+		
+// 		location.href = "{{url('full_calender')}}"
+// 	  //  console.log(response);
+// 		//  alert(response.message) //Message come from controller
+// 	  }else{
+// 		  alert("Error")
+// 	  }
+//    },
+//    error:function(error){
+// 	  console.log(error)
+//    }
+// });
+// });
+$("#delete").click(function(e){
+
+e.preventDefault();
+var id = $("input[name=id]").val();
+
+// var event_date = $("input[name=event_date]").val();
+// var event_name = $("input[name=event_name]").val();
+//  var url = '{{ url('postinsert') }}';
+//alert(event_date);
+$.ajax({
+   url:"{{url('calender_event_delete')}}",
+   method:'get',
+   data:{
+	id:id,
+	
+	// event_date:event_date, 
+	// event_name:event_name
+		},
+   success:function(response){
+	  if(response.success){
+		
+		location.href = "{{url('full_calender')}}"
+	  //  console.log(response);
+		//  alert(response.message) //Message come from controller
+	  }else{
+		  alert("Error")
+	  }
+   },
+   error:function(error){
+	  console.log(error)
+   }
+});
+});
 </script>
     
    

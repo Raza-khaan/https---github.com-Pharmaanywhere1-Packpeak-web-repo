@@ -1236,6 +1236,7 @@ dd('raza');
 	//  $calender->event_date=$req->getdate;
 	//  $calender->event_name=$req->name;
 	//  $calender->save();
+	if($req->id == NULL){
 	 $insert_data = array(
 		 'event_date' =>$req->event_date,
 		 'event_name' => $req->event_name
@@ -1254,6 +1255,38 @@ return response()->json(
 	]);
 	//dd($req->getdate);
 	// dd('ok');
+}
+else
+{
+	
+		$ob = calender::find($req->id);
+// 		$input     = "2020-01-07T11:55:34:438 GMT+0600"                   // "2020-01-07T11:55:34:438 GMT+0600"
+// $timestamp = substr($input,0,19);                                 // "2020-01-07T11:55:34"
+// $mysql     = date_format(date_create($timestamp),'Y-m-d H:i:s');
+// 		$input =$req->event_date ;
+// $date = DateTime::createFromFormat('Y-m-d\Th:i:s:u \G\M\TO', $input);
+//echo $date->format('Y-m-d h:i:s');
+	//	$result = $req->event_date->format('Y-m-d H:i:s');
+	//	$result_one = Carbon::parse($result);
+		$update_data = array(			
+		    	'event_date' => $req->event_date,
+				'event_name' => $req->event_name
+
+		);
+
+
+
+		$ob->update($update_data);
+
+		return response()->json(
+		[
+		'success' => true,
+		'message' => 'Data inserted successfully'
+		]);
+
+	
+	
+}
  }
  public function calender_events_fetch()
 	{  //$user = User::find($id);
@@ -1267,10 +1300,20 @@ return response()->json(
 		//dd($calender_events);
 		return response()->json($calender);
 	}
-	public function calender_event_delete()	
+	public function calender_event_delete(Request $req)	
 	{
-		dd('ok'); 
 		
+		
+		$ob = calender::find($req->id);
+	
+	//	dd($insert_data);
+	$ob->delete();
+	// calender::update($update_data);
+	return response()->json(
+	   [
+		 'success' => true,
+		 'message' => 'Data inserted successfully'
+	   ]);
 		
 		//$user = User::find($id);
 		// $calender = calender::all();
@@ -1280,4 +1323,6 @@ return response()->json(
         // $user->delete();
         // return redirect('/show_member')->with('status',"Data deleted successfully");
 	}
+
+	
 }

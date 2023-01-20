@@ -523,4 +523,5 @@ class PostController extends Controller {
 			return response()->json(['error' => 'Pharmacy not  found!'], 401);
 		}
 	}
+	
 }

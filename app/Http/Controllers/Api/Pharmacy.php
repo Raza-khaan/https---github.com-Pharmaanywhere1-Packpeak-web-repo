@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Hyn\Tenancy\Models\Website;
+use App\Models\Tenant\Patient;
 use App\Websites;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth; 
@@ -27,7 +28,12 @@ class Pharmacy extends UserController
 {
     public $successStatus = 200;
     
-
+    public function patientrecord()
+	{
+     
+		 return Patient::get();
+	
+	}
     public  function  get_connection($website_id)
     {
         $get_user=User::get_by_column('website_id',$website_id);
